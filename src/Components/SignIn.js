@@ -65,16 +65,13 @@ function SignIn() {
                 backgroundColor: '#27374D',
                 color: 'white',
                 '&:hover': { backgroundColor: '#142132' },
-              }}
-            >
+              }}>
               Sign In
             </Button>
             <div className="centered-text">
               <p>Don't have an account? </p>
               <p>
-                <a href="/signup" style={{ textDecoration: 'none', color: '#27374D' }}>
-                  Sign Up
-                </a>
+                <a href="/signup" style={{ textDecoration: 'none', color: '#27374D' }}>Sign Up</a>
               </p>
             </div>
             <br />

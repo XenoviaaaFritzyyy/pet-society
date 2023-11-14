@@ -1,0 +1,23 @@
+button {
+    font-size: 15px;
+    font-weight: bold;
+    color: #27374D;
+    background-color: #DDE6ED;
+}
+
+button:hover {
+    background-color: #9DB2BF;
+    transition: 0.3s;
+}
+
+strong {
+    font-size: 60px;
+    color: #DDE6ED;
+}
+
+.slogan {
+    margin: 0;
+    padding-top: 10px;
+    font-size: 24px;
+    color: grey;
+}
