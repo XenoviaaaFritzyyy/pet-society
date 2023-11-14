@@ -1,0 +1,28 @@
+.centered-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+  
+   .centered-text1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   
+   .centered-text p:first-child {
+    color: #27374D;
+    display: inline;
+    font-family: 'Josefin Sans', sans-serif;
+   }
+  
+   .centered-text1 p:first-child {
+    color: #828282;
+    font-family: 'Josefin Sans', sans-serif;
+   }
+   
+   .centered-text p:last-child {
+    text-decoration: underline;
+    display: inline;
+    font-family: 'Josefin Sans', sans-serif;
+   }
