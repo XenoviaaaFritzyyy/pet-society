@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SignIn from './Components/SignIn';
+import './App.css';
 
 function App() {
   const [showWelcome, setShowWelcome] = useState(true);
