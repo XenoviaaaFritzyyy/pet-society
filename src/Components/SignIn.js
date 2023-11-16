@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Checkbox, TextField, FormControlLabel, Grid, Box } from '@mui/material';
+import { Link } from 'react-router-dom';
 import '../Css/signin.css';
 
 function SignIn() {
@@ -71,13 +72,10 @@ function SignIn() {
               Sign In
             </Button>
             <div className="centered-text">
-              <p>Don't have an account? </p>
-              <p>
-                <a href="/signup" style={{ textDecoration: 'none', color: '#27374D' }}>Sign Up</a>
-              </p>
+              <p>Don't have an account?&nbsp;</p>
+                <Link to="/signup" style={{ textDecoration: 'underline', color: '#27374D' }}>Sign Up</Link>
             </div>
-            <br />
-            <br />
+            <br /><br />
             <div className="centered-text1">
               <p>Copyright @ Pet Society 2023</p>
             </div>
