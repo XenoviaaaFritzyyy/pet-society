@@ -3,38 +3,16 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
 import './Css/App.css';
-/* Experiment ni Rob*/
-/* Experiment 2*/
-/* Experiment 3*/
-function App() {
-  const [showWelcome, setShowWelcome] = useState(true);
-  const [showSignIn, setShowSignIn] = useState(false);
-  const [showSignUp, setShowSignUp] = useState(false);
-  
-  const navigateToSignIn = () => {
-    setShowWelcome(false);
-    setShowSignIn(true);
-    setShowSignUp(false);
-  };
 
-  const navigateToSignUp = () => {
-    setShowWelcome(false);
-    setShowSignIn(false);
-    setShowSignUp(true);
+function Welcome() {
+  const containerStyle = {
+    backgroundImage: 'url(/images/background1.png)',
+    backgroundSize: 'auto 100%',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'right top',
+    minHeight: '100vh',
+    backgroundColor: 'rgba(0, 0, 0)',
   };
-
-  const containerStyle = showWelcome
-    ? {
-        backgroundImage: 'url(/images/background1.png)',
-        backgroundSize: 'auto 100%',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'right top',
-        minHeight: '100vh',
-        backgroundColor: 'rgba(0, 0, 0)',
-      }
-    : {
-        minHeight: '100vh',
-      };
 
   return (
     <div className="container" style={containerStyle}>
