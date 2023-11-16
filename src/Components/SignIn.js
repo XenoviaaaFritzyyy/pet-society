@@ -22,7 +22,9 @@ function SignIn() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            justifyContent: 'center',
             padding: '20px',
+            minHeight: '700px',
           }}
         >
           <h1>Sign In</h1>

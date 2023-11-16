@@ -26,7 +26,9 @@ function SignUp() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            justifyContent: 'center',
             padding: '20px',
+            minHeight: '700px',
           }}
         >
           <h1>Sign Up</h1>
