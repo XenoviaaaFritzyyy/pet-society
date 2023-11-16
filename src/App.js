@@ -9,7 +9,6 @@ function App() {
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   
- 
   const navigateToSignIn = () => {
     setShowWelcome(false);
     setShowSignIn(true);
