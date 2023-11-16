@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
 import './Css/App.css';
-/* Experiment ni Rob*/
-/* Experiment 2*/
+
 function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
+  
  
   const navigateToSignIn = () => {
     setShowWelcome(false);
@@ -64,6 +64,7 @@ function App() {
       {showSignIn && <SignIn />}
 
       {/* Other components can be added here */}
+
     </div>
   );
 }
