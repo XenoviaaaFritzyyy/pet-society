@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button, Checkbox, TextField, FormControlLabel, Grid, Box } from '@mui/material';
+import { Link } from 'react-router-dom';
+
 import '../Css/signup.css';
 
 function SignUp() {
@@ -26,7 +28,9 @@ function SignUp() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            justifyContent: 'center',
             padding: '20px',
+            minHeight: '700px',
           }}
         >
           <h1>Sign Up</h1>
@@ -96,15 +100,10 @@ function SignUp() {
               Sign Up
             </Button>
             <div className="centered-text">
-              <p>Already have an account? </p>
-              <p>
-                <a href="/signup" style={{ textDecoration: 'none', color: '#27374D' }}>
-                  Sign In
-                </a>
-              </p>
+              <p>Already have an account?&nbsp;</p>
+                <Link to="/signin" style={{ textDecoration: 'underline', color: '#27374D' }}>Sign In</Link>
             </div>
-            <br />
-            <br />
+            <br /><br />
             <div className="centered-text1">
               <p>Copyright @ Pet Society 2023</p>
             </div>
