@@ -11,6 +11,7 @@ root.render(
   <React.StrictMode>
     <App />
     {/* <UserProfile /> */}
+    {/* <Home /> */}
   </React.StrictMode>
 );
 
