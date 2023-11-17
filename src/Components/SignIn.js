@@ -73,7 +73,7 @@ function SignIn() {
             </Button>
             <div className="centered-text">
               <p>Don't have an account?&nbsp;</p>
-                <Link to="/signup" style={{ textDecoration: 'none', color: '#27374D' }}>Sign Up</Link>
+                <Link to="/signup" style={{ textDecoration: 'underline', color: '#27374D' }}>Sign Up</Link>
             </div>
             <br /><br />
             <div className="centered-text1">
