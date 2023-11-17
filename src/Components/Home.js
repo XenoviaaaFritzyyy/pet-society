@@ -16,171 +16,92 @@ import Gallery from './Gallery';
 import AboutUs from './Aboutus';
 
 function Home() {
-  
+  const [age, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
 
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/dictionary' element={<Dictionary />} />
-        <Route path='/gallery' element={<Gallery />} />
-        <Route path='/aboutus' element={<AboutUs />} />
-      </Routes>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/' exact component={Home} />
+          <Route path='/dictionary' component={Dictionary} />
+          <Route path='/gallery' component={Gallery} />
+          <Route path='/aboutus' component={AboutUs} />
+        </Routes>
+      </Router>
       <div className="home-container">
-        
-      </div>
-      <div className="content-container">
-          <div className="content-1">
-          <Card sx={{ maxWidth: 345, marginRight:'10px',marginLeft:'10px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="140"
-                width="300"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ maxWidth: 345, marginRight:'10px',marginLeft:'10px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="140"
-                width="300"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ maxWidth: 345, marginRight:'10px',marginLeft:'10px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="140"
-                width="300"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          </div>
-          <div className="content-1">
-          <Card sx={{ maxWidth: 345, marginRight:'10px',marginLeft:'10px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="140"
-                width="300"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ maxWidth: 345, marginRight:'10px',marginLeft:'10px', borderRadius:'10px'}}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="140"
-                width="300"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ maxWidth: 345, marginRight:'10px',marginLeft:'10px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="140"
-                width="300"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          </div>
-          <div className="content-1">
-          <Card sx={{ maxWidth: 345, marginRight:'10px',marginLeft:'10px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="140"
-                width="300"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ maxWidth: 345, marginRight:'10px',marginLeft:'10px', borderRadius:'10px'}}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="140"
-                width="300"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ maxWidth: 345, marginRight:'10px',marginLeft:'10px', borderRadius:'10px'   }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="140"
-                width="300"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          </div>
+        <Paper className="home-paper">
+          <Grid container spacing={25}>
+            <Grid item xs={1.4}>
+              <Box sx={{ minWidth: 150 }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Colour</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={age}
+                    label="Age"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={1.4}>
+              <Box sx={{ minWidth: 150 }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Colour</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={age}
+                    label="Age"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={2}>
+              <Box sx={{ minWidth: 150 }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Colour</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={age}
+                    label="Age"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={1.4}>
+              <Button variant="contained" color="primary">
+                Button 4
+              </Button>
+            </Grid>
+            <Grid item xs={2}>
+              <Button variant="contained" color="primary">
+                Button 5
+              </Button>
+            </Grid>
+          </Grid>
+        </Paper>
       </div>
     </>
   );
