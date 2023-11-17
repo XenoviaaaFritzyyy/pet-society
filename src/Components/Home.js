@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from './Navbar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
@@ -9,11 +9,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
 import '../Css/Home.css';
-import Dictionary from './Dictionary';
-import Gallery from './Gallery';
-import AboutUs from './Aboutus';
+// import Dictionary from './Dictionary';
+// import Gallery from './Gallery';
+// import AboutUs from './Aboutus';
 
 function Home() {
   const [age, setAge] = React.useState('');
@@ -24,15 +23,15 @@ function Home() {
 
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
+      {/* <Router> */}
+      <Navbar/>
+        {/* <Routes>
           <Route path='/' exact component={Home} />
           <Route path='/dictionary' component={Dictionary} />
           <Route path='/gallery' component={Gallery} />
           <Route path='/aboutus' component={AboutUs} />
         </Routes>
-      </Router>
+      </Router> */}
       <div className="home-container">
         <Paper className="home-paper">
           <Grid container spacing={25}>

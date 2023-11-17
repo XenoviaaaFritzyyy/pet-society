@@ -39,7 +39,6 @@ function Navbar() {
     );
   };
   
-
   const showButton = () => setButton(window.innerWidth > 960);
 
   useEffect(() => {
