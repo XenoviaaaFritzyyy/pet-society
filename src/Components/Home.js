@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from './Navbar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom'; // Change import
+
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
@@ -24,15 +25,13 @@ function Home() {
 
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' exact component={Home} />
-          <Route path='/dictionary' component={Dictionary} />
-          <Route path='/gallery' component={Gallery} />
-          <Route path='/aboutus' component={AboutUs} />
-        </Routes>
-      </Router>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/dictionary' element={<Dictionary />} />
+        <Route path='/gallery' element={<Gallery />} />
+        <Route path='/aboutus' element={<AboutUs />} />
+      </Routes>
       <div className="home-container">
         <Paper className="home-paper">
           <Grid container spacing={25}>
