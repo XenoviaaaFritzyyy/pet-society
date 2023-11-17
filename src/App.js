@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
+import Home from './Components/Home';
 import './Css/App.css';
 
 function Welcome() {
@@ -43,6 +44,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Welcome />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
   );
