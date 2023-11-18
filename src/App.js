@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
 import Home from './Components/Home';
-import Dictionary from './Components/Gallery';
+import Dictionary from './Components/Dictionary';
 import Gallery from './Components/Gallery';
 import ApplicationForm from './Components/ApplicationForm';
 import Admin from './Components/Admin';
@@ -60,6 +60,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/dictionary" element={<Dictionary />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/Aboutus" element={<AboutUs />} />
       </Routes>
     </Router>
   );

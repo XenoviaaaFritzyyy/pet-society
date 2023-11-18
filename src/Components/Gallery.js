@@ -1,12 +1,13 @@
 import React from "react";
 import Navbar from './Navbar';
-function Dictionary(){
+function Gallery(){
 
     return (
         <>
             <Navbar />
+            
         </>
     );
 }
 
-export default Dictionary
+export default Gallery

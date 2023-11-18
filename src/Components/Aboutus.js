@@ -3,8 +3,9 @@ import React from 'react';
 import Navbar from './Navbar';
 import '../Css/Aboutus.css';
 
-const AboutUs = () => {
+function Aboutus () {
   return (
+    <>
     <div>
       <Navbar />
       <div className="about-us-container">
@@ -55,8 +56,9 @@ const AboutUs = () => {
       <footer>
         {/* Your footer content goes here */}
       </footer>
-    </div>
+        </div>
+    </>
   );
 };
 
-export default AboutUs;
+export default Aboutus;
