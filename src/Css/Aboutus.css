@@ -1,27 +1,35 @@
 /* AboutUs.css */
 
-/* Add your container styles */
-/* .about-us-container { 
-  } */
-  
-   /* Add your title styles */
-  /* .about-us-title {
-  } */
-  
-    /* Add your image styles */
-  /* .about-us-image {
+.about-us-container {
+  text-align: center; /* Center align the content inside the container */
+  max-width: 800px; /* Set a maximum width for better readability */
+  margin: 0 auto; /* Center the container horizontally */
+}
 
-  } */
-  
+.about-us-title {
+  margin-top: 20px; /* Add some top margin for the title */
+}
 
-     /* Add your section styles */
-  /* .about-us-section {
-  } */
-  
-  .team-members {
-    display: flex; /* Set the display property to flex for horizontal alignment */
-  }
-  
-  .team-member {
-    margin-right: 20px; /* Add spacing between team members */
-  }
+.about-us-image {
+  max-width: 100%; /* Make the image responsive within its container */
+  margin-top: 20px; /* Add some top margin for the image */
+}
+
+.about-us-section {
+  margin-top: 20px; /* Add some top margin for each section */
+}
+
+.team-members {
+  display: flex;
+  justify-content: center; /* Center the team members horizontally */
+  flex-wrap: wrap; /* Allow team members to wrap to the next line if there's not enough space */
+}
+
+.team-member {
+  margin: 10px; /* Add margin around each team member */
+}
+
+.team-member img {
+  max-width: 100%; /* Make the profile pictures responsive */
+  border-radius: 50%; /* Make the images circular */
+}
