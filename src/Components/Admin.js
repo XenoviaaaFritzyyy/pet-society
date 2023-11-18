@@ -27,11 +27,7 @@ function Admin() {
 
   return (
     <>
-      <Link to="/signin" style={{ textDecoration: 'none' }}>
-        <button style={{ position: 'absolute', top: '25px', right: '50px', textDecoration: 'none', fontSize: '15px', padding: '8px 15px', borderRadius: '10px'}}>
-          Logout
-        </button>
-      </Link>
+      <a href="#">Logout</a>
 
       <div className="admin-container">
         {showDashboard ? (
@@ -52,12 +48,17 @@ function Admin() {
                 <span className="title">Pet Profile</span>
 
                 <div className="fields">
+                  <div className="input-field ">
+                      <label>Upload Pet Profile*</label>
+                      <input type="file" id="pet-picture" />
+                  </div>
+
                     <div className="input-field">
                         <label>PetID*</label>
                         <input type="number" placeholder="Enter petID" />
                 </div>
 
-                <div className="input-field">
+                <div className="input-field ">
                     <label>Name*</label>
                     <input type="text" placeholder="Enter Name" />
                 </div>
@@ -69,7 +70,7 @@ function Admin() {
 
                 <div class="input-field">
                     <label>Age*</label>
-                    <input type="number" placeholder="Enter age" />
+                    <input type="text" placeholder="Enter age" />
                 </div>
 
                 <div class="input-field">
