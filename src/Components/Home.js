@@ -37,8 +37,9 @@ function Home() {
         </Routes>
       </Router> */}
       <div className="home-container">
+        
         <div className="home-buttons">
-        <FormControl sx={{ minWidth: 150, marginRight: 3, marginLeft: 9}} size="small">
+        <FormControl sx={{ minWidth: 170, marginRight: 3, marginLeft: 5}} size="small">
   <InputLabel id="demo-select-small-label">Colour</InputLabel>
   <Select
     labelId="demo-select-small-label"
@@ -56,7 +57,7 @@ function Home() {
     <MenuItem value={30}>Brown</MenuItem>
   </Select>
 </FormControl>
-    <FormControl sx={{ minWidth: 150, marginRight: 3 }} size="small">
+    <FormControl sx={{ minWidth: 170, marginRight: 3 }} size="small">
       <InputLabel id="demo-select-small-label">Colour</InputLabel>
       <Select
         labelId="demo-select-small-label"
@@ -74,7 +75,7 @@ function Home() {
         <MenuItem value={30}>Brown</MenuItem>
       </Select>
     </FormControl>
-    <FormControl sx={{ minWidth: 150, }} size="small">
+    <FormControl sx={{ minWidth: 170, }} size="small">
       <InputLabel id="demo-select-small-label">Colour</InputLabel>
       <Select
         labelId="demo-select-small-label"
@@ -100,7 +101,7 @@ function Home() {
                   sx={{
                     marginLeft: '200px',
                     marginRight: '20px',
-                    width: '100px',
+                    width: '120px',
                     borderRadius: '50px',
                     border: '.1px solid #27374D',
                     backgroundColor: 'white',
@@ -114,7 +115,7 @@ function Home() {
                   variant="contained"
                   color="primary"
                   sx={{
-                    width: '150px',
+                    width: '170px',
                     marginRight:'10px',
                     borderRadius: '50px',
                     backgroundColor: '#27374D',
