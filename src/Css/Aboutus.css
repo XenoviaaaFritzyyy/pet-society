@@ -1,0 +1,27 @@
+/* AboutUs.css */
+
+/* Add your container styles */
+/* .about-us-container { 
+  } */
+  
+   /* Add your title styles */
+  /* .about-us-title {
+  } */
+  
+    /* Add your image styles */
+  /* .about-us-image {
+
+  } */
+  
+
+     /* Add your section styles */
+  /* .about-us-section {
+  } */
+  
+  .team-members {
+    display: flex; /* Set the display property to flex for horizontal alignment */
+  }
+  
+  .team-member {
+    margin-right: 20px; /* Add spacing between team members */
+  }
