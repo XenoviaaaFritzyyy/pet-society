@@ -22,15 +22,15 @@ function Home() {
 
   return (
     <>
-      {/* <Router> */}
+      <Router>
       <Navbar/>
-        {/* <Routes>
+        <Routes>
           <Route path='/' exact component={Home} />
           <Route path='/dictionary' component={Dictionary} />
           <Route path='/gallery' component={Gallery} />
           <Route path='/aboutus' component={AboutUs} />
         </Routes>
-      </Router> */}
+      </Router>
       <div className="home-container">
         <div className="home-buttons">
         <Button
