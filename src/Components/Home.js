@@ -7,6 +7,10 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
 import '../Css/Home.css';
@@ -34,19 +38,74 @@ function Home() {
       </Router> */}
       <div className="home-container">
         <div className="home-buttons">
+        <FormControl sx={{ minWidth: 150, marginRight: 3, marginLeft: 9}} size="small">
+  <InputLabel id="demo-select-small-label">Colour</InputLabel>
+  <Select
+    labelId="demo-select-small-label"
+    id="demo-select-small"
+    value={age}
+    label="Colour"
+    onChange={handleChange}
+    sx={{ borderRadius: '15px' }} // Set the border radius here
+  >
+    <MenuItem value="">
+      <em>None</em>
+    </MenuItem>
+    <MenuItem value={10}>Black</MenuItem>
+    <MenuItem value={20}>White</MenuItem>
+    <MenuItem value={30}>Brown</MenuItem>
+  </Select>
+</FormControl>
+    <FormControl sx={{ minWidth: 150, marginRight: 3 }} size="small">
+      <InputLabel id="demo-select-small-label">Colour</InputLabel>
+      <Select
+        labelId="demo-select-small-label"
+        id="demo-select-small"
+        value={age}
+        label="Colour"
+        onChange={handleChange}
+        sx={{ borderRadius: '15px' }}
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        <MenuItem value={10}>Black</MenuItem>
+        <MenuItem value={20}>White</MenuItem>
+        <MenuItem value={30}>Brown</MenuItem>
+      </Select>
+    </FormControl>
+    <FormControl sx={{ minWidth: 150, }} size="small">
+      <InputLabel id="demo-select-small-label">Colour</InputLabel>
+      <Select
+        labelId="demo-select-small-label"
+        id="demo-select-small"
+        value={age}
+        label="Colour"
+        onChange={handleChange}
+        sx={{ borderRadius: '15px' }}
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        <MenuItem value={10}>Black</MenuItem>
+        <MenuItem value={20}>White</MenuItem>
+        <MenuItem value={30}>Brown</MenuItem>
+      </Select>
+    </FormControl>
+    
         <Button
                   type="submit"
                   variant="contained"
                   color="primary"
                   sx={{
-                    marginLeft: '800px',
+                    marginLeft: '200px',
                     marginRight: '20px',
                     width: '100px',
                     borderRadius: '50px',
                     border: '.1px solid #27374D',
                     backgroundColor: 'white',
                     color: '#27374D',
-                    '&:hover': { backgroundColor: '#142132' },
+                    '&:hover': { backgroundColor: '#142132', color: 'red' },
                   }}>
                   Reset
            </Button>

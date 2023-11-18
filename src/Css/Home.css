@@ -54,7 +54,7 @@
   .home-buttons{
     
     width: 100%;
-    
+    display: flex;
     border: 0px solid;
     height: 40px;
   }
