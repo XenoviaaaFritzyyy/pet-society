@@ -32,19 +32,19 @@ const AboutUs = () => {
           <div className="team-members">
             {/* Add your team members' profile pictures */}
             <div className="team-member">
-              <img src="/path/to/team_member1.jpg" alt="Team Member 1" />
+              <img src="/images/Fritz.jpg" alt="Team Member 1" />
               <p>Team Member 1's Motto</p>
             </div>
             <div className="team-member">
-              <img src="/path/to/team_member2.jpg" alt="Team Member 2" />
+              <img src="/images/Rox.jpg" alt="Team Member 2" />
               <p>Team Member 2's Motto</p>
             </div>
             <div className="team-member">
-              <img src="/path/to/team_member3.jpg" alt="Team Member 3" />
+              <img src="/images/Rob2.jpg" alt="Team Member 3" />
               <p>Team Member 3's Motto</p>
             </div>
             <div className="team-member">
-              <img src="/path/to/team_member4.jpg" alt="Team Member 4" />
+              <img src="/images/Hazelyn.jpg" alt="Team Member 4" />
               <p>Team Member 4's Motto</p>
             </div>
           </div>

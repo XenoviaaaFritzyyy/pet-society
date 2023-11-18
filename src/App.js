@@ -6,6 +6,7 @@ import Home from './Components/Home';
 import Dictionary from './Components/Gallery';
 import Gallery from './Components/Gallery';
 import './Css/App.css';
+import AboutUs from './Components/Aboutus';
 
 function Welcome() {
   const containerStyle = {
@@ -49,6 +50,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/dictionary" element={<Dictionary />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/aboutus" element={<AboutUs />} />
       </Routes>
     </Router>
   );
