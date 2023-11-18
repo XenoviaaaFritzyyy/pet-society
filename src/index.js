@@ -10,7 +10,7 @@ import PetProfile from './Components/PetProfile';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Home/>
+    <App/>
   </React.StrictMode>
 );
 

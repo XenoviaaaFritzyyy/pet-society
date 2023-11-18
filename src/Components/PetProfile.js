@@ -11,15 +11,15 @@ function PetProfile(){
     return(
         <>
         <div className='body'>
-            <Router>
+            {/* <Router> */}
                 <Navbar />
-                <Routes>
+                {/* <Routes>
                     <Route path='/' exact component={Home} />
                     <Route path='/dictionary' component={Dictionary} />
                     <Route path='/gallery' component={Gallery} />
                     <Route path='/aboutus' component={AboutUs} />
                 </Routes>
-            </Router>
+            </Router> */}
             <div className='Pethome-container'>
                 <div className='Petcontent-container'>
                     <div className='picture'>
