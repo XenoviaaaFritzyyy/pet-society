@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import '../Css/Admin.css';
 
 function Admin() {
@@ -17,13 +19,19 @@ function Admin() {
 
   useEffect(() => {
     document.body.style.background = '#27374D';
+
+    return () => {
+      document.body.style.background = ''; 
+    };
   }, []);
 
   return (
     <>
-      <a href="#" className="logout">
-        Logout
-      </a>
+      <Link to="/signin" style={{ textDecoration: 'none' }}>
+        <button style={{ position: 'absolute', top: '25px', right: '50px', textDecoration: 'none', fontSize: '15px', padding: '8px 15px', borderRadius: '10px'}}>
+          Logout
+        </button>
+      </Link>
 
       <div className="admin-container">
         {showDashboard ? (
@@ -65,6 +73,21 @@ function Admin() {
                 </div>
 
                 <div class="input-field">
+                    <label>Temperament</label>
+                        <select>
+                        <option value="Friendly">Friendly</option>
+                        <option value="Calm">Calm</option>
+                        <option value="Energetic">Energetic</option>
+                        <option value="Fearful">Fearful</option>
+                        <option value="Aggressive">Aggressive</option>
+                        <option value="Curious">Curious</option>
+                        <option value="Alert">Alert</option>
+                        <option value="Stubborn">Stubborn</option>
+                        <option value="Social">Social</option>
+                    </select>                        
+                </div>
+
+                <div class="input-field">
                     <label>Color*</label>
                     <select>
                         <option value="Black">Black</option>
@@ -98,21 +121,6 @@ function Admin() {
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>        
-                </div>
-
-                <div class="input-field">
-                    <label>Temperament</label>
-                        <select>
-                        <option value="Friendly">Friendly</option>
-                        <option value="Calm">Calm</option>
-                        <option value="Energetic">Energetic</option>
-                        <option value="Fearful">Fearful</option>
-                        <option value="Aggressive">Aggressive</option>
-                        <option value="Curious">Curious</option>
-                        <option value="Alert">Alert</option>
-                        <option value="Stubborn">Stubborn</option>
-                        <option value="Social">Social</option>
-                    </select>                        
                 </div>
             </div>
 

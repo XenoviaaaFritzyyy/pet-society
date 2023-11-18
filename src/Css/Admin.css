@@ -143,16 +143,6 @@ form button:hover {
     text-align: center;
 }
 
-.logout {
-    position: absolute;
-    top: 25px;
-    right: 50px;
-    color: #fff;
-    text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-}
-
 .petprofile:hover,
 .dictionary:hover {
     background: #27374D;

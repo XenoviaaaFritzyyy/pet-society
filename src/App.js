@@ -6,6 +6,7 @@ import Home from './Components/Home';
 import Dictionary from './Components/Gallery';
 import Gallery from './Components/Gallery';
 import ApplicationForm from './Components/ApplicationForm';
+import Admin from './Components/Admin';
 import './Css/App.css';
 
 function Welcome() {
@@ -59,6 +60,8 @@ function App() {
         <Route path="/dictionary" element={<Dictionary />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/applicationform" element={<ApplicationForm />} />
+        <Route path="/admin" element={<Admin />} />
+
       </Routes>
     </Router>
   );
