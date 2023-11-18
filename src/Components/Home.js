@@ -5,8 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, autocompleteClasses } from '@mui/material';
-import { Button } from "@mui/material";
+import { CardActionArea } from '@mui/material';
 
 
 import '../Css/Home.css';
@@ -14,21 +13,24 @@ import Dictionary from './Dictionary';
 import Gallery from './Gallery';
 import AboutUs from './Aboutus';
 
-
 function Home() {
-  
+  const [age, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
 
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
+      {/* <Router> */}
+      <Navbar/>
+        {/* <Routes>
           <Route path='/' exact component={Home} />
           <Route path='/dictionary' component={Dictionary} />
           <Route path='/gallery' component={Gallery} />
           <Route path='/aboutus' component={AboutUs} />
         </Routes>
-      </Router>
+      </Router> */}
       <div className="home-container">
         <div className="home-buttons">
         <Button
