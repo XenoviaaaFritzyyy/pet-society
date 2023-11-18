@@ -61,6 +61,9 @@ function App() {
         <Route path="/dictionary" element={<Dictionary />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/About us" element={<AboutUs />} />
+        <Route path="/application" element={<ApplicationForm />} />
+        <Route path="/admin" element={<Admin />} />
+
       </Routes>
     </Router>
   );
