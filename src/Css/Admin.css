@@ -2,14 +2,10 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.hidden {
-        display: none;
-}
-
-.application-container {
+.admin-container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -21,55 +17,36 @@
     background-color: #fff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
-      
-.application-container header {
-    position: relative;
-    font-size: 35px;
-    font-weight: 600;
-    color: #333;
-}
 
-.application-container header::before{
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    height: 5px;
-    width: 20px;
-    border-radius: 8px;
-    background-color: #27374D;
-}
-
-.application-container form{
+.admin-container form {
     position: relative;
     margin-top: 16px;
-    min-height: 400px;
     background-color: #fff;
 }
 
-.application-container form .details {
+.admin-container form .details {
     margin-top: 30px;
 }
 
-.application-container form .title {
+.admin-container form .title {
     display: block;
     font-size: 20px;
     font-weight: 500;
-    margin: 40px 0 20px 0;
+    margin: 5px 0 10px 0;
     color: #27374D;
 }
 
-.application-container form .fields {
+.admin-container form .fields {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 15px;
 }
 
-.application-container form .fields .input-field {
+form .fields .input-field {
     width: 100%;
 }
 
-.input-field.address {
+.input-field.description {
     grid-column: span 2;
 }
 
@@ -79,15 +56,29 @@
     color: #27374D;
 }
 
-.input-field input, select {
+.input-field input,
+.input-field select {
     outline: none;
     font-size: 14px;
     font-weight: 400;
-    color: #27374D;    
+    color: #27374D;
     border-radius: 5px;
     border: 1px solid #aaa;
     padding: 0 15px;
     height: 45px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.input-field textarea {
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #27374D;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 10px 15px;
+    height: 60px;
     margin: 8px 0;
     width: 100%;
 }
@@ -97,26 +88,30 @@
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
 }
 
-.application-container form button, .backBtn {
+.admin-container form button,
+.backBtn {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 45px;
-    max-width: 100px;
+    max-width: 200px;
     width: 100%;
     border: none;
     outline: none;
     color: #fff;
     border-radius: 5px;
-    margin: 20px 3px;
+    margin: 25px 0;
     background-color: #27374D;
-    transition: all 0.3 linear;
+    transition: all 0.3s linear;
     cursor: pointer;
 }
 
-.application-container form button, .backBtn {
+.admin-container form button,
+.admin-container form button,
+.backBtn {
     font-size: 14px;
     font-weight: 400;
+    margin-right: 10px;
 }
 
 form button:hover {
@@ -126,9 +121,31 @@ form button:hover {
 .buttons {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
 }
 
-.buttons button, .backBtn {
-    margin-right: 5px;
+/*******************************************/
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.petprofile,
+.dictionary {
+    background-color: #526D82;
+    border-radius: 5px;
+    padding: 50px;
+    margin: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+}
+
+.petprofile:hover,
+.dictionary:hover {
+    background: #27374D;
+    color: DDE6ED;
+    transition: background-color 0.3s ease-in-out;
 }

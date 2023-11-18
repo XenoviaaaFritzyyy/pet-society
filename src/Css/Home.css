@@ -51,6 +51,7 @@
     height: 130px;
     border-radius: 30px;
     display: block;
+    border: 0px solid;
   }
   .home-buttons{
     width: 100%;
@@ -70,9 +71,8 @@
   .content-container{
     padding-top: 0px;
     background-color: #DDE6ED;
-    width: 70%;
+    width: 75%;
     margin: -40px auto 50px;
-    
     height: auto;
     border: 0px solid;
     display: block;
@@ -80,13 +80,14 @@
     align-items: center;
   }
   .content-1{
-    margin: 16px;
+    margin-left: 0px;
     justify-content: center;
     align-items: center;
     display: flex;
     background-color: #DDE6ED;
-    width: 98%;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
     border: 0px solid;
   }
   

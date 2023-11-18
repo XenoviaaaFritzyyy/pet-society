@@ -110,9 +110,9 @@
               </div>
 
               <div className="buttons">
-                <div className="backBtn" onClick={showPersonalInfoSection}>
-                  <span className="btnText">Back</span>
-                </div>
+                <button className="backBtn" onClick={showPersonalInfoSection}>
+                    <span className="btnBack">Back</span>
+                  </button>
 
                 <button className="nextBtn">
                   <span className="btnText">Submit</span>
