@@ -1,6 +1,6 @@
 .navbar {
     background: #27374D;
-    height: 150px;
+    height: 160px;
     display: flex;
     border-radius: 0px 0px 60px 60px;
     justify-content: center;
@@ -14,6 +14,7 @@
   }
   
   .navbar-container {
+    padding-top: 50px;
     background-color: #27374D ;
     display: flex;
     justify-content: center;
@@ -26,7 +27,7 @@
   .navbar-logo {
     color: #fff;
     justify-self: start;
-    
+    padding-bottom: 30px;
     cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
@@ -66,7 +67,7 @@
   }
   
   .nav-links:hover {
-    border-bottom: 4px solid #fff;
+    border-bottom: 3px solid #fff;
     transition: all 0.2s ease-out;
   }
   
@@ -171,7 +172,8 @@
   
   .profile-dropdown-content {
     display: none;
-    padding: 5px;
+    margin-top: 10px;
+    padding: 7px;
     position: absolute;
     background-color: #DDE6ED;
     min-width: 120px;
