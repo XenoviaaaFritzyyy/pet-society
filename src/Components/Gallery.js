@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
-=======
-import React from "react";
->>>>>>> 85875a44fc1d9d794419ea9e0a6cc985e6a2c445
 import Navbar from './Navbar';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
