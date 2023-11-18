@@ -33,7 +33,7 @@ function SignUp() {
             minHeight: '700px',
           }}
         >
-          <h1>Sign Up</h1>
+          <h1 style={{color: '#27374D'}}>Sign Up</h1>
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>

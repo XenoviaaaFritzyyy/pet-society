@@ -28,7 +28,7 @@ function SignIn() {
             minHeight: '700px',
           }}
         >
-          <h1>Sign In</h1>
+          <h1 style={{color: '#27374D'}}>Sign In</h1>
           <form onSubmit={handleSubmit}>
             <TextField
               id="email"

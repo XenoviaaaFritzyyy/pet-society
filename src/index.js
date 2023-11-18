@@ -6,11 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import Home from './Components/Home';
 import UserProfile from './Components/UserProfile';
 import PetProfile from './Components/PetProfile';
+import ApplicationForm from './Components/ApplicationForm';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App/>
+    <App />
   </React.StrictMode>
 );
 
