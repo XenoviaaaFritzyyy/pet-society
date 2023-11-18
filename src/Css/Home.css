@@ -42,15 +42,21 @@
   }
   
   .home-container {
+    padding-top: 70px;
     background-color: #fff;
     position: relative;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 75%;
     height: 130px;
-    border-radius: 50px;
-    overflow: hidden;
+    border-radius: 30px;
+  }
+  .home-buttons{
     
+    width: 100%;
+    
+    border: 0px solid;
+    height: 40px;
   }
   
   .content-container{
@@ -75,6 +81,8 @@
     height: auto;
     border: 0px solid;
   }
+  
+  
   
   
   
