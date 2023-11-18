@@ -47,8 +47,8 @@ function Navbar() {
         </div>
         {isDropdownOpen && (
           <div className="profile-dropdown-content">
-            <div onClick={() => changeOption('Profile')}>Profile</div>
-            <div onClick={() => changeOption('Request')}>Request</div>
+            <div onClick={() => changeOption('Profile')} style={{ marginBottom: '10px' }}>Profile</div>
+            <div onClick={() => changeOption('Request')} style={{ marginBottom: '10px' }}>Request</div>
             <div onClick={() => changeOption('Log out')}>Log out</div>
             {/* Add more options as needed */}
           </div>
