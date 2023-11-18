@@ -60,7 +60,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/dictionary" element={<Dictionary />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/Aboutus" element={<AboutUs />} />
+        <Route path="/About us" element={<AboutUs />} />
       </Routes>
     </Router>
   );
