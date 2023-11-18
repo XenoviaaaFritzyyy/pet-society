@@ -1,132 +1,147 @@
 import React from "react";
 import Navbar from './Navbar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import Button from '@mui/material/Button';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Card, CardContent, CardMedia, Typography, CardActionArea, Button, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 
 import '../Css/Home.css';
-import Dictionary from './Dictionary';
-import Gallery from './Gallery';
-import AboutUs from './Aboutus';
+// import Dictionary from './Dictionary';
+// import Gallery from './Gallery';
+// import AboutUs from './Aboutus';
 
 function Home() {
-  const [age, setAge] = React.useState('');
+  const [colour, setColour] = React.useState('');
+  const [sex, setSex] = React.useState('');
+  const [size, setSize] = React.useState('');
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const handleColourChange = (event) => {
+    setColour(event.target.value);
+  };
+
+  const handleSexChange = (event) => {
+    setSex(event.target.value);
+  };
+
+  const handleSizeChange = (event) => {
+    setSize(event.target.value);
+  };
+
+  const handleReset = () => {
+    setColour('');
+    setSex('');
+    setSize('');
+  };
+
+  const handleSearch = () => {
+    // Add your search logic here using the selected values (colour, sex, size)
+    // For now, you can log the selected values to the console
+    console.log("Selected Colour:", colour);
+    console.log("Selected Sex:", sex);
+    console.log("Selected Size:", size);
   };
 
   return (
     <>
-      {/* <Router> */}
-      <Navbar/>
-        {/* <Routes>
-          <Route path='/' exact component={Home} />
-          <Route path='/dictionary' component={Dictionary} />
-          <Route path='/gallery' component={Gallery} />
-          <Route path='/aboutus' component={AboutUs} />
-        </Routes>
-      </Router> */}
-      <div className="home-container">
-        
+      <Navbar />
+      <div className="home-container" style={{marginTop: '20px'}}>
         <div className="home-buttons">
-        <FormControl sx={{ minWidth: 170, marginRight: 3, marginLeft: 5}} size="small">
-  <InputLabel id="demo-select-small-label">Colour</InputLabel>
-  <Select
-    labelId="demo-select-small-label"
-    id="demo-select-small"
-    value={age}
-    label="Colour"
-    onChange={handleChange}
-    sx={{ borderRadius: '15px' }} // Set the border radius here
-  >
-    <MenuItem value="">
-      <em>None</em>
-    </MenuItem>
-    <MenuItem value={10}>Black</MenuItem>
-    <MenuItem value={20}>White</MenuItem>
-    <MenuItem value={30}>Brown</MenuItem>
-  </Select>
-</FormControl>
-    <FormControl sx={{ minWidth: 170, marginRight: 3 }} size="small">
-      <InputLabel id="demo-select-small-label">Colour</InputLabel>
-      <Select
-        labelId="demo-select-small-label"
-        id="demo-select-small"
-        value={age}
-        label="Colour"
-        onChange={handleChange}
-        sx={{ borderRadius: '15px' }}
-      >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
-        <MenuItem value={10}>Black</MenuItem>
-        <MenuItem value={20}>White</MenuItem>
-        <MenuItem value={30}>Brown</MenuItem>
-      </Select>
-    </FormControl>
-    <FormControl sx={{ minWidth: 170, }} size="small">
-      <InputLabel id="demo-select-small-label">Colour</InputLabel>
-      <Select
-        labelId="demo-select-small-label"
-        id="demo-select-small"
-        value={age}
-        label="Colour"
-        onChange={handleChange}
-        sx={{ borderRadius: '15px' }}
-      >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
-        <MenuItem value={10}>Black</MenuItem>
-        <MenuItem value={20}>White</MenuItem>
-        <MenuItem value={30}>Brown</MenuItem>
-      </Select>
-    </FormControl>
-    
-        <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    marginLeft: '200px',
-                    marginRight: '20px',
-                    width: '120px',
-                    borderRadius: '50px',
-                    border: '.1px solid #27374D',
-                    backgroundColor: 'white',
-                    color: '#27374D',
-                    '&:hover': { backgroundColor: '#142132', color: 'red' },
-                  }}>
-                  Reset
-           </Button>
-        <Button   
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    width: '170px',
-                    marginRight:'10px',
-                    borderRadius: '50px',
-                    backgroundColor: '#27374D',
-                    color: 'white',
-                    '&:hover': { backgroundColor: '#142132' },
-                  }}>
-                  Search
-           </Button>
-           
+          <div>
+            <h4 style={{marginLeft: '70px', marginBottom: '10px', color: '#27374D'}}>Colour</h4>
+            <FormControl sx={{ minWidth: 220, marginRight: 3, marginLeft: 9 }}   size="small">
+              <Select
+                labelId="colour-label"
+                id="colour"
+                value={colour}
+                label="Colour"
+                onChange={handleColourChange}
+                sx={{ borderRadius: '15px' }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Black</MenuItem>
+                <MenuItem value={20}>Blonde</MenuItem>
+                <MenuItem value={30}>Brown / Tan</MenuItem>
+                <MenuItem value={40}>White</MenuItem>
+                <MenuItem value={50}>Others</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+
+          <div>
+            <h4 style={{marginBottom: '10px', color: '#27374D'}}>Sex</h4>
+            <FormControl sx={{ minWidth: 220, marginRight: 3 }} size="small">
+              <Select
+                labelId="sex-label"
+                id="sex"
+                value={sex}
+                label="Sex"
+                onChange={handleSexChange}
+                sx={{ borderRadius: '15px' }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Male</MenuItem>
+                <MenuItem value={20}>Female</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <div>
+            <h4 style={{marginBottom: '10px', color: '#27374D'}}>Size</h4>
+            <FormControl sx={{ minWidth: 220, }} size="small">
+              <Select
+                labelId="size-label"
+                id="size"
+                value={size}
+                label="Size"
+                onChange={handleSizeChange}
+                sx={{ borderRadius: '15px' }}>
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Small</MenuItem>
+                <MenuItem value={20}>Medium</MenuItem>
+                <MenuItem value={30}>Large</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+
+          <Button
+            type="button"
+            variant="contained"
+            color="primary"
+            onClick={handleReset}
+            sx={{
+              marginLeft: '30px',
+              marginRight: '10px',
+              width: '100px',
+              marginTop: '25px',
+              height: '40px',
+              borderRadius: '50px',
+              border: '.1px solid #27374D',
+              backgroundColor: 'white',
+              color: '#27374D',
+              '&:hover': { backgroundColor: '#142132', color: 'white' },
+            }}>
+            Reset
+          </Button>
+          <Button
+            type="button"
+            variant="contained"
+            color="primary"
+            onClick={handleSearch}
+            sx={{
+              width: '150px',
+              borderRadius: '50px',
+              marginTop: '25px',
+              height: '40px',
+              backgroundColor: '#27374D',
+              color: 'white',
+              '&:hover': { backgroundColor: '#142132' },
+            }}>
+            Search
+          </Button>
         </div>
-           
       </div>
       <div className="content-container">
           <div className="content-1">
@@ -279,7 +294,7 @@ function Home() {
             </CardActionArea>
           </Card>
           </div>
-      </div>
+      </div>    
     </>
   );
 }

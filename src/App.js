@@ -16,7 +16,7 @@ function Welcome() {
   };
 
   return (
-    <div className="container" style={containerStyle}>
+    <div className="app-container" style={containerStyle}>
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: 0, right: 0, left: 0, padding: '20px' }}>
         <img src="/images/logo.png" alt="Logo" style={{ height: '120px', margin: '0 0 0 100px' }} />
         <div>
