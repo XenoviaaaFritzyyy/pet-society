@@ -28,7 +28,7 @@ function SignIn() {
             minHeight: '700px',
           }}
         >
-          <h1>Sign In</h1>
+          <h1 style={{color: '#27374D'}}>Sign In</h1>
           <form onSubmit={handleSubmit}>
             <TextField
               id="email"
@@ -57,25 +57,31 @@ function SignIn() {
               }
               label="Remember me"
             />
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              sx={{
-                width: '100%',
-                marginTop: '20px',
-                borderRadius: '10px',
-                backgroundColor: '#27374D',
-                color: 'white',
-                '&:hover': { backgroundColor: '#142132' },
-              }}>
-              Sign In
-            </Button>
+            <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Button
+                type="button"
+                variant="contained"
+                color="primary"
+                sx={{
+                  width: '100%',
+                  marginTop: '20px',
+                  borderRadius: '10px',
+                  backgroundColor: '#27374D',
+                  color: 'white',
+                  '&:hover': { backgroundColor: '#142132' },
+                }}
+              >
+                Sign In
+              </Button>
+            </Link>
             <div className="centered-text">
               <p>Don't have an account?&nbsp;</p>
-                <Link to="/signup" style={{ textDecoration: 'underline', color: '#27374D' }}>Sign Up</Link>
+              <Link to="/signup" style={{ textDecoration: 'underline', color: '#27374D' }}>
+                Sign Up
+              </Link>
             </div>
-            <br /><br />
+            <br />
+            <br />
             <div className="centered-text1">
               <p>Copyright @ Pet Society 2023</p>
             </div>

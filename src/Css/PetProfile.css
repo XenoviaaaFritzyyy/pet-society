@@ -1,0 +1,43 @@
+
+.Pethome-container {
+    background-color: #e14343;
+    position: relative;
+    transform: translate(-50%, -12%);
+    left: 50%;
+    width: 70%;
+    height: 560px;
+    border: 5px solid;
+    display: flex;
+    align-items: center;
+    
+  }
+.Petcontent-container {
+    padding: 15px;
+    background-color: #f8f8f8;
+    position: relative;
+    margin-right: 20px;
+    border-radius: 30px;
+    width: 60%;
+    height: 100%;
+    border: 0px solid;
+  }
+.picture{
+    background-color: #322e2e;
+    position: relative;
+    margin-right: 20px;
+    border-radius: 30px;
+    width: 100%;
+    height: 100%;
+    border: 0px solid;
+    overflow:hidden;
+
+}
+  .Petcontent2-container { 
+    background-color: #f8f8f8;
+    position: relative;
+    
+    border-radius: 30px;
+    width: 45%;
+    height: 100%;
+    border: 0px solid;
+  }

@@ -1,108 +1,300 @@
 import React from "react";
 import Navbar from './Navbar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Card, CardContent, CardMedia, Typography, CardActionArea, Button, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 
 import '../Css/Home.css';
-import Dictionary from './Dictionary';
-import Gallery from './Gallery';
-import AboutUs from './Aboutus';
+// import Dictionary from './Dictionary';
+// import Gallery from './Gallery';
+// import AboutUs from './Aboutus';
 
 function Home() {
-  const [age, setAge] = React.useState('');
+  const [colour, setColour] = React.useState('');
+  const [sex, setSex] = React.useState('');
+  const [size, setSize] = React.useState('');
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const handleColourChange = (event) => {
+    setColour(event.target.value);
+  };
+
+  const handleSexChange = (event) => {
+    setSex(event.target.value);
+  };
+
+  const handleSizeChange = (event) => {
+    setSize(event.target.value);
+  };
+
+  const handleReset = () => {
+    setColour('');
+    setSex('');
+    setSize('');
+  };
+
+  const handleSearch = () => {
+    // Add your search logic here using the selected values (colour, sex, size)
+    // For now, you can log the selected values to the console
+    console.log("Selected Colour:", colour);
+    console.log("Selected Sex:", sex);
+    console.log("Selected Size:", size);
   };
 
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' exact component={Home} />
-          <Route path='/dictionary' component={Dictionary} />
-          <Route path='/gallery' component={Gallery} />
-          <Route path='/aboutus' component={AboutUs} />
-        </Routes>
-      </Router>
-      <div className="home-container">
-        <Paper className="home-paper">
-          <Grid container spacing={25}>
-            <Grid item xs={1.4}>
-              <Box sx={{ minWidth: 150 }}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Colour</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={age}
-                    label="Age"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-            <Grid item xs={1.4}>
-              <Box sx={{ minWidth: 150 }}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Colour</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={age}
-                    label="Age"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-            <Grid item xs={2}>
-              <Box sx={{ minWidth: 150 }}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Colour</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={age}
-                    label="Age"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-            <Grid item xs={1.4}>
-              <Button variant="contained" color="primary">
-                Button 4
-              </Button>
-            </Grid>
-            <Grid item xs={2}>
-              <Button variant="contained" color="primary">
-                Button 5
-              </Button>
-            </Grid>
-          </Grid>
-        </Paper>
+      <Navbar />
+      <div className="home-container" style={{marginTop: '20px'}}>
+        <div className="home-buttons">
+          <div>
+            <h4 style={{marginLeft: '70px', marginBottom: '10px', color: '#27374D'}}>Colour</h4>
+            <FormControl sx={{ minWidth: 220, marginRight: 3, marginLeft: 9 }}   size="small">
+              <Select
+                labelId="colour-label"
+                id="colour"
+                value={colour}
+                label="Colour"
+                onChange={handleColourChange}
+                sx={{ borderRadius: '15px' }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Black</MenuItem>
+                <MenuItem value={20}>Blonde</MenuItem>
+                <MenuItem value={30}>Brown / Tan</MenuItem>
+                <MenuItem value={40}>White</MenuItem>
+                <MenuItem value={50}>Others</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+
+          <div>
+            <h4 style={{marginBottom: '10px', color: '#27374D'}}>Sex</h4>
+            <FormControl sx={{ minWidth: 220, marginRight: 3 }} size="small">
+              <Select
+                labelId="sex-label"
+                id="sex"
+                value={sex}
+                label="Sex"
+                onChange={handleSexChange}
+                sx={{ borderRadius: '15px' }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Male</MenuItem>
+                <MenuItem value={20}>Female</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <div>
+            <h4 style={{marginBottom: '10px', color: '#27374D'}}>Size</h4>
+            <FormControl sx={{ minWidth: 220, }} size="small">
+              <Select
+                labelId="size-label"
+                id="size"
+                value={size}
+                label="Size"
+                onChange={handleSizeChange}
+                sx={{ borderRadius: '15px' }}>
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Small</MenuItem>
+                <MenuItem value={20}>Medium</MenuItem>
+                <MenuItem value={30}>Large</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+
+          <Button
+            type="button"
+            variant="contained"
+            color="primary"
+            onClick={handleReset}
+            sx={{
+              marginLeft: '30px',
+              marginRight: '10px',
+              width: '100px',
+              marginTop: '25px',
+              height: '40px',
+              borderRadius: '50px',
+              border: '.1px solid #27374D',
+              backgroundColor: 'white',
+              color: '#27374D',
+              '&:hover': { backgroundColor: '#142132', color: 'white' },
+            }}>
+            Reset
+          </Button>
+          <Button
+            type="button"
+            variant="contained"
+            color="primary"
+            onClick={handleSearch}
+            sx={{
+              width: '150px',
+              borderRadius: '50px',
+              marginTop: '25px',
+              height: '40px',
+              backgroundColor: '#27374D',
+              color: 'white',
+              '&:hover': { backgroundColor: '#142132' },
+            }}>
+            Search
+          </Button>
+        </div>
       </div>
+      <div className="content-container">
+      <div className="content-1">
+          <Card sx={{ maxWidth: 1000, marginRight:'15px', borderRadius:'10px' }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="220"
+                width="360"
+                image="/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          <Card sx={{ maxWidth: 1000, marginRight:'15px',marginLeft:'10px', borderRadius:'10px' }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="220"
+                width="360"
+                image="/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          <Card sx={{ maxWidth: 1000,marginLeft:'10px', borderRadius:'10px' }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="220"
+                width="360"
+                image="/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          </div>
+          <div className="content-1">
+          <Card sx={{ maxWidth: 1000, marginRight:'15px', borderRadius:'10px' }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="220"
+                width="360"
+                image="/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          <Card sx={{ maxWidth: 1000, marginRight:'15px',marginLeft:'10px', borderRadius:'10px' }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="220"
+                width="360"
+                image="/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          <Card sx={{ maxWidth: 1000,marginLeft:'10px', borderRadius:'10px' }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="220"
+                width="360"
+                image="/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          </div>
+          <div className="content-1">
+          <Card sx={{ maxWidth: 1000, marginRight:'15px', borderRadius:'10px' }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="220"
+                width="360"
+                image="/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          <Card sx={{ maxWidth: 1000, marginRight:'15px',marginLeft:'10px', borderRadius:'10px' }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="220"
+                width="360"
+                image="/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          <Card sx={{ maxWidth: 1000,marginLeft:'10px', borderRadius:'10px' }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="220"
+                width="360"
+                image="/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          </div>
+      </div>    
     </>
   );
 }

@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
+import Home from './Components/Home';
+import Dictionary from './Components/Gallery';
+import Gallery from './Components/Gallery';
 import './Css/App.css';
 
 function Welcome() {
@@ -15,7 +18,7 @@ function Welcome() {
   };
 
   return (
-    <div className="container" style={containerStyle}>
+    <div className="app-container" style={containerStyle}>
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: 0, right: 0, left: 0, padding: '20px' }}>
         <img src="/images/logo.png" alt="Logo" style={{ height: '120px', margin: '0 0 0 100px' }} />
         <div>
@@ -43,6 +46,9 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Welcome />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/dictionary" element={<Dictionary />} />
+        <Route path="/gallery" element={<Gallery />} />
       </Routes>
     </Router>
   );
