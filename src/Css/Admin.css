@@ -38,8 +38,8 @@
 
 .admin-container form .fields {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
 }
 
 form .fields .input-field {
@@ -47,7 +47,7 @@ form .fields .input-field {
 }
 
 .input-field.description {
-    grid-column: span 2;
+    grid-column: span 3;
 }
 
 .input-field label {
@@ -122,6 +122,8 @@ form button:hover {
     display: flex;
     align-items: center;
 }
+
+
 
 /*******************************************/
 
