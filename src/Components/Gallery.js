@@ -49,7 +49,7 @@ function Gallery() {
                 color: '#828282', display: 'flex', alignItems: 'center', },
               }}  
               InputProps={{
-                sx: { backgroundColor: '#DDE6ED', borderRadius: '38px', border: 'none', height: '45px' },
+                sx: { backgroundColor: '#DDE6ED', borderRadius: '38px', border: 'none', height: '52px' },
               }}
               sx={{ width: '80%' }}
             />
@@ -65,7 +65,7 @@ function Gallery() {
       </Card>
     </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh' }}>
         {/* Container with flexbox styling */}
         <Card sx={{ maxWidth: 700 }}>
           <CardMedia
@@ -98,7 +98,7 @@ function Gallery() {
         </Card>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '85vh' }}>
         {/* Container with flexbox styling */}
         <Card sx={{ maxWidth: 700 }}>
           <CardMedia
@@ -131,7 +131,7 @@ function Gallery() {
         </Card>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '85vh' }}>
         {/* Container with flexbox styling */}
         <Card sx={{ maxWidth: 700 }}>
           <CardMedia
