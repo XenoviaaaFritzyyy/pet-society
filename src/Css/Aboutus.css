@@ -1,35 +1,50 @@
-/* AboutUs.css */
+/* Aboutus.css */
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
 
 .about-us-container {
-  text-align: center; /* Center align the content inside the container */
-  max-width: 800px; /* Set a maximum width for better readability */
-  margin: 0 auto; /* Center the container horizontally */
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .about-us-title {
-  margin-top: 20px; /* Add some top margin for the title */
+  margin-top: 20px;
 }
 
 .about-us-image {
-  max-width: 100%; /* Make the image responsive within its container */
-  margin-top: 20px; /* Add some top margin for the image */
+  max-width: 100%;
+  margin-top: 20px;
 }
 
 .about-us-section {
-  margin-top: 20px; /* Add some top margin for each section */
+  margin-top: 50px;
 }
 
 .team-members {
   display: flex;
-  justify-content: center; /* Center the team members horizontally */
-  flex-wrap: wrap; /* Allow team members to wrap to the next line if there's not enough space */
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .team-member {
-  margin: 10px; /* Add margin around each team member */
+  margin: 20px; /* Add margin around each team member */
+  text-align: center; /* Center text inside team-member */
+  display: inline-block; /* Make sure team-member takes up only the space it needs */
 }
 
 .team-member img {
-  max-width: 100%; /* Make the profile pictures responsive */
-  border-radius: 50%; /* Make the images circular */
+  max-width: 100%;
+  border-radius: 50%;
+  display: inline;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  .team-members {
+    flex-direction: column;
+    align-items: center;
+  }
 }

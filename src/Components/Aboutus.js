@@ -2,6 +2,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import '../Css/Aboutus.css';
+import Footer from './Footer';
 
 function Aboutus () {
   return (
@@ -54,7 +55,7 @@ function Aboutus () {
 
       {/* Footer */}
       <footer>
-        {/* Your footer content goes here */}
+         <Footer />
       </footer>
         </div>
     </>
