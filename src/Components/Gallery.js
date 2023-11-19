@@ -49,9 +49,9 @@ function Gallery() {
                 color: '#828282', display: 'flex', alignItems: 'center', },
               }}  
               InputProps={{
-                sx: { backgroundColor: '#DDE6ED', borderRadius: '38px', border: 'none', height: '52px' },
+                sx: { backgroundColor: '#DDE6ED', borderRadius: '38px', border: 'none', height: '54px' },
               }}
-              sx={{ width: '80%' }}
+              sx={{ width: '83%' }}
             />
           <Button
             color="primary"
