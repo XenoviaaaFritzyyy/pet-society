@@ -8,6 +8,8 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 function Gallery() {
   const [expanded, setExpanded] = useState(false);
@@ -35,6 +37,34 @@ function Gallery() {
   return (
     <>
       <Navbar />
+      <div style={{ justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
+      <Card sx={{ maxWidth: 700, margin: 'auto' }}>
+        <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        <TextField
+              label="What's on your mind?"
+              variant="outlined"
+              fullWidth
+              InputLabelProps={{
+                sx: { fontFamily: 'YourFont', fontSize: 18, 
+                color: '#828282', display: 'flex', alignItems: 'center', },
+              }}  
+              InputProps={{
+                sx: { backgroundColor: '#DDE6ED', borderRadius: '38px', border: 'none', height: '45px' },
+              }}
+              sx={{ width: '80%' }}
+            />
+          <Button
+            color="primary"
+            variant="contained"
+            sx={{ marginLeft: 'auto', backgroundColor: '#DDE6ED', 
+            color: '#27374D', textTransform: 'none', borderRadius: '8px', fontWeight: 'bold' }}
+          >
+            add photo
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         {/* Container with flexbox styling */}
         <Card sx={{ maxWidth: 700 }}>
@@ -45,9 +75,9 @@ function Gallery() {
           />
           <CardContent>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="h5" color="text.primary">
-                Shrimp and Chorizo Paella
-              </Typography>
+            <Typography variant="h5" color="text.primary" sx={{ fontWeight: 'bold' }}>
+            Shrimp and Chorizo Paella
+          </Typography>
               <IconButton
                 aria-label="add to favorites"
                 onClick={handleFavoriteClick}
@@ -78,9 +108,9 @@ function Gallery() {
           />
           <CardContent>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="h5" color="text.primary">
-                Shrimp and Chorizo Paella
-              </Typography>
+            <Typography variant="h5" color="text.primary" sx={{ fontWeight: 'bold' }}>
+            Shrimp and Chorizo Paella
+          </Typography>
               <IconButton
                 aria-label="add to favorites"
                 onClick={handleFavoriteClick}
@@ -111,9 +141,9 @@ function Gallery() {
           />
           <CardContent>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="h5" color="text.primary">
-                Shrimp and Chorizo Paella
-              </Typography>
+            <Typography variant="h5" color="text.primary" sx={{ fontWeight: 'bold' }}>
+            Shrimp and Chorizo Paella
+          </Typography>
               <IconButton
                 aria-label="add to favorites"
                 onClick={handleFavoriteClick}
