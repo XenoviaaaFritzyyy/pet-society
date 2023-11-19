@@ -55,7 +55,7 @@
 
               <div className="buttons">
                 <button type="button" className="nextBtn" onClick={showHouseholdInfoSection}>
-                  <span className="btnText">Next</span>
+                  <span className="btnNext">Next</span>
                 </button>
               </div>
             </div>
@@ -115,7 +115,7 @@
                   </button>
 
                 <button className="nextBtn">
-                  <span className="btnText">Submit</span>
+                  <span className="btnSubmit">Submit</span>
                 </button>
               </div>
             </div>

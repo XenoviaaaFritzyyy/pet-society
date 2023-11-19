@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 import '../Css/Admin.css';
 
@@ -50,32 +50,32 @@ function Admin() {
                 <div className="fields">
                   <div className="input-field ">
                       <label>Upload Pet Profile*</label>
-                      <input type="file" id="pet-picture" />
+                      <input type="file" id="pet-picture" name="pet-picture"/>
                   </div>
 
                     <div className="input-field">
                         <label>PetID*</label>
-                        <input type="number" placeholder="Enter petID" />
+                        <input type="number" id="petID" name="petID" placeholder="Enter petID" />
                 </div>
 
                 <div className="input-field ">
                     <label>Name*</label>
-                    <input type="text" placeholder="Enter Name" />
+                    <input type="text" id="pet-name" name="pet-name" placeholder="Enter Name" />
                 </div>
 
                 <div className="input-field description">
                     <label>Description*</label>
-                    <textarea placeholder="Enter Description"></textarea>
+                    <textarea placeholder="Enter Description" id="pet-description" name="pet-description"></textarea>
                 </div>
 
                 <div class="input-field">
                     <label>Age*</label>
-                    <input type="text" placeholder="Enter age" />
+                    <input type="text" id="age" name="age" placeholder="Enter age" />
                 </div>
 
                 <div class="input-field">
                     <label>Temperament</label>
-                        <select>
+                        <select id="temperament" name="temperament">
                         <option value="Friendly">Friendly</option>
                         <option value="Calm">Calm</option>
                         <option value="Energetic">Energetic</option>
@@ -90,7 +90,7 @@ function Admin() {
 
                 <div class="input-field">
                     <label>Color*</label>
-                    <select>
+                    <select id="color" name="color">
                         <option value="Black">Black</option>
                         <option value="Blonde">Blonde</option>
                         <option value="Brown/Tan">Brown/Tan</option>
@@ -101,7 +101,7 @@ function Admin() {
 
                 <div class="input-field">
                     <label>Sex*</label>
-                    <select>
+                    <select id="sex" name="sex">
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>                                 
@@ -109,7 +109,7 @@ function Admin() {
 
                 <div class="input-field">
                     <label>Size*</label>
-                    <select>
+                    <select id="size" name="size">
                         <option value="Small">Small</option>
                         <option value="Medium">Medium</option>
                         <option value="Large">Large</option>
@@ -118,7 +118,7 @@ function Admin() {
 
                 <div class="input-field">
                     <label>Vaccinated</label>
-                    <select>
+                    <select id="vaccinated" name="vaccinated">
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>        
@@ -131,11 +131,11 @@ function Admin() {
                 </button>
 
                 <button type="button" className="Petprofile-Update">
-                    <span className="btnAdd">Update</span>
+                    <span className="btnUpdate">Update</span>
                 </button>
 
                 <button type="button" className="Petprofile-Delete">
-                    <span className="btnAdd">Delete</span>
+                    <span className="btnDelete">Delete</span>
                 </button>
 
                 <button type="button" className="Petprofile-Add">
@@ -156,16 +156,16 @@ function Admin() {
                 <div className="fields">
                   <div className="input-field">
                     <label>DictionaryID*</label>
-                    <input type="number" placeholder="Enter dictionaryID" />
+                    <input type="number" id="dicID" name="dicID" placeholder="Enter dictionaryID" />
                   </div>
                   <div className="input-field">
                     <label>Entry*</label>
-                    <input type="text" placeholder="Enter entry" />
+                    <input type="text" id="entry" name="entry" placeholder="Enter entry" />
                   </div>
 
                   <div className="input-field description">
                     <label>Description*</label>
-                    <textarea placeholder="Enter Description"></textarea>
+                    <textarea placeholder="Enter Description" id="dic-description" name="dic-description"></textarea>
                   </div>
                 </div>
 
@@ -175,11 +175,11 @@ function Admin() {
                   </button>
 
                   <button type="button" className="Petprofile-Update">
-                    <span className="btnAdd">Update</span>
+                    <span className="btnUpdate">Update</span>
                   </button>
 
                   <button type="button" className="Petprofile-Delete">
-                    <span className="btnAdd">Delete</span>
+                    <span className="btnDelete">Delete</span>
                   </button>
 
                   <button type="button" className="Petprofile-Add">
