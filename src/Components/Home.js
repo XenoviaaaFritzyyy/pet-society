@@ -145,13 +145,13 @@ function Home() {
       </div>
       <div className="content-container">
       <div className="content-1">
-          <Card sx={{ maxWidth: 1000, marginRight:'15px', borderRadius:'10px' }}>
+          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
                 height="220"
                 width="360"
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image="/images/hazelyn.jpg"
                 alt="green iguana"
               />
               <CardContent>
@@ -161,13 +161,13 @@ function Home() {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card sx={{ maxWidth: 1000, marginRight:'15px',marginLeft:'10px', borderRadius:'10px' }}>
+          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
                 height="220"
                 width="360"
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image="/images/rob.jpg"
                 alt="green iguana"
               />
               <CardContent>
@@ -177,63 +177,13 @@ function Home() {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card sx={{ maxWidth: 1000,marginLeft:'10px', borderRadius:'10px' }}>
+          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
                 height="220"
                 width="360"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          </div>
-          <div className="content-1">
-          <Card sx={{ maxWidth: 1000, marginRight:'15px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="220"
-                width="360"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ maxWidth: 1000, marginRight:'15px',marginLeft:'10px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="220"
-                width="360"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ maxWidth: 1000,marginLeft:'10px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="220"
-                width="360"
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image="/images/rob.jpg"
                 alt="green iguana"
               />
               <CardContent>
@@ -245,13 +195,13 @@ function Home() {
           </Card>
           </div>
           <div className="content-1">
-          <Card sx={{ maxWidth: 1000, marginRight:'15px', borderRadius:'10px' }}>
+          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
                 height="220"
                 width="360"
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image="/images/hazelyn.jpg"
                 alt="green iguana"
               />
               <CardContent>
@@ -261,13 +211,13 @@ function Home() {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card sx={{ maxWidth: 1000, marginRight:'15px',marginLeft:'10px', borderRadius:'10px' }}>
+          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
                 height="220"
                 width="360"
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image="/images/rob.jpg"
                 alt="green iguana"
               />
               <CardContent>
@@ -277,13 +227,63 @@ function Home() {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card sx={{ maxWidth: 1000,marginLeft:'10px', borderRadius:'10px' }}>
+          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
                 height="220"
                 width="360"
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image="/images/rob.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          </div>
+          <div className="content-1">
+          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="220"
+                width="360"
+                image="/images/hazelyn.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="220"
+                width="360"
+                image="/images/rob.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="220"
+                width="360"
+                image="/images/rob.jpg"
                 alt="green iguana"
               />
               <CardContent>
