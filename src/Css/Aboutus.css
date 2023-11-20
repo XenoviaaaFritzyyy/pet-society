@@ -1,26 +1,42 @@
-/* Aboutus.css */
+/*Aboutus.css*/
 
 body {
   font-family: 'Josefin Sans', sans-serif;
+  /* Add your background styles here if needed */
 }
 
 .about-us-container {
   text-align: center;
-  max-width: 800px;
+  max-width: 80%; /* Adjust the maximum width as needed, e.g., 80%, 90% */
   margin: 0 auto;
+}
+
+.welcome-text {
+  margin-top: 20px; /* Adjust margin as needed */
 }
 
 .about-us-title {
   margin-top: 20px;
 }
 
+.white-box {
+  background-color: #ffffff; /* White background color */
+  padding: 20px; /* Adjust padding as needed */
+  border-radius: 10px; /* Optional: Add border-radius for rounded corners */
+  margin-bottom: 20px; /* Optional: Add margin to separate the white box from other content */
+}
+
 .about-us-image {
+  width: 100%;
   max-width: 100%;
-  margin-top: 20px;
 }
 
 .about-us-section {
   margin-top: 50px;
+}
+
+.our-goal-section, .Team-profile {
+  margin-top: 50px; /* Adjust margin as needed */
 }
 
 .team-members {
@@ -30,15 +46,20 @@ body {
 }
 
 .team-member {
-  margin: 20px; /* Add margin around each team member */
-  text-align: center; /* Center text inside team-member */
-  display: inline-block; /* Make sure team-member takes up only the space it needs */
+  margin: 20px;
 }
 
-.team-member img {
+.card {
+  width: 200px; /* Adjust card width as needed */
+}
+
+.card-img-top {
   max-width: 100%;
-  border-radius: 50%;
-  display: inline;
+  height: auto;
+}
+
+.card-body {
+  text-align: center;
 }
 
 /* Media query for smaller screens */
@@ -46,5 +67,9 @@ body {
   .team-members {
     flex-direction: column;
     align-items: center;
+  }
+
+  .card {
+    width: 80%; /* Adjust card width for smaller screens */
   }
 }

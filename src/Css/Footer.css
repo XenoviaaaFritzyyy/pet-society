@@ -1,10 +1,46 @@
 /* Footer.css */
 
 .box-container {
-    background-color: #27374d;
-    color: #dde6ed;
-  }
-  
-  .footer-contact {
-    color: #dde6ed;
-  }
+  background-color: #27374d;
+  color: #dde6ed;
+}
+
+.footer-contact {
+  color: #dde6ed;
+}
+
+.email-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.email-link:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.social-icon {
+  width: 24px; /* Adjust the width as needed */
+  height: 24px; /* Adjust the height as needed */
+  cursor: pointer;
+}
+
+.social-icon:hover {
+  filter: brightness(1.5);
+}
+
+.material-icons {
+  font-size: 24px;
+  color: #dde6ed;
+  cursor: pointer;
+}
+
+.material-icons:hover {
+  color: blue;
+}
