@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Checkbox, TextField, FormControlLabel, Grid, Box } from '@mui/material';
+import { Button, Checkbox, TextField, FormControlLabel, Grid, Box, MenuItem } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import '../Css/signup.css';
@@ -9,13 +9,23 @@ function SignUp() {
   const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [gender, setGender] = React.useState('');
+  const [contact, setContact] = React.useState('');
+  const [address, setAddress] = React.useState('');
   const [rememberMe, setRememberMe] = React.useState(false);
+
+  const handleGenderChange = (event) => {
+    setGender(event.target.value);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('First Name:', firstName);
     console.log('Last Name:', lastName);
+    console.log('Gender:', gender);
     console.log('Email:', email);
+    console.log('Address:', address);
+    console.log('Contact:', contact);
     console.log('Password:', password);
     console.log('Remember Me:', rememberMe);
   };
@@ -52,6 +62,42 @@ function SignUp() {
                   label="Last Name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
+                  fullWidth
+                  margin="normal"
+                />
+              </Grid>
+            </Grid>
+
+            <TextField
+              id="address"
+              label="Address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              fullWidth
+              margin="normal"
+            />
+
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+              <TextField
+                id="gender"
+                label="Gender"
+                fullWidth
+                margin="normal"
+                select
+                value={gender}
+                onChange={handleGenderChange}
+              >
+                <MenuItem value="male">Male</MenuItem>
+                <MenuItem value="female">Female</MenuItem>
+              </TextField>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  id="contact"
+                  label="Contact"
+                  value={contact}
+                  onChange={(e) => setContact(e.target.value)}
                   fullWidth
                   margin="normal"
                 />
