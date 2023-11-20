@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Checkbox, TextField, FormControlLabel, Grid, Box, MenuItem } from '@mui/material';
+import Home from "./Home";
 import { Link } from 'react-router-dom';
 
 import '../Css/signup.css';
@@ -13,22 +14,44 @@ function SignUp() {
   const [contact, setContact] = React.useState('');
   const [address, setAddress] = React.useState('');
   const [rememberMe, setRememberMe] = React.useState(false);
+  const [isAccountCreated, setIsAccountCreated] = React.useState(false); // New state to track account creation status
 
   const handleGenderChange = (event) => {
     setGender(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSignup = async (event) => {
     event.preventDefault();
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
-    console.log('Gender:', gender);
-    console.log('Email:', email);
-    console.log('Address:', address);
-    console.log('Contact:', contact);
-    console.log('Password:', password);
-    console.log('Remember Me:', rememberMe);
+
+    console.log("Submitting:", { firstName, lastName, email, password, gender, contact, address});
+
+    try {
+      const response = await fetch("http://localhost:8080/user/insertUser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName, lastName, email, password, gender, contact, address
+        }),
+      });
+
+      if (response.ok) {
+        // Signup successful, set isAccountCreated to true
+        setIsAccountCreated(true);
+        console.log("Signup successful");
+      } else {
+        // Handle signup error
+        console.error("Signup failed");
+      }
+    } catch (error) {
+      console.error("Error during signup:", error);
+    }
   };
+
+  if (isAccountCreated) {
+    return <Home />;
+  }
 
   return (
     <Grid container justifyContent="center" alignItems="center" minHeight="75vh">
@@ -44,7 +67,7 @@ function SignUp() {
           }}
         >
           <h1 style={{color: '#27374D'}}>Sign Up</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSignup}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField

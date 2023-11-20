@@ -7,13 +7,80 @@ function SignIn() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [rememberMe, setRememberMe] = React.useState(false);
+  const [isAccountCreated, setIsAccountCreated] = useState(false); // New state to track account creation status
 
-  const handleSubmit = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Remember Me:', rememberMe);
+
+    const email = event.target.elements.email.value;
+    const password = event.target.elements.password.value;
+
+    try {
+      const response = await fetch("http://localhost:8080/api/acadzen/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        // Login successful
+        setIsLoggedIn(true);
+      } else {
+        // Handle login error
+        const data = await response.json();
+        setError(data.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      setError("An error occurred during login");
+    }
   };
+
+  const handleSignup = async (event) => {
+    event.preventDefault();
+
+    console.log("Submitting:", { email, username, password });
+
+    try {
+      const response = await fetch("http://localhost:8080/api/acadzen/insert", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          username,
+          password,
+        }),
+      });
+
+      if (response.ok) {
+        // Signup successful, set isAccountCreated to true
+        setIsAccountCreated(true);
+        console.log("Signup successful");
+      } else {
+        // Handle signup error
+        console.error("Signup failed");
+      }
+    } catch (error) {
+      console.error("Error during signup:", error);
+    }
+  };
+
+    // Render Login component if isAccountCreated is true
+    if (isAccountCreated) {
+      return <Login />;
+    }
+
+    const handleSignUpClick = () => {
+      setShowLogin(false);
+    };
+
+    if (isLoggedIn) {
+      return <Dashboard />;
+    }
 
   return (
     <Grid container justifyContent="center" alignItems="center" minHeight="75vh">
