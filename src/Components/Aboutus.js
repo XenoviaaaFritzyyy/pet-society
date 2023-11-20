@@ -11,7 +11,7 @@ function Aboutus() {
         <Navbar />
         <div className="about-us-container">
           <h1 className="about-us-title">Know More About Us</h1>
-          <div className="white-box"> {/* New div for the white box background */}
+          <div className="white-box">
             <img src="/images/Dog.jpg" alt="About Us" className="about-us-image" />
           </div>
           <div className="welcome-text">
@@ -40,7 +40,8 @@ function Aboutus() {
                 <div className="card">
                   <img src="/images/Fritz.jpg" alt="Team Member 1" className="card-img-top" />
                   <div className="card-body">
-                    <p className="card-text">I'm not a mathematician, but I know my life is a series of unfortunate fractions.</p>
+                    <div className="member-name">Fritz Abrea</div>
+                    <p className="card-text">"I'm not a mathematician, but I know my life is a series of unfortunate fractions."</p>
                   </div>
                 </div>
               </div>
@@ -48,7 +49,8 @@ function Aboutus() {
                 <div className="card">
                   <img src="/images/Rox.jpg" alt="Team Member 2" className="card-img-top" />
                   <div className="card-body">
-                    <p className="card-text">Live, Laugh, and Love</p>
+                    <div className="member-name">Roxanne Alcordo</div>
+                    <p className="card-text">"Live, Laugh, and Love"</p>
                   </div>
                 </div>
               </div>
@@ -56,7 +58,8 @@ function Aboutus() {
                 <div className="card">
                   <img src="/images/Rob2.jpg" alt="Team Member 3" className="card-img-top" />
                   <div className="card-body">
-                    <p className="card-text">Chase adventures, not perfection</p>
+                    <div className="member-name">Rob Borinaga</div>
+                    <p className="card-text">"Chase adventures, not perfection"</p>
                   </div>
                 </div>
               </div>
@@ -64,7 +67,8 @@ function Aboutus() {
                 <div className="card">
                   <img src="/images/Hazelyn.jpg" alt="Team Member 4" className="card-img-top" />
                   <div className="card-body">
-                    <p className="card-text">Smart by design, lazy by choice, and money is my favorite noise.</p>
+                    <div className="member-name">Hazelyn Balingcasag</div>
+                    <p className="card-text">"Smart by design, lazy by choice, and money is my favorite noise."</p>
                   </div>
                 </div>
               </div>

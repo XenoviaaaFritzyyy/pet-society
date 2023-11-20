@@ -1,4 +1,4 @@
-/*Aboutus.css*/
+/* Aboutus.css */
 
 body {
   font-family: 'Josefin Sans', sans-serif;
@@ -35,7 +35,8 @@ body {
   margin-top: 50px;
 }
 
-.our-goal-section, .Team-profile {
+.our-goal-section,
+.Team-profile {
   margin-top: 50px; /* Adjust margin as needed */
 }
 
@@ -51,6 +52,7 @@ body {
 
 .card {
   width: 200px; /* Adjust card width as needed */
+  text-align: center; /* Center card content */
 }
 
 .card-img-top {
@@ -61,6 +63,13 @@ body {
 .card-body {
   text-align: center;
 }
+
+.member-name {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
 
 /* Media query for smaller screens */
 @media (max-width: 600px) {
