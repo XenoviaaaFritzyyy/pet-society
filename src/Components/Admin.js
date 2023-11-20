@@ -38,6 +38,9 @@ function Admin() {
             <div className="dictionary" onClick={() => redirectToForm('dictionary-form')}>
               Dictionary
             </div>
+            <div className="dictionary">
+              Request
+            </div>
           </div>
         ) : null}
 
@@ -48,15 +51,15 @@ function Admin() {
                 <span className="title">Pet Profile</span>
 
                 <div className="fields">
+                <div className="input-field">
+                        <label>PetID*</label>
+                        <input type="number" id="petID" name="petID" placeholder="Enter petID" />
+                </div>
+
                   <div className="input-field ">
                       <label>Upload Pet Profile*</label>
                       <input type="file" id="pet-picture" name="pet-picture"/>
                   </div>
-
-                    <div className="input-field">
-                        <label>PetID*</label>
-                        <input type="number" id="petID" name="petID" placeholder="Enter petID" />
-                </div>
 
                 <div className="input-field ">
                     <label>Name*</label>
