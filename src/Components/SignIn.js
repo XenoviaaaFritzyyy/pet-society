@@ -1,22 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Button, Checkbox, TextField, FormControlLabel, Grid, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import '../Css/signin.css';
+import Home from './Home';
 
 function SignIn() {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [rememberMe, setRememberMe] = React.useState(false);
-  const [isAccountCreated, setIsAccountCreated] = useState(false); // New state to track account creation status
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [error, setError] = useState(""); // State to store error messages
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    const email = event.target.elements.email.value;
-    const password = event.target.elements.password.value;
-
     try {
-      const response = await fetch("http://localhost:8080/api/acadzen/login", {
+      const response = await fetch("http://localhost:8080/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,60 +27,22 @@ function SignIn() {
       if (response.ok) {
         // Login successful
         setIsLoggedIn(true);
+        console.log("Login successful");
       } else {
         // Handle login error
         const data = await response.json();
-        setError(data.message || "Login failed");
+        setError("Invalid email or password"); // Set an appropriate error message
+        console.error("Login failed");
       }
     } catch (error) {
       console.error("Error during login:", error);
-      setError("An error occurred during login");
+      setError("An error occurred during login. Please try again later.");
     }
   };
 
-  const handleSignup = async (event) => {
-    event.preventDefault();
-
-    console.log("Submitting:", { email, username, password });
-
-    try {
-      const response = await fetch("http://localhost:8080/api/acadzen/insert", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          username,
-          password,
-        }),
-      });
-
-      if (response.ok) {
-        // Signup successful, set isAccountCreated to true
-        setIsAccountCreated(true);
-        console.log("Signup successful");
-      } else {
-        // Handle signup error
-        console.error("Signup failed");
-      }
-    } catch (error) {
-      console.error("Error during signup:", error);
-    }
-  };
-
-    // Render Login component if isAccountCreated is true
-    if (isAccountCreated) {
-      return <Login />;
-    }
-
-    const handleSignUpClick = () => {
-      setShowLogin(false);
-    };
-
-    if (isLoggedIn) {
-      return <Dashboard />;
-    }
+  if (isLoggedIn) {
+    return <Home />;
+  }
 
   return (
     <Grid container justifyContent="center" alignItems="center" minHeight="75vh">
@@ -96,10 +58,11 @@ function SignIn() {
           }}
         >
           <h1 style={{color: '#27374D'}}>Sign In</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleLogin}>
             <TextField
               id="email"
               label="Email Address"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               fullWidth
@@ -108,6 +71,7 @@ function SignIn() {
             <TextField
               id="password"
               label="Password"
+              required
               value={password}
               type="password"
               onChange={(e) => setPassword(e.target.value)}
@@ -124,9 +88,9 @@ function SignIn() {
               }
               label="Remember me"
             />
-            <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div style={{ textDecoration: 'none', color: 'inherit' }}>
               <Button
-                type="button"
+                type="submit"
                 variant="contained"
                 color="primary"
                 sx={{
@@ -140,7 +104,7 @@ function SignIn() {
               >
                 Sign In
               </Button>
-            </Link>
+            </div>
             <div className="centered-text">
               <p>Don't have an account?&nbsp;</p>
               <Link to="/signup" style={{ textDecoration: 'underline', color: '#27374D' }}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Button, Checkbox, TextField, FormControlLabel, Grid, Box, MenuItem } from '@mui/material';
 import Home from "./Home";
 import { Link } from 'react-router-dom';
@@ -6,15 +6,19 @@ import { Link } from 'react-router-dom';
 import '../Css/signup.css';
 
 function SignUp() {
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [gender, setGender] = React.useState('');
-  const [contact, setContact] = React.useState('');
-  const [address, setAddress] = React.useState('');
-  const [rememberMe, setRememberMe] = React.useState(false);
-  const [isAccountCreated, setIsAccountCreated] = React.useState(false); // New state to track account creation status
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [gender, setGender] = useState('');
+  const [contact, setContact] = useState('');
+  const [address, setAddress] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
+  const [isAccountCreated, setIsAccountCreated] = useState(false); // New state to track account creation status
+
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
+  const [contactError, setContactError] = useState(null);
 
   const handleGenderChange = (event) => {
     setGender(event.target.value);
@@ -22,9 +26,33 @@ function SignUp() {
 
   const handleSignup = async (event) => {
     event.preventDefault();
+  
+    // Validation checks
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
+    const contactRegex = /^\d{11}$/;
+  
+    setEmailError(null);
+    setPasswordError(null);
+    setContactError(null);
 
-    console.log("Submitting:", { firstName, lastName, email, password, gender, contact, address});
-
+    if (!emailRegex.test(email)) {
+      setEmailError("Invalid email format");
+      return;
+    }
+  
+    if (!passwordRegex.test(password)) {
+      setPasswordError("Password should be 8 characters or more with at least one uppercase letter");
+      return;
+    }
+  
+    if (!contactRegex.test(contact)) {
+      setContactError("Contact should be in this format 09555432143");
+      return;
+    }
+  
+    console.log("Submitting:", { firstname, lastname, email, password, gender, contact, address });
+  
     try {
       const response = await fetch("http://localhost:8080/user/insertUser", {
         method: "POST",
@@ -32,10 +60,10 @@ function SignUp() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstName, lastName, email, password, gender, contact, address
+          fname: firstname, lname: lastname, email, password, gender, contact, address
         }),
       });
-
+  
       if (response.ok) {
         // Signup successful, set isAccountCreated to true
         setIsAccountCreated(true);
@@ -64,95 +92,128 @@ function SignUp() {
             justifyContent: 'center',
             padding: '20px',
             minHeight: '700px',
-          }}
-        >
+          }}>
           <h1 style={{color: '#27374D'}}>Sign Up</h1>
           <form onSubmit={handleSignup}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  id="firstName"
+                  id="firstname"
                   label="First Name"
-                  value={firstName}
+                  required
+                  value={firstname}
                   onChange={(e) => setFirstName(e.target.value)}
                   fullWidth
-                  margin="normal"
-                />
+                  margin="normal"/>
               </Grid>
+
               <Grid item xs={12} sm={6}>
                 <TextField
-                  id="lastName"
+                  id="lastname"
                   label="Last Name"
-                  value={lastName}
+                  required
+                  value={lastname}
                   onChange={(e) => setLastName(e.target.value)}
                   fullWidth
-                  margin="normal"
-                />
+                  margin="normal"/>
               </Grid>
             </Grid>
 
             <TextField
               id="address"
               label="Address"
+              required
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               fullWidth
-              margin="normal"
-            />
+              margin="normal"/>
 
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
               <TextField
                 id="gender"
                 label="Gender"
+                required
                 fullWidth
                 margin="normal"
                 select
                 value={gender}
-                onChange={handleGenderChange}
-              >
+                onChange={handleGenderChange}>
                 <MenuItem value="male">Male</MenuItem>
                 <MenuItem value="female">Female</MenuItem>
               </TextField>
               </Grid>
+
               <Grid item xs={12} sm={6}>
                 <TextField
                   id="contact"
                   label="Contact"
+                  required
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}
                   fullWidth
                   margin="normal"
-                />
+                  sx={{
+                    borderColor: contactError ? 'red' : undefined,
+                  }}/>
+
+              {/* Display contact error message */}
+              {contactError && (
+                <div style={{ color: 'red', marginTop: '2px', fontSize: '10px'  }}>
+                  {contactError}
+                </div>
+            )}
               </Grid>
             </Grid>
+
             <TextField
               id="email"
               label="Email Address"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               fullWidth
               margin="normal"
-            />
+              sx={{
+                borderColor: emailError ? 'red' : undefined,
+              }}/>
+
+            {/* Display email error message */}
+            {emailError && (
+              <div style={{ color: 'red', marginTop: '2px', fontSize: '10px' }}>
+                {emailError}
+              </div>
+            )}
+
             <TextField
               id="password"
               label="Password"
+              required
               value={password}
               type="password"
               onChange={(e) => setPassword(e.target.value)}
               fullWidth
               margin="normal"
-            />
+              sx={{
+                borderColor: passwordError ? 'red' : undefined,
+              }}/>
+
+            {/* Display password error message */}
+            {passwordError && (
+              <div style={{ color: 'red', marginTop: '2px', fontSize: '10px' }}>
+                {passwordError}
+              </div>
+            )}
+
             <FormControlLabel
               control={
                 <Checkbox
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  color="primary"
-                />
+                  color="primary"/>
               }
-              label="I accept the terms and conditions"
-            />
+              label="I accept the terms and conditions"/>
+
             <Button
               type="submit"
               variant="contained"
@@ -164,8 +225,7 @@ function SignUp() {
                 backgroundColor: '#27374D',
                 color: 'white',
                 '&:hover': { backgroundColor: '#142132' },
-              }}
-            >
+              }}>
               Sign Up
             </Button>
             <div className="centered-text">
