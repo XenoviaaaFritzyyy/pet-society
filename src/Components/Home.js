@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from './Navbar';
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Card, CardContent, CardMedia, Typography, CardActionArea, Button, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, CardActionArea, Button, MenuItem, FormControl, Select } from '@mui/material';
 
 import '../Css/Home.css';
 // import Dictionary from './Dictionary';
