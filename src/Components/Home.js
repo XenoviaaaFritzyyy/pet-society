@@ -56,7 +56,7 @@ function Home() {
                 sx={{ borderRadius: '15px' }}
               >
                 <MenuItem value="">
-                  <em>None</em>
+                  <em>Nonee</em>
                 </MenuItem>
                 <MenuItem value={10}>Black</MenuItem>
                 <MenuItem value={20}>Blonde</MenuItem>
