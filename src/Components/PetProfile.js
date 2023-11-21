@@ -1,6 +1,6 @@
 // PetProfile.js
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import '../Css/PetProfile.css';
 
@@ -47,6 +47,13 @@ function PetProfile() {
             {/* Add content for Petcontent2-container */}
             <h2>Pet Details</h2>
             <p>This is where you can display details about the pet.</p>
+
+            <Link to="/Application" style={{ textDecoration: 'none' }}>
+              <button style={{ position: 'absolute', top: '25px', marginTop: '50px', textDecoration: 'none', fontSize: '15px', padding: '8px 15px', borderRadius: '10px'}}>
+                Adopt Now 
+            </button>
+      </Link>
+
           </div>
         </div>
       </div>
