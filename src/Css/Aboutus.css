@@ -20,10 +20,11 @@ body {
 }
 
 .white-box {
-  background-color: #ffffff; /* White background color */
-  padding: 20px; /* Adjust padding as needed */
-  border-radius: 10px; /* Optional: Add border-radius for rounded corners */
-  margin-bottom: 20px; /* Optional: Add margin to separate the white box from other content */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px; /* Add margin-top to create space above */
 }
 
 .about-us-image {
