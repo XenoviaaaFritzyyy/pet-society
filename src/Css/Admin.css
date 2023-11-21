@@ -56,6 +56,10 @@ form .fields .input-field {
     color: #27374D;
 }
 
+input[type='file'] {
+    display: none;
+}
+
 .input-field input,
 .input-field select {
     outline: none;
@@ -68,6 +72,10 @@ form .fields .input-field {
     height: 45px;
     margin: 8px 0;
     width: 100%;
+}
+
+.input-field select {
+    cursor: pointer;
 }
 
 .input-field textarea {

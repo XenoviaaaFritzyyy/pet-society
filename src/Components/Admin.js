@@ -60,9 +60,11 @@ function Admin() {
                         <input type="number" id="petID" name="petID" placeholder="Enter petID" />
                 </div>
 
-                  <div className="input-field ">
-                      <label>Upload Pet Profile*</label>
-                      <input type="file" id="pet-picture" name="pet-picture"/>
+                  <div className="input-field-file">
+                      <label style={{fontSize: '12px', fontWeight: 'bold', color: '#27374D'}}>Upload Pet Photo*</label>
+                      <input type="file" id="pet-picture" name="pet-picture" accept='image/'/>
+                      <br/>
+                      <label for='pet-picture' style={{background:'white', padding: '13px 15px', borderRadius: '5px', border: '1px solid #aaa', display:'block', marginTop:'8px', color: '#27374D', fontSize: '14px', fontWeight: '400', cursor: 'pointer'}}>Choose a photo</label>
                   </div>
 
                 <div className="input-field ">
