@@ -1,12 +1,9 @@
 import React from "react";
 import Navbar from './Navbar';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Typography, CardActionArea, Button, MenuItem, FormControl, Select } from '@mui/material';
-
 import '../Css/Home.css';
-// import Dictionary from './Dictionary';
-// import Gallery from './Gallery';
-// import AboutUs from './Aboutus';
+import PetCard from "./PetCard";
+
 
 function Home() {
   const [colour, setColour] = React.useState('');
@@ -55,9 +52,9 @@ function Home() {
                 onChange={handleColourChange}
                 sx={{ borderRadius: '15px' }}
               >
-                <MenuItem value="">
+                <MenuItem style={{ display: 'none' }} value="">
                   <em>None</em>
-                </MenuItem>
+                </MenuItem> 
                 <MenuItem value={10}>Black</MenuItem>
                 <MenuItem value={20}>Blonde</MenuItem>
                 <MenuItem value={30}>Brown / Tan</MenuItem>
@@ -145,155 +142,20 @@ function Home() {
       </div>
       <div className="content-container">
       <div className="content-1" style={{ display: 'flex' }}>
-      <Card sx={{ width: 365, maxWidth: 1000, marginRight: '20px', borderRadius: '10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="220"
-                width="360"
-                image="/images/Rob.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ width: 365, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="220"
-                width="360"
-                image="/images/Rob.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ width: 365, maxWidth: 1000, marginRight:'0px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="220"
-                width="360"
-                image="/images/rob.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          </div>
-          <div className="content-1" style={{ display: 'flex' }}>
-      <Card sx={{ width: 365, maxWidth: 1000, marginRight: '20px', borderRadius: '10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="220"
-                width="360"
-                image="/images/Rob.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ width: 365, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="220"
-                width="360"
-                image="/images/Rob.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ width: 365, maxWidth: 1000, marginRight:'0px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="220"
-                width="360"
-                image="/images/rob.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          </div>
-          <div className="content-1" style={{ display: 'flex' }}>
-      <Card sx={{ width: 365, maxWidth: 1000, marginRight: '20px', borderRadius: '10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="220"
-                width="360"
-                image="/images/Rob.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ width: 365, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="220"
-                width="360"
-                image="/images/Rob.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ width: 365, maxWidth: 1000, marginRight:'0px', borderRadius:'10px' }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="220"
-                width="360"
-                image="/images/rob.jpg"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          </div>
+        <PetCard petId="1" name="Lizard" image="/images/rob.jpg" />
+        <PetCard petId="2" name="Lizard" image="/images/rob.jpg" />
+        <PetCard petId="3" name="Lizard" image="/images/rob.jpg" />
+      </div>
+      <div className="content-1" style={{ display: 'flex' }}>
+        <PetCard petId="1" name="Lizard" image="/images/Rob.jpg" />
+        <PetCard petId="2" name="Lizard" image="/images/Rob.jpg" />
+        <PetCard petId="3" name="Lizard" image="/images/rob.jpg" />
+      </div>
+      <div className="content-1" style={{ display: 'flex' }}>
+        <PetCard petId="1" name="Lizard" image="/images/Rob.jpg" />
+        <PetCard petId="2" name="Lizard" image="/images/Rob.jpg" />
+        <PetCard petId="3" name="Lizard" image="/images/rob.jpg" />
+      </div>
       </div>    
     </>
   );
