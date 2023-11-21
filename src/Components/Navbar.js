@@ -26,7 +26,7 @@ function Navbar() {
     const handleOptionClick = (option) => {
       switch (option) {
         case 'Profile':
-          navigate('/profile'); // Adjust the path as needed
+          navigate('/userprofile'); // Adjust the path as needed
           break;
         case 'Request':
           navigate('/request'); // Adjust the path as needed
