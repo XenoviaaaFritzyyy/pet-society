@@ -37,7 +37,7 @@ function PetProfile() {
             <div className='picture'>
               {/* Render the image with a fallback to a default image */}
               <img
-                src={imageExists ? `/images/pets/${petId}.jpg` : '/images/Hazelyn.jpg'}
+                src={imageExists ? `/images/pets/${petId}.jpg` : '/images/RobFinal.jpg'}
                 alt={`Pet ${petId}`}
               />
             </div>
