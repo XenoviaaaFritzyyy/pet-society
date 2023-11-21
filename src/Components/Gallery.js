@@ -40,7 +40,7 @@ function Gallery() {
       <div style={{ justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
       <Card sx={{ maxWidth: 750, margin: 'auto' }}>
         <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px' }}>
-        <img src="/images/RobFinal.jpg" alt="User Profile" className="user-profile-image" />
+        <img src="/images/RobFinal.jpg" alt="User Profile" className="user-profile-image" style={{ width: '45px', height: '45px' }} />
         <TextField
               label="What's on your mind?"
               variant="outlined"
@@ -50,16 +50,16 @@ function Gallery() {
                 color: '#828282', display: 'flex', alignItems: 'center', },
               }}  
               InputProps={{
-                sx: { backgroundColor: '#DDE6ED', borderRadius: '38px', border: 'none', height: '54px' },
+                sx: { backgroundColor: '#fff', borderRadius: '38px', height: '54px' },
               }}
-              sx={{ width: '83%' }}
+              sx={{ width: '80%' }}
             />
           <Button
             color="primary"
             variant="contained"
-            sx={{ backgroundColor: '#DDE6ED', 
-            color: '#27374D', borderRadius: '8px', display:"flex", width: 150, 
-            whiteSpace: "nowrap", fontSize: "10", fontWeight: "bold"}}
+            sx={{ backgroundColor: 'white', color: '#27374D', '&:hover': { backgroundColor: '#142132', 
+            color: 'white' }, borderRadius: '8px', border: '.1px solid #27374D', display:"flex", width: 150, 
+            whiteSpace: "nowrap", fontSize: "10"}}
           >add photo
             
           </Button>

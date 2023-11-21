@@ -10,10 +10,10 @@ function Aboutus() {
       <div>
         <Navbar />
         <div className="about-us-container">
-          <h1 className="about-us-title">Know More About Us</h1>
           <div className="white-box">
             <img src="/images/Dog.jpg" alt="About Us" className="about-us-image" />
           </div>
+          <h1 className="about-us-title">Know More About Us</h1>
           <div className="welcome-text">
             <p>
               Welcome to Pet Society, where we're dedicated to making pet adoption simple and joyful.
