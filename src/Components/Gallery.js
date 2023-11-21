@@ -42,7 +42,7 @@ function Gallery() {
         <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px' }}>
         <img src="/images/RobFinal.jpg" alt="User Profile" className="user-profile-image" style={{ width: '45px', height: '45px' }} />
         <TextField
-              label="What's on your mind?"
+              placeholder="What's on your mind?"
               variant="outlined"
               fullWidth
               InputLabelProps={{
