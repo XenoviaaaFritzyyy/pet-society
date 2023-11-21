@@ -50,7 +50,7 @@ function Gallery() {
                 color: '#828282', display: 'flex', alignItems: 'center', },
               }}  
               InputProps={{
-                sx: { backgroundColor: '#fff', borderRadius: '38px', border: '1px solid #828282', height: '54px' },
+                sx: { backgroundColor: '#fff', borderRadius: '38px', border: '1px transparent #828282', height: '54px' },
               }}
               sx={{ width: '83%' }}
             />
