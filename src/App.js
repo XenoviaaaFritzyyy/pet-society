@@ -10,6 +10,7 @@ import Admin from './Components/Admin';
 import './Css/App.css';
 import AboutUs from './Components/Aboutus';
 import UserProfile from './Components/UserProfile';
+import PetProfile from './Components/PetProfile';
 
 function Welcome() {
   const containerStyle = {
@@ -65,6 +66,8 @@ function App() {
         <Route path="/userprofile" element={<UserProfile />} />
         <Route path="/application" element={<ApplicationForm />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/petprofile/:petId" element={<PetProfile />} />
+        
 
       </Routes>
     </Router>
