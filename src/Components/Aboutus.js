@@ -11,7 +11,7 @@ function Aboutus() {
         <Navbar />
         <div className="about-us-container">
           <div className="white-box">
-            <img src="/images/Dog.jpg" alt="About Us" className="about-us-image" />
+            <img src="/images/dogbg3.jpg" alt="About Us" className="about-us-image" />
           </div>
           <h1 className="about-us-title">Know More About Us</h1>
           <div className="welcome-text">
@@ -24,7 +24,7 @@ function Aboutus() {
             </p>
           </div>
           <div className="our-goal-section">
-            <h2>Our Goal</h2>
+            <h1>Our Goal</h1>
             <p>
               Our primary goal is to become the go-to destination for individuals seeking to adopt
               dogs. We aim to increase successful dog adoptions, reduce the time dogs spend in
@@ -33,15 +33,15 @@ function Aboutus() {
           </div>
 
           <div className="Team-profile">
-            <h2>The Team</h2>
+            <h1>The Team</h1>
             <div className="team-members">
               {/* Add your team members' profile cards */}
               <div className="team-member">
                 <div className="card">
-                  <img src="/images/Fritz.jpg" alt="Team Member 1" className="card-img-top" />
+                  <img src="/images/xenovia.jpg" alt="Team Member 1" className="card-img-top" />
                   <div className="card-body">
                     <div className="member-name">Fritz Abrea</div>
-                    <p className="card-text">"I'm not a mathematician, but I know my life is a series of unfortunate fractions."</p>
+                    <p className="card-text">"Hmm... Silence can speak much in a way"</p>
                   </div>
                 </div>
               </div>
@@ -68,7 +68,7 @@ function Aboutus() {
                   <img src="/images/Hazelyn.jpg" alt="Team Member 4" className="card-img-top" />
                   <div className="card-body">
                     <div className="member-name">Hazelyn Balingcasag</div>
-                    <p className="card-text">"Smart by design, lazy by choice, and money is my favorite noise."</p>
+                    <p className="card-text">"If I don't have to do something, I won't, but if I have to, I'll do it quickly."</p>
                   </div>
                 </div>
               </div>

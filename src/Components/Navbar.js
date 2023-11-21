@@ -52,9 +52,9 @@ function Navbar() {
       </div>
         {isDropdownOpen && (
           <div className="profile-dropdown-content">
-            <div onClick={() => changeOption('Profile')} style={{ marginBottom: '10px' }}>Profile</div>
-            <div onClick={() => changeOption('Request')} style={{ marginBottom: '10px' }}>Request</div>
-            <div onClick={() => changeOption('Log out')}>Log out</div>
+            <div onClick={() => changeOption('Profile')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Profile</div>
+            <div onClick={() => changeOption('Request')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Request</div>
+            <div onClick={() => changeOption('Log out')} style={{cursor: 'pointer'}}>Log out</div>
             {/* Add more options as needed */}
           </div>
         )}
