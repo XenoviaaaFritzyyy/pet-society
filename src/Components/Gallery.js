@@ -38,8 +38,9 @@ function Gallery() {
     <>
       <Navbar />
       <div style={{ justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
-      <Card sx={{ maxWidth: 700, margin: 'auto' }}>
-        <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+      <Card sx={{ maxWidth: 750, margin: 'auto' }}>
+        <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px' }}>
+        <img src="/images/rob.jpg" alt="User Profile" className="user-profile-image" />
         <TextField
               label="What's on your mind?"
               variant="outlined"
@@ -56,10 +57,11 @@ function Gallery() {
           <Button
             color="primary"
             variant="contained"
-            sx={{ marginLeft: 'auto', backgroundColor: '#DDE6ED', 
-            color: '#27374D', textTransform: 'none', borderRadius: '8px', fontWeight: 'bold' }}
-          >
-            add photo
+            sx={{ backgroundColor: '#DDE6ED', 
+            color: '#27374D', borderRadius: '8px', display:"flex", width: 150, 
+            whiteSpace: "nowrap", fontSize: "10", fontWeight: "bold"}}
+          >add photo
+            
           </Button>
         </CardContent>
       </Card>
