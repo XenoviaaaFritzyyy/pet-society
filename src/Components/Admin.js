@@ -109,8 +109,8 @@ function Admin() {
                 </div>
 
                 <div class="input-field">
-                    <label>Sex*</label>
-                    <select id="sex" name="sex">
+                    <label>Gender*</label>
+                    <select id="gender" name="gender">
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>                                 
