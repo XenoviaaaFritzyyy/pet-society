@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import { Button, Checkbox, TextField, FormControlLabel, Grid, Box } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import '../Css/signin.css';
-import Home from './Home';
 
 function SignIn() {
   const [email, setEmail] = useState('');
@@ -40,8 +39,16 @@ function SignIn() {
     }
   };
 
+
   if (isLoggedIn) {
-    return <Home />;
+    // Check if the logged-in user is the admin
+    if (email === 'admin@gmail.com') {
+      // Use Navigate to navigate to Admin component if the user is the admin
+      return <Navigate to="/admin" />;
+    } else {
+      // Use Navigate to navigate to Home component for regular users
+      return <Navigate to="/home" />;
+    }
   }
 
   return (
