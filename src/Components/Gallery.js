@@ -40,7 +40,7 @@ function Gallery() {
       <div style={{ justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
       <Card sx={{ maxWidth: 750, margin: 'auto' }}>
         <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px' }}>
-        <img src="/images/rob.jpg" alt="User Profile" className="user-profile-image" />
+        <img src="/images/RobFinal.jpg" alt="User Profile" className="user-profile-image" />
         <TextField
               label="What's on your mind?"
               variant="outlined"
