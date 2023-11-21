@@ -144,8 +144,8 @@ function Home() {
         </div>
       </div>
       <div className="content-container">
-      <div className="content-1">
-          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
+      <div className="content-1" style={{ display: 'flex' }}>
+      <Card sx={{ width: 365, maxWidth: 1000, marginRight: '20px', borderRadius: '10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -161,7 +161,7 @@ function Home() {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
+          <Card sx={{ width: 365, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -177,7 +177,7 @@ function Home() {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
+          <Card sx={{ width: 365, maxWidth: 1000, marginRight:'0px', borderRadius:'10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -194,8 +194,8 @@ function Home() {
             </CardActionArea>
           </Card>
           </div>
-          <div className="content-1">
-          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
+          <div className="content-1" style={{ display: 'flex' }}>
+      <Card sx={{ width: 365, maxWidth: 1000, marginRight: '20px', borderRadius: '10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -211,7 +211,7 @@ function Home() {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
+          <Card sx={{ width: 365, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -227,13 +227,13 @@ function Home() {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
+          <Card sx={{ width: 365, maxWidth: 1000, marginRight:'0px', borderRadius:'10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
                 height="220"
                 width="360"
-                image="/images/Rob.jpg"
+                image="/images/rob.jpg"
                 alt="green iguana"
               />
               <CardContent>
@@ -244,8 +244,8 @@ function Home() {
             </CardActionArea>
           </Card>
           </div>
-          <div className="content-1">
-          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
+          <div className="content-1" style={{ display: 'flex' }}>
+      <Card sx={{ width: 365, maxWidth: 1000, marginRight: '20px', borderRadius: '10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -261,7 +261,7 @@ function Home() {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
+          <Card sx={{ width: 365, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -277,13 +277,13 @@ function Home() {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card sx={{ width: 360, maxWidth: 1000, marginRight:'20px', borderRadius:'10px' }}>
+          <Card sx={{ width: 365, maxWidth: 1000, marginRight:'0px', borderRadius:'10px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
                 height="220"
                 width="360"
-                image="/images/Rob.jpg"
+                image="/images/rob.jpg"
                 alt="green iguana"
               />
               <CardContent>
