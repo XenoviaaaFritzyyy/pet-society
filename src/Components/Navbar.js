@@ -42,9 +42,14 @@ function Navbar() {
   
     return (
       <div className="profile-dropdown">
-        <div className="selected-option" onClick={toggleDropdown}>
-            <img src="/images/rob.jpg" alt="User Profile" className="user-profile-image" />
-        </div>
+      <div className="selected-option" onClick={toggleDropdown}>
+        <img
+          src="/images/RobFinal.jpg"
+          alt="User Profile"
+          className="user-profile-image"
+          style={{ objectFit: 'cover' }}
+        />
+      </div>
         {isDropdownOpen && (
           <div className="profile-dropdown-content">
             <div onClick={() => changeOption('Profile')} style={{ marginBottom: '10px' }}>Profile</div>
