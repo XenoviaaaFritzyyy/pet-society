@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Checkbox, TextField, FormControlLabel, Grid, Box, MenuItem } from '@mui/material';
-import Home from "./Home";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import '../Css/signup.css';
 
@@ -78,7 +77,7 @@ function SignUp() {
   };
 
   if (isAccountCreated) {
-    return <Home />;
+    return <Navigate to="/home" />;
   }
 
   return (
@@ -209,6 +208,7 @@ function SignUp() {
               control={
                 <Checkbox
                   checked={rememberMe}
+                  required
                   onChange={(e) => setRememberMe(e.target.checked)}
                   color="primary"/>
               }
