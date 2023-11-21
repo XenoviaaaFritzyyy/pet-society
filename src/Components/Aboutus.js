@@ -38,10 +38,10 @@ function Aboutus() {
               {/* Add your team members' profile cards */}
               <div className="team-member">
                 <div className="card">
-                  <img src="/images/Fritz.jpg" alt="Team Member 1" className="card-img-top" />
+                  <img src="/images/xenovia.jpg" alt="Team Member 1" className="card-img-top" />
                   <div className="card-body">
                     <div className="member-name">Fritz Abrea</div>
-                    <p className="card-text">"I'm not a mathematician, but I know my life is a series of unfortunate fractions."</p>
+                    <p className="card-text">"Hmm... Silence can speak much in a way"</p>
                   </div>
                 </div>
               </div>
