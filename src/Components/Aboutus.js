@@ -59,7 +59,7 @@ function Aboutus() {
                   <img src="/images/Rob2.jpg" alt="Team Member 3" className="card-img-top" />
                   <div className="card-body">
                     <div className="member-name">Rob Borinaga</div>
-                    <p className="card-text">"Chase adventures, not perfection"</p>
+                    <p className="card-text">"I knew exactly what to do. But in a much more real sense, I had no idea what to do"</p>
                   </div>
                 </div>
               </div>

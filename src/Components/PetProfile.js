@@ -37,6 +37,7 @@ function PetProfile() {
             <div className='picture'>
               {/* Render the image with a fallback to a default image */}
               <img
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 src={imageExists ? `/images/pets/${petId}.jpg` : '/images/RobFinal.jpg'}
                 alt={`Pet ${petId}`}
               />
