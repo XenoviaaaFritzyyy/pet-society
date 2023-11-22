@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Checkbox, TextField, FormControlLabel, Grid, Box, MenuItem, IconButton, InputAdornment } from '@mui/material';
+import { Button, Checkbox, TextField, IconButton, Grid, Box, MenuItem, InputAdornment, FormControlLabel } from '@mui/material';
 import { Link, Navigate } from 'react-router-dom';
 
 import '../Css/signup.css';
