@@ -47,10 +47,6 @@ function Welcome() {
     backgroundPosition: 'right top',
     minHeight: '100vh',
     backgroundColor: 'rgba(0, 0, 0)',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    color: 'white',
   };
 
   return (
@@ -66,6 +62,7 @@ function Welcome() {
         </Link>
       </div>
     </header>
+
       <div style={{ textAlign: 'left', width: '50%', margin: '0 0 0 150px', paddingTop: '220px' }}>
         <strong>
           Furever Hugs Wanted! <br />
