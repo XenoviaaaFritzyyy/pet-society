@@ -11,6 +11,8 @@ import './Css/App.css';
 import AboutUs from './Components/Aboutus';
 import UserProfile from './Components/UserProfile';
 import PetProfile from './Components/PetProfile';
+import PetProfileForm from './Components/PetProfileForm';
+import DictionaryForm from './Components/DictionaryForm';
 
 function Welcome() {
   const containerStyle = {
@@ -67,6 +69,9 @@ function App() {
         <Route path="/application" element={<ApplicationForm />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/petprofile/:petId" element={<PetProfile />} />
+        <Route path="/petprofileform" element={<PetProfileForm />} />
+        <Route path="/dictionaryform" element={<DictionaryForm />} />
+
         
 
       </Routes>
