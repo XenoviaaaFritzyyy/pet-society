@@ -11,7 +11,7 @@ function Aboutus() {
         <Navbar />
         <div className="about-us-container">
           <div className="white-box">
-            <img src="/images/dogbg3.jpg" alt="About Us" className="about-us-image" />
+            <img src="/images/dogbg1.jpg" alt="About Us" className="about-us-image" />
           </div>
           <h1 className="about-us-title">Know More About Us</h1>
           <div className="welcome-text">

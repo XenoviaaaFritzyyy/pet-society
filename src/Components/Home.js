@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from './Navbar';
-import { Card, CardContent, CardMedia, Typography, CardActionArea, Button, MenuItem, FormControl, Select } from '@mui/material';
+import {Button, MenuItem, FormControl, Select } from '@mui/material';
 import '../Css/Home.css';
 import PetCard from "./PetCard";
 
