@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Button, Checkbox, TextField, FormControlLabel, Grid, Box, MenuItem } from '@mui/material';
+import React, { useState } from 'react';
+import { Button, Checkbox, TextField, FormControlLabel, Grid, Box, MenuItem, IconButton, InputAdornment } from '@mui/material';
 import { Link, Navigate } from 'react-router-dom';
 
 import '../Css/signup.css';
@@ -18,9 +18,14 @@ function SignUp() {
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
   const [contactError, setContactError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false); // New state for password visibility
 
   const handleGenderChange = (event) => {
     setGender(event.target.value);
+  };
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleSignup = async (event) => {
@@ -184,18 +189,34 @@ function SignUp() {
               </div>
             )}
 
-            <TextField
+        <TextField
               id="password"
               label="Password"
               required
               value={password}
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               onChange={(e) => setPassword(e.target.value)}
               fullWidth
               margin="normal"
-              sx={{
-                borderColor: passwordError ? 'red' : undefined,
-              }}/>
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleTogglePassword}
+                      className="eye-icon" // Apply the eye-icon class
+                      sx={{ color: '#27374D', fontSize: '1.5rem', '&:hover': { color: '#142132' } }}
+                    >
+                      {showPassword ? (
+                        <img src="/images/eyeclose.png" alt="eye-close" className="eye-icon" />
+                      ) : (
+                        <img src="/images/eyeopen.png" alt="eye-open" className="eye-icon" />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              sx={{ borderColor: passwordError ? 'red' : undefined, }}
+            />
 
             {/* Display password error message */}
             {passwordError && (
