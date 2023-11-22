@@ -60,7 +60,6 @@ function Welcome() {
         </Link>
       </div>
     </header>
-
       <div style={{ textAlign: 'left', width: '50%', margin: '0 0 0 150px', paddingTop: '220px' }}>
         <strong>
           Furever Hugs Wanted! <br />
