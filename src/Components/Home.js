@@ -65,7 +65,7 @@ function Home() {
           </div>
 
           <div>
-            <h4 style={{marginBottom: '10px', color: '#27374D'}}>Sex</h4>
+            <h4 style={{marginBottom: '10px', color: '#27374D'}}>Gender</h4>
             <FormControl sx={{ minWidth: 220, marginRight: 3 }} size="small">
               <Select
                 labelId="sex-label"

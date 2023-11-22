@@ -41,7 +41,7 @@ function Aboutus() {
                   <img src="/images/Fritz.jpg" alt="Team Member 1" className="card-img-top" />
                   <div className="card-body">
                     <div className="member-name">Fritz Abrea</div>
-                    <p className="card-text">"Hmm... Silence can speak much in a way"</p>
+                    <p className="card-text">“In reality, the least interesting answer is usually the correct one.”</p>
                   </div>
                 </div>
               </div>
