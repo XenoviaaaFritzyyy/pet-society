@@ -34,9 +34,39 @@
   .Petcontent2-container { 
     background-color: #f8f8f8;
     position: relative;
-    
+    padding: 30px;
     border-radius: 30px;
     width: 45%;
     height: 100%;
     border: 0px solid;
   }
+
+  /* PetProfile.css */
+.Pet-Labels {
+  width: 100%;
+  height: 100%;
+  font-family: 'Josefin Sans', sans-serif;
+  
+}
+
+.Pet-Labels h1 {
+  font-size: 35px;
+  margin-bottom: 5px;
+}
+
+.Pet-Labels h3 {
+  color: #828282;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.Pet-Labels p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.Pet-Labels h4 {
+  font-size: 14px;
+  padding-bottom: 25px; /* Add padding here */
+}
+/* Add more styles as needed */

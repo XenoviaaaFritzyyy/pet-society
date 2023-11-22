@@ -27,7 +27,7 @@ function Home() {
     setSex('');
     setSize('');
   };
-
+  
   const handleSearch = () => {
     // Add your search logic here using the selected values (colour, sex, size)
     // For now, you can log the selected values to the console
