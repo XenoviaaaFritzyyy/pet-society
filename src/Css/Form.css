@@ -5,7 +5,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.form {
+.admin-form {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -18,11 +18,11 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.form .details {
+.admin-form .details {
     margin-top: 30px;
 }
 
-.form .title {
+.admin-form .title {
     display: block;
     font-size: 20px;
     font-weight: 500;
@@ -30,13 +30,13 @@
     color: #27374D;
 }
 
-.form .fields {
+.admin-form .fields {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
 }
 
-form .fields .input-field {
+.admin-form .fields .input-field {
     width: 100%;
 }
 
@@ -90,7 +90,7 @@ input[type='file'] {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
 }
 
-.form button,
+.admin-form button,
 .backBtn {
     display: flex;
     align-items: center;
@@ -108,14 +108,14 @@ input[type='file'] {
     cursor: pointer;
 }
 
-.form button,
+.admin-form button,
 .backBtn {
     font-size: 14px;
     font-weight: 400;
     margin-right: 10px;
 }
 
-form button:hover {
+.admin-form button:hover {
     background-color: #526D82;
 }
 

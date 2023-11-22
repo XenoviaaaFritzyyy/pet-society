@@ -22,7 +22,7 @@ function PetProfileForm(){
     return(
         <>
         <form action="#" id="pet-profile-form">
-            <div className="form pet-profile">
+            <div className="admin-form pet-profile">
               <div className="details-pet">
                 <span className="title">Pet Profile</span>
 
@@ -34,7 +34,7 @@ function PetProfileForm(){
 
                     <div className="input-field-file">
                         <label style={{fontSize: '12px', fontWeight: 'bold', color: '#27374D'}}>Upload Pet Photo*</label>
-                        <input type="file" id="pet-picture" name="pet-picture" accept='image/'/>
+                        <input type="file" id="pet-picture" name="pet-picture" accept='image/*'/>
                         <br/>
                         <label for='pet-picture' style={{background:'white', padding: '13px 15px', borderRadius: '5px', border: '1px solid #aaa', display:'block', marginTop:'8px', color: '#27374D', fontSize: '14px', fontWeight: '400', cursor: 'pointer'}}>Choose a photo</label>
                     </div>
