@@ -10,6 +10,8 @@ import Admin from './Components/Admin';
 import AboutUs from './Components/Aboutus';
 import UserProfile from './Components/UserProfile';
 import PetProfile from './Components/PetProfile';
+import PetProfileForm from './Components/PetProfileForm';
+import DictionaryForm from './Components/DictionaryForm';
 import A from './Components/DataDictionary/A';
 import B from './Components/DataDictionary/B';
 import C from './Components/DataDictionary/C';
@@ -45,6 +47,10 @@ function Welcome() {
     backgroundPosition: 'right top',
     minHeight: '100vh',
     backgroundColor: 'rgba(0, 0, 0)',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    color: 'white',
   };
 
   return (
@@ -91,6 +97,8 @@ function App() {
         <Route path="/application" element={<ApplicationForm />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/petprofile/:petId" element={<PetProfile />} />
+        <Route path="/petprofileform" element={<PetProfileForm />} />
+        <Route path="/dictionaryform" element={<DictionaryForm />} />
         <Route path="/DataDictionary/A" element={<A />} />
         <Route path="/DataDictionary/B" element={<B />} />
         <Route path="/DataDictionary/C" element={<C />} />
