@@ -10,10 +10,23 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import AddPhotoIcon from '@mui/icons-material/AddPhotoAlternate';
 
 function Gallery() {
   const [expanded, setExpanded] = useState(false);
   const [isFavoriteClicked, setIsFavoriteClicked] = useState(false);
+
+  const VisuallyHiddenInput = styled('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 1,
+    overflow: 'hidden',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+  });
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -55,13 +68,15 @@ function Gallery() {
               sx={{ width: '80%' }}
             />
           <Button
+            component="label"
             color="primary"
             variant="contained"
+            startIcon={<AddPhotoIcon />}
             sx={{ backgroundColor: 'white', color: '#27374D', '&:hover': { backgroundColor: '#142132', 
             color: 'white' }, borderRadius: '8px', border: '.1px solid #27374D', display:"flex", width: 150, 
             whiteSpace: "nowrap", fontSize: "10"}}
           >add photo
-            
+          <VisuallyHiddenInput type="file" />
           </Button>
         </CardContent>
       </Card>
