@@ -38,6 +38,7 @@ import W from './Components/DataDictionary/W';
 import X from './Components/DataDictionary/X';
 import Y from './Components/DataDictionary/Y';
 import Z from './Components/DataDictionary/Z';
+import './Css/App.css';
 
 function Welcome() {
   const containerStyle = {
