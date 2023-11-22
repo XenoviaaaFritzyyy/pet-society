@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import { Button } from '@mui/material';
 import '../Css/PetProfile.css';
-import { Button } from "@mui/material";
+
 
 function PetProfile() {
   const { petId } = useParams();
