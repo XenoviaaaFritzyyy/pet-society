@@ -11,7 +11,7 @@ function Aboutus() {
         <Navbar />
         <div className="about-us-container">
           <div className="white-box">
-            <img src="/images/dogbg3.jpg" alt="About Us" className="about-us-image" />
+            <img src="/images/dogbg1.jpg" alt="About Us" className="about-us-image" />
           </div>
           <h1 className="about-us-title">Know More About Us</h1>
           <div className="welcome-text">
@@ -38,7 +38,7 @@ function Aboutus() {
               {/* Add your team members' profile cards */}
               <div className="team-member">
                 <div className="card">
-                  <img src="/images/xenovia.jpg" alt="Team Member 1" className="card-img-top" />
+                  <img src="/images/Fritz.jpg" alt="Team Member 1" className="card-img-top" />
                   <div className="card-body">
                     <div className="member-name">Fritz Abrea</div>
                     <p className="card-text">"Hmm... Silence can speak much in a way"</p>
