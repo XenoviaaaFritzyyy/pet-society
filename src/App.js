@@ -7,10 +7,36 @@ import Dictionary from './Components/Dictionary';
 import Gallery from './Components/Gallery';
 import ApplicationForm from './Components/ApplicationForm';
 import Admin from './Components/Admin';
-import './Css/App.css';
 import AboutUs from './Components/Aboutus';
 import UserProfile from './Components/UserProfile';
 import PetProfile from './Components/PetProfile';
+import A from './Components/DataDictionary/A';
+import B from './Components/DataDictionary/B';
+import C from './Components/DataDictionary/C';
+import D from './Components/DataDictionary/D';
+import E from './Components/DataDictionary/E';
+import F from './Components/DataDictionary/F';
+import G from './Components/DataDictionary/G';
+import H from './Components/DataDictionary/Hh';
+import I from './Components/DataDictionary/I';
+import J from './Components/DataDictionary/J';
+import K from './Components/DataDictionary/K';
+import L from './Components/DataDictionary/L';
+import M from './Components/DataDictionary/M';
+import N from './Components/DataDictionary/N';
+import O from './Components/DataDictionary/O';
+import P from './Components/DataDictionary/P';
+import Q from './Components/DataDictionary/Q';
+import R from './Components/DataDictionary/R';
+import S from './Components/DataDictionary/S';
+import T from './Components/DataDictionary/Tt';
+import U from './Components/DataDictionary/U';
+import V from './Components/DataDictionary/V';
+import W from './Components/DataDictionary/W';
+import X from './Components/DataDictionary/X';
+import Y from './Components/DataDictionary/Y';
+import Z from './Components/DataDictionary/Z';
+import './Css/App.css';
 
 function Welcome() {
   const containerStyle = {
@@ -67,8 +93,32 @@ function App() {
         <Route path="/application" element={<ApplicationForm />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/petprofile/:petId" element={<PetProfile />} />
-        
-
+        <Route path="/DataDictionary/A" element={<A />} />
+        <Route path="/DataDictionary/B" element={<B />} />
+        <Route path="/DataDictionary/C" element={<C />} />
+        <Route path="/DataDictionary/D" element={<D />} />
+        <Route path="/DataDictionary/E" element={<E />} />
+        <Route path="/DataDictionary/F" element={<F />} />
+        <Route path="/DataDictionary/G" element={<G />} />
+        <Route path="/DataDictionary/Hh" element={<H />} />
+        <Route path="/DataDictionary/I" element={<I />} />
+        <Route path="/DataDictionary/J" element={<J />} />
+        <Route path="/DataDictionary/K" element={<K />} />
+        <Route path="/DataDictionary/L" element={<L />} />
+        <Route path="/DataDictionary/M" element={<M />} />
+        <Route path="/DataDictionary/N" element={<N />} />
+        <Route path="/DataDictionary/O" element={<O />} />
+        <Route path="/DataDictionary/P" element={<P />} />
+        <Route path="/DataDictionary/Q" element={<Q />} />
+        <Route path="/DataDictionary/R" element={<R />} />
+        <Route path="/DataDictionary/S" element={<S />} />
+        <Route path="/DataDictionary/Tt" element={<T />} />
+        <Route path="/DataDictionary/U" element={<U />} />
+        <Route path="/DataDictionary/V" element={<V />} />
+        <Route path="/DataDictionary/W" element={<W />} />
+        <Route path="/DataDictionary/X" element={<X />} />
+        <Route path="/DataDictionary/Y" element={<Y />} />
+        <Route path="/DataDictionary/Z" element={<Z />} />
       </Routes>
     </Router>
   );
