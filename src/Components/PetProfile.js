@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Button } from '@mui/material';
+import { useParams, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import '../Css/PetProfile.css';
 
@@ -78,7 +77,7 @@ function PetProfile() {
                 <h4> Temperament: {petInfo?.temperament || "N/A"}<br /> </h4>
                 
               </p>
-
+              <Link to="/Application" style={{ textDecoration: 'none' }}>
               <Button
                 type="button"
                 variant="contained"
@@ -96,6 +95,7 @@ function PetProfile() {
               >
                 Adopt now
               </Button>
+              </Link>
             </div>
           </div>
         </div>
