@@ -1,0 +1,126 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.admin-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 700px;
+    width: 100%;
+    border-radius: 6px;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-form .details {
+    margin-top: 30px;
+}
+
+.admin-form .title {
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 5px 0 10px 0;
+    color: #27374D;
+}
+
+.admin-form .fields {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.admin-form .fields .input-field {
+    width: 100%;
+}
+
+.input-field.description {
+    grid-column: span 3;
+}
+
+.input-field label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #27374D;
+}
+
+input[type='file'] {
+    display: none;
+}
+
+.input-field input,
+.input-field select {
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #27374D;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 45px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.input-field select {
+    cursor: pointer;
+}
+
+.input-field textarea {
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #27374D;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 10px 15px;
+    height: 60px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.input-field input:focus,
+.input-field input:valid {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+}
+
+.admin-form button,
+.backBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    margin: 25px 0;
+    background-color: #27374D;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.admin-form button,
+.backBtn {
+    font-size: 14px;
+    font-weight: 400;
+    margin-right: 10px;
+}
+
+.admin-form button:hover {
+    background-color: #526D82;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+

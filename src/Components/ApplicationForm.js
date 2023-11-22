@@ -6,6 +6,10 @@
 
     useEffect(() => {
       document.body.style.background = '#27374D';
+
+      return () => {
+        document.body.style.background = '';
+    };
     }, []);
 
     const showHouseholdInfoSection = () => {
