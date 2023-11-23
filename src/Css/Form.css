@@ -40,6 +40,10 @@
     width: 100%;
 }
 
+.input-field.front {
+    grid-column: span 2;
+}
+
 .input-field.description {
     grid-column: span 3;
 }
