@@ -9,39 +9,26 @@ function PetProfile() {
   const { petId } = useParams();
   const [imageExists, setImageExists] = useState(false);
   const [petInfo, setPetInfo] = useState(null);
+  
+
 
   useEffect(() => {
-    const imageUrl = `/images/pets/${petId}.jpg`;
-
-    // Function to check if the image exists
-    const fileExists = (url) => {
-      const img = new Image();
-      img.src = url;
-
-      return new Promise((resolve) => {
-        img.onload = () => resolve(true);
-        img.onerror = () => resolve(false);
-      });
-    };
-
-    // Check if the image exists
-    fileExists(imageUrl).then((exists) => {
-      setImageExists(exists);
-    });
-
-    // Fetch pet details from the server
     const fetchPetInfo = async () => {
       try {
-        const response = await fetch(`/api/pets/${petId}`); // Replace with your actual API endpoint
+        const response = await fetch(`http://localhost:8080/pet/info/${petId}`); // Replace with your actual API endpoint
         const data = await response.json();
+        console.log(data)
         setPetInfo(data);
+        console.log(petInfo)
       } catch (error) {
         console.error("Error fetching pet details:", error);
       }
     };
-
-    fetchPetInfo();
+    fetchPetInfo()
   }, [petId]);
+
+  if (!petInfo)
+  return  <div>loading</div> 
 
   const handleAdopt = () => {
     // Add logic to handle adoption, such as making an API call to update the adoption status
@@ -58,9 +45,9 @@ function PetProfile() {
               {/* Render the image with a fallback to a default image */}
               <img
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                src={imageExists ? `/images/pets/${petId}.jpg` : '/images/RobFinal.jpg'}
+                src={petInfo.photoPath ? `http://localhost:8080/pet/${petInfo.photoPath}` : '/images/RobFinal.jpg'}
                 alt={`Pet ${petId}`}
-              />
+              />  
             </div>
           </div>
           <div className='Petcontent2-container'>
