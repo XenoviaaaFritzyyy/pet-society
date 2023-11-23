@@ -1,106 +1,101 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Box from "@mui/material/Box";
-import { Link } from 'react-router-dom';
 
 function Dictionary() {
+  const [entries, setEntries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedLetter, setSelectedLetter] = useState(null);
+
+  useEffect(() => {
+    // Fetch data from your API endpoint
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/dictionary/getAllEntry");
+        const data = await response.json();
+
+        if (response.ok) {
+          setEntries(data);
+        } else {
+          console.error("Failed to fetch entries:", data);
+        }
+      } catch (error) {
+        console.error("Error during fetching entries:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const filterEntriesByLetter = (letter) => {
+    setSelectedLetter(letter === selectedLetter ? null : letter);
+  };
+
+  const filteredEntries = selectedLetter
+    ? entries.filter((entry) => entry.entry.startsWith(selectedLetter))
+    : entries;
+
   return (
     <>
       <Navbar />
-      <div style={{ marginTop: "10px" }}>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            "& > *": {
-              m: 1,
-            },
-          }}
-        >
-          <ButtonGroup variant="text" aria-label="text button group">
-          <Button component={Link} to="/DataDictionary/A" underline="none">
-              {'A'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/B" underline="none">
-              {'B'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/C" underline="none">
-              {'C'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/D" underline="none">
-              {'D'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/E" underline="none">
-              {'E'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/F" underline="none">
-              {'F'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/G" underline="none">
-              {'G'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/Hh" underline="none">
-              {'H'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/I" underline="none">
-              {'I'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/J" underline="none">
-              {'J'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/K" underline="none">
-              {'K'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/L" underline="none">
-              {'L'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/M" underline="none">
-              {'M'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/N" underline="none">
-              {'N'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/O" underline="none">
-              {'O'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/P" underline="none">
-              {'P'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/Q" underline="none">
-              {'Q'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/R" underline="none">
-              {'R'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/S" underline="none">
-              {'S'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/Tt" underline="none">
-              {'T'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/U" underline="none">
-              {'U'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/V" underline="none">
-              {'V'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/W" underline="none">
-              {'W'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/X" underline="none">
-              {'X'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/Y" underline="none">
-              {'Y'}
-            </Button>
-            <Button component={Link} to="/DataDictionary/Z" underline="none">
-              {'Z'}
-            </Button>
-          </ButtonGroup>
-        </Box>
+      <div style={{ marginTop: "10px", marginLeft: "100px", marginRight: "100px" }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div
+            style={{
+              margin: "5px",
+              padding: "5px",
+              cursor: "pointer",
+              border: "1px solid #ddd",
+              borderRadius: "5px",
+              background: selectedLetter === null ? "#526D82" : "white",
+              color: selectedLetter === null ? "white" : "#526D82",
+            }}
+            onClick={() => filterEntriesByLetter(null)}
+          >
+            All
+          </div>
+          {Array.from({ length: 26 }, (_, index) => {
+            const letter = String.fromCharCode(65 + index);
+            return (
+              <div
+                key={letter}
+                style={{
+                  margin: "5px",
+                  padding: "5px",
+                  cursor: "pointer",
+                  border: "1px solid #ddd",
+                  borderRadius: "5px",
+                  background: selectedLetter === letter ? "#526D82" : "white",
+                  color: selectedLetter === letter ? "white" : "#526D82",
+                }}
+                onClick={() => filterEntriesByLetter(letter)}
+              >
+                {letter}
+              </div>
+            );
+          })}
+        </div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: "10px" }}>
+            <thead>
+              <tr>
+                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white' }}>NAME</th>
+                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white' }}>DESCRIPTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredEntries.map((entry) => (
+                <tr key={entry.dicID}>
+                  <td style={{ border: "1px solid #ddd", padding: "20px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '20px', fontWeight: 'bold', color: '#27374D' }}>{entry.entry}</td>
+                  <td style={{ border: "1px solid #ddd", padding: "20px", background: 'white', borderRadius: '5px', color: '#526D82' }}>{entry.description}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </>
   );
