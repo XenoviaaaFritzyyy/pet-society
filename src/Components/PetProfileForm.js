@@ -59,7 +59,7 @@ function PetProfileForm() {
           method: 'POST',
           body: formDataForImage,
         });
-  
+        
         // Handle the image upload response accordingly
         if (image.ok) {
           console.log('Image uploaded successfully!');
@@ -266,24 +266,19 @@ function PetProfileForm() {
                 <span className="btnDelete">Delete</span>
               </button>
 
-                    <button type="button" className="Petprofile-Add" onClick={handleAddPetProfile}>
-                        <span className="btnAdd">Add</span>
-                    </button>
-                </div>
-              </div>
+              <button
+                type="button"
+                className="Petprofile-Add"
+                onClick={handleAddPetProfile}
+              >
+                <span className="btnAdd">Add</span>
+              </button>
             </div>
-          </form>
-
-            {/* Confirmation Dialog */}
-            {showConfirmation && (
-                <div className="confirmation-dialog">
-                <p>Are you sure you want to add a pet profile?</p>
-                <button onClick={() => handleConfirmation(true)}>Yes</button>
-                <button onClick={() => handleConfirmation(false)}>No</button>
-                </div>
-            )}
-        </>
-    );
+          </div>
+        </div>
+      </form>
+    </>
+  );
 }
 
 export default PetProfileForm;
