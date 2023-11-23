@@ -8,8 +8,8 @@
     border: 0px solid;
     display: flex;
     align-items: center;
-    
   }
+
 .Petcontent-container {
     padding: 15px;
     background-color: #f8f8f8;
@@ -20,6 +20,7 @@
     height: 100%;
     border: 0px solid;
   }
+  
 .picture{
     background-color: #322e2e;
     position: relative;

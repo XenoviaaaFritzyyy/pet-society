@@ -53,14 +53,15 @@
     display: block;
     border: 0px solid;
   }
+
   .home-buttons{
     width: 100%;
     display: flex;
     border: 0px solid;
     height: 40px;
   }
-  .button-labels{
 
+  .button-labels{
     margin-bottom: 1px;
     width: 100%;
     display: flex;
@@ -70,9 +71,9 @@
   
   .content-container{
     margin-top: -35px;
+    margin-left: 28px;
     background-color: #DDE6ED;
-    margin-left: 10px;
-    width: 100%;
+    width: 98%;
     height: 100%;
     border: 0px solid;
     display: block;
