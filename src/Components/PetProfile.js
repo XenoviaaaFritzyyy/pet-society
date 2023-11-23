@@ -46,26 +46,28 @@ function PetProfile() {
               <img
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 src={petInfo.photoPath ? `http://localhost:8080/pet/${petInfo.photoPath}` : '/images/RobFinal.jpg'}
-                alt={`Pet ${petId}`}
-              />  
+                alt={`Pet ${petId}`}/>  
             </div>
           </div>
+
           <div className='Petcontent2-container'>
             <div className="Pet-Labels">
-              <h1>{petInfo?.name || "Pet Name"}</h1>
-              <h3>DESCRIPTION</h3>
-              <p>{petInfo?.description || "Short description for the pet"}</p>
-              <h3>ABOUT</h3>
-              <p>
-                <h4>  Age: {petInfo?.age || "N/A"}<br /> </h4>
-                <h4>  Color: {petInfo?.color || "N/A"}<br /> </h4>
-                <h4>  Sex: {petInfo?.sex || "N/A"}<br /> </h4>
-                <h4>  Size: {petInfo?.size || "N/A"}<br /> </h4>
-                <h4>  Health Issues: {petInfo?.healthIssues || "N/A"}<br /> </h4>
-                <h4>  Vaccinated: {petInfo?.vaccinated ? "Yes" : "No"}<br /> </h4>
-                <h4> Temperament: {petInfo?.temperament || "N/A"}<br /> </h4>
-                
-              </p>
+              <p style={{fontSize: '30px', fontWeight: 'bold', color: '#27374D'}}>{petInfo?.name || "Pet Name"}</p>
+              <p style={{margin: '15px 0', color:'#828282', fontWeight: 'bold'}}>D E S C R I P T I O N</p>
+              <p style={{color: '#27374D'}}>{petInfo?.description || "Short description for the pet"}</p>
+              <p style={{margin: '15px 0', color:'#828282', fontWeight: 'bold'}}>A B O U T</p>
+                <p style={{color: '#27374D'}}>Age &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;{petInfo?.age || "N/A"} Months<br /> </p>
+                <br />
+                <p style={{color: '#27374D'}}>Color &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{petInfo?.color || "N/A"}<br /> </p>
+                <br />
+                <p style={{color: '#27374D'}}>Gender  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{petInfo?.gender || "N/A"}<br /> </p>
+                <br />
+                <p style={{color: '#27374D'}}>Size  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;{petInfo?.size || "N/A"}<br /> </p>
+                <br />
+                <p style={{color: '#27374D'}}>Vaccinated&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;{petInfo?.vaccinated ? "Yes" : "No"}<br /> </p>
+                <br />
+                <p style={{color: '#27374D'}}>Temperament &emsp;&emsp;&emsp;&emsp;{petInfo?.temperament || "N/A"}<br /> </p>
+                <br />
               <Link to="/Application" style={{ textDecoration: 'none' }}>
               <Button
                 type="button"
@@ -76,12 +78,11 @@ function PetProfile() {
                   width: '250px',
                   borderRadius: '10px',
                   marginTop: '5px',
-                  height: '40px',
+                  height: '50px',
                   backgroundColor: '#27374D',
                   color: 'white',
                   '&:hover': { backgroundColor: '#142132' },
-                }}
-              >
+                }}>
                 Adopt now
               </Button>
               </Link>
