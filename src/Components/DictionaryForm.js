@@ -26,6 +26,12 @@ function DictionaryForm() {
   };
   }, []);
 
+  const handleReset = () => {
+    setEntry('');
+    setDescription('');
+    setDicID('');
+    setError(''); // Clear any previous error messages
+  };
   
   const handleFindEntry = async () => {
     try {
@@ -130,6 +136,7 @@ function DictionaryForm() {
                     console.log("Entry updated successfully");
                     setEntry('');
                     setDescription('');
+                    setDicID('');
                 } else {
                     const updateData = await updateResponse.json();
                     setError("Failed to update entry");
@@ -211,10 +218,14 @@ function DictionaryForm() {
                 <input type="number" id="dicID" name="dicID" placeholder="Enter dictionaryID" value={dicID} onChange={(e) => setDicID(e.target.value)} />
               </div>
 
+              <button type="button" className="dictionary-Reset" onClick={handleReset}>
+                <span className="btnFind">Reset</span>
+              </button>
+
               <button type="button" className="dictionary-Find" onClick={handleFindEntry}>
                 <span className="btnFind">Find</span>
               </button>
-
+              
               <div className="input-field description">
                 <label>Entry*</label>
                 <input type="text" id="entry" name="entry" placeholder="Enter entry" value={entry} onChange={(e) => setEntry(e.target.value)} />
