@@ -50,25 +50,29 @@ body {
 
 
 .Team-profile {
-  background-color: white;
   border-radius: 10px;
   margin: 20px 0 50px 0;
 }
 
 .Team-profile h1{
+  background-color: #ffffff;
+  border-radius: 10px;
   color: #27374D;
   padding: 25px;
 }
 
 .team-members {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .member1, .member2, .member3, .member4 {
-  padding: 20px;
-  margin-bottom: 50px;
+  background-color: #ffffff;
+  padding: 25px;
+  margin-right: 5px;
+  margin-top: 20px;
+  border-radius: 10px;
 }
 
 .card {
@@ -89,7 +93,8 @@ body {
 .member-name {
   font-weight: bold;
   font-size: 1.2em;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   text-align: center;
   color: #27374D;
 }
