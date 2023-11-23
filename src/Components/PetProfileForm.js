@@ -59,7 +59,7 @@ function PetProfileForm() {
           method: 'POST',
           body: formDataForImage,
         });
-
+        
         // Handle the image upload response accordingly
         if (image.ok) {
           console.log('Image uploaded successfully!');
