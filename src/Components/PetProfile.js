@@ -78,7 +78,7 @@ function PetProfile() {
                   width: '250px',
                   borderRadius: '10px',
                   marginTop: '5px',
-                  height: '50px',
+                  height: '45px',
                   backgroundColor: '#27374D',
                   color: 'white',
                   '&:hover': { backgroundColor: '#142132' },
