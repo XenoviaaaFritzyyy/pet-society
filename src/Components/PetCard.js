@@ -12,14 +12,23 @@ const PetCard = ({ petId, name, image, isLastInRow }) => {
 
   return (
     <Link to={`/petprofile/${petId}`} style={{ textDecoration: 'none' }}>
-      <Card sx={{ width: 365, maxWidth: 1000, marginRight, borderRadius: '10px' }}>
+      <Card
+        sx={{
+          width: '360px', // Set your desired width
+          height: '300px', // Set your desired height
+          marginRight,
+          marginBottom: '20px',
+          borderRadius: '10px',
+        }}
+      >
         <CardActionArea>
           <CardMedia
             component="img"
-            height="220"
-            width="360"
-            image={image ? `http://localhost:8080/pet/${image}` : "/images/rob.jpg"}
+            height="235px" // Set your desired height for the image
+            width="100%"
+            image={image ? `http://localhost:8080/pet/${image}` : "/images/logo.png"}
             alt={name}
+            style={{ backgroundColor: '#27374D' ,objectFit: 'cover' }} // Maintain aspect ratio and cover the container
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">

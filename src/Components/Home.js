@@ -153,14 +153,11 @@ function Home() {
           </Button>
         </div>
       </div>
-      <div className="content-container">
-      <div className="content-1" style={{ display: 'flex', flexWrap:"wrap"}}>
+      <div className="content-container" style={{ display: 'flex', flexWrap:"wrap"}}>
         {pets.map(pet=> (
             <PetCard petId={pet.petID} name={pet.name} image={pet.photoPath} />
         ))}
-      </div>
-
-      </div>    
+      </div> 
     </>
   );
 }
