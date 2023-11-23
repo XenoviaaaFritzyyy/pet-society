@@ -14,7 +14,9 @@ function Dictionary() {
         const data = await response.json();
 
         if (response.ok) {
-          setEntries(data);
+          // Sort entries alphabetically based on the entry name
+          const sortedEntries = data.sort((a, b) => a.entry.localeCompare(b.entry));
+          setEntries(sortedEntries);
         } else {
           console.error("Failed to fetch entries:", data);
         }
