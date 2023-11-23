@@ -2,43 +2,61 @@
 
 body {
   font-family: 'Josefin Sans', sans-serif;
-  /* Add your background styles here if needed */
 }
 
 .about-us-container {
   text-align: center;
-  max-width: 80%; /* Adjust the maximum width as needed, e.g., 80%, 90% */
+  max-width: 80%; 
   margin: 0 auto;
 }
 
-.welcome-text {
-  margin-top: 20px; /* Adjust margin as needed */
-}
-
-.about-us-title {
+.aboutus {
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 20px;
   margin-top: 20px;
 }
 
-.white-box {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  margin-top: 20px; /* Add margin-top to create space above */
-}
-
 .about-us-image {
-  width: 100%;
-  max-width: 100%;
+  max-width: 60%;
 }
 
-.about-us-section {
-  margin-top: 50px;
+.welcome-text {
+  margin-top: 50px;  
+  text-align: center;
+  color: #27374D;
 }
 
-.our-goal-section,
+.welcome-text p {
+  margin: 20px 25px;
+  text-align: justify;
+  color: #526D82;
+}
+
+.our-goal-section {
+  display: flex;
+  flex-direction: row;
+  text-align: justify;
+}
+
+.our-goal-section p {
+  margin: 20px;
+  color: #526D82;
+}
+
+
 .Team-profile {
-  margin-top: 50px; /* Adjust margin as needed */
+  background-color: white;
+  border-radius: 10px;
+  margin: 20px 0 50px 0;
+}
+
+.Team-profile h1{
+  color: #27374D;
+  padding: 25px;
 }
 
 .team-members {
@@ -47,12 +65,13 @@ body {
   flex-wrap: wrap;
 }
 
-.team-member {
-  margin: 20px;
+.member1, .member2, .member3, .member4 {
+  padding: 20px;
+  margin-bottom: 50px;
 }
 
 .card {
-  width: 200px; /* Adjust card width as needed */
+  width: 250px; /* Adjust card width as needed */
   text-align: center; /* Center card content */
 }
 
@@ -62,24 +81,14 @@ body {
 }
 
 .card-body {
-  text-align: center;
+  text-align: justify;
+  color: #526D82;
 }
 
 .member-name {
   font-weight: bold;
   font-size: 1.2em;
   margin-bottom: 5px;
-}
-
-
-/* Media query for smaller screens */
-@media (max-width: 600px) {
-  .team-members {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card {
-    width: 80%; /* Adjust card width for smaller screens */
-  }
+  text-align: center;
+  color: #27374D;
 }
