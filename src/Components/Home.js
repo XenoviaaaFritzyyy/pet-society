@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from './Navbar';
 import {Button, MenuItem, FormControl, Select } from '@mui/material';
 import '../Css/Home.css';
@@ -9,6 +9,19 @@ function Home() {
   const [colour, setColour] = React.useState('');
   const [sex, setSex] = React.useState('');
   const [size, setSize] = React.useState('');
+  const [pets, setPets] = React.useState([]);
+
+
+  useEffect(()=>{
+    const fetchPets = async() =>{
+    const response = await fetch("http://localhost:8080/pet/getAllPets")
+    const data = await response.json()
+    console.log(data)
+    setPets(data)
+  }
+  fetchPets()
+},[])
+
 
   const handleColourChange = (event) => {
     setColour(event.target.value);
@@ -141,21 +154,12 @@ function Home() {
         </div>
       </div>
       <div className="content-container">
-      <div className="content-1" style={{ display: 'flex' }}>
-        <PetCard petId="1" name="Lizard" image="/images/rob.jpg" />
-        <PetCard petId="2" name="Lizard" image="/images/rob.jpg" />
-        <PetCard petId="3" name="Lizard" image="/images/rob.jpg" />
+      <div className="content-1" style={{ display: 'flex', flexWrap:"wrap"}}>
+        {pets.map(pet=> (
+            <PetCard petId={pet.petID} name={pet.name} image={pet.photoPath} />
+        ))}
       </div>
-      <div className="content-1" style={{ display: 'flex' }}>
-        <PetCard petId="1" name="Lizard" image="/images/Rob.jpg" />
-        <PetCard petId="2" name="Lizard" image="/images/Rob.jpg" />
-        <PetCard petId="3" name="Lizard" image="/images/rob.jpg" />
-      </div>
-      <div className="content-1" style={{ display: 'flex' }}>
-        <PetCard petId="1" name="Lizard" image="/images/Rob.jpg" />
-        <PetCard petId="2" name="Lizard" image="/images/Rob.jpg" />
-        <PetCard petId="3" name="Lizard" image="/images/rob.jpg" />
-      </div>
+
       </div>    
     </>
   );

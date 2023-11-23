@@ -59,7 +59,7 @@ function PetProfileForm() {
           method: 'POST',
           body: formDataForImage,
         });
-        
+
         // Handle the image upload response accordingly
         if (image.ok) {
           console.log('Image uploaded successfully!');
@@ -74,13 +74,6 @@ function PetProfileForm() {
       console.error('Error adding pet profile:', error.message);
     }
   };
-  
-
-
-    
-  
-  
-  
 
   useEffect(() => {
     document.body.style.background = '#27374D';

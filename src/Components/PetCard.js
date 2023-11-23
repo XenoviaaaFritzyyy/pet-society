@@ -18,7 +18,7 @@ const PetCard = ({ petId, name, image, isLastInRow }) => {
             component="img"
             height="220"
             width="360"
-            image={image}
+            image={image ? `http://localhost:8080/pet/${image}` : "/images/rob.jpg"}
             alt={name}
           />
           <CardContent>
