@@ -54,7 +54,7 @@ function PetProfile() {
             <div className="Pet-Labels">
               <p style={{fontSize: '30px', fontWeight: 'bold', color: '#27374D'}}>{petInfo?.name || "Pet Name"}</p>
               <p style={{margin: '15px 0', color:'#828282', fontWeight: 'bold'}}>D E S C R I P T I O N</p>
-              <p style={{color: '#27374D'}}>{petInfo?.description || "Short description for the pet"}</p>
+              <p style={{color: '#27374D', textAlign:'justify', marginRight: '25px'}}>{petInfo?.description || "Short description for the pet"}</p>
               <p style={{margin: '15px 0', color:'#828282', fontWeight: 'bold'}}>A B O U T</p>
                 <p style={{color: '#27374D'}}>Age &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;{petInfo?.age || "N/A"} Months<br /> </p>
                 <br />
