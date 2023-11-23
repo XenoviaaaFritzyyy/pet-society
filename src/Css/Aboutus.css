@@ -21,11 +21,12 @@ body {
 }
 
 .about-us-image {
-  max-width: 60%;
+  max-width: 60%; 
 }
 
 .welcome-text {
-  margin-top: 50px;  
+  margin-top: 30px; 
+  margin-bottom: 20px; 
   text-align: center;
   color: #27374D;
 }
