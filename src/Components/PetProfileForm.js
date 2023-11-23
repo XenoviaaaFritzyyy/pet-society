@@ -160,7 +160,7 @@ function PetProfileForm() {
               <div className="input-field">
                 <label>Age*</label>
                 <input
-                  type="text"
+                  type="number"
                   id="age"
                   name="age"
                   placeholder="Enter age"
