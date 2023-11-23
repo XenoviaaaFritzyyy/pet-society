@@ -89,7 +89,7 @@ function Dictionary() {
             <tbody>
               {filteredEntries.map((entry) => (
                 <tr key={entry.dicID}>
-                  <td style={{ border: "1px solid #ddd", padding: "20px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '20px', fontWeight: 'bold', color: '#27374D' }}>{entry.entry}</td>
+                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '20px', fontWeight: 'bold', color: '#27374D' }}>{entry.entry}</td>
                   <td style={{ border: "1px solid #ddd", padding: "20px", background: 'white', borderRadius: '5px', color: '#526D82' }}>{entry.description}</td>
                 </tr>
               ))}
