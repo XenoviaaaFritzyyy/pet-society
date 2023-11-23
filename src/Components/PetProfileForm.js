@@ -266,19 +266,24 @@ function PetProfileForm() {
                 <span className="btnDelete">Delete</span>
               </button>
 
-              <button
-                type="button"
-                className="Petprofile-Add"
-                onClick={handleAddPetProfile}
-              >
-                <span className="btnAdd">Add</span>
-              </button>
+                    <button type="button" className="Petprofile-Add" onClick={handleAddPetProfile}>
+                        <span className="btnAdd">Add</span>
+                    </button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </form>
-    </>
-  );
+          </form>
+
+            {/* Confirmation Dialog */}
+            {showConfirmation && (
+                <div className="confirmation-dialog">
+                <p>Are you sure you want to add a pet profile?</p>
+                <button onClick={() => handleConfirmation(true)}>Yes</button>
+                <button onClick={() => handleConfirmation(false)}>No</button>
+                </div>
+            )}
+        </>
+    );
 }
 
 export default PetProfileForm;

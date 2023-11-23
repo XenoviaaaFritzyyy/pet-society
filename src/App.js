@@ -7,12 +7,13 @@ import Dictionary from './Components/Dictionary';
 import Gallery from './Components/Gallery';
 import ApplicationForm from './Components/ApplicationForm';
 import Admin from './Components/Admin';
-import './Css/App.css';
 import AboutUs from './Components/Aboutus';
 import UserProfile from './Components/UserProfile';
 import PetProfile from './Components/PetProfile';
 import PetProfileForm from './Components/PetProfileForm';
 import DictionaryForm from './Components/DictionaryForm';
+import Request from './Components/Request';
+import './Css/App.css';
 
 function Welcome() {
   const containerStyle = {
@@ -71,8 +72,7 @@ function App() {
         <Route path="/petprofile/:petId" element={<PetProfile />} />
         <Route path="/petprofileform" element={<PetProfileForm />} />
         <Route path="/dictionaryform" element={<DictionaryForm />} />
-
-        
+        <Route path="/request" element={<Request />} />
 
       </Routes>
     </Router>
