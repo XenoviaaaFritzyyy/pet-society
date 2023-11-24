@@ -1,16 +1,7 @@
 // UserProfile.js
 import React, { useState, useEffect } from "react";
 import { styled } from "@mui/system";
-import {
-  Paper,
-  List,
-  ListItem,
-  ListItemText,
-  TextField,
-  Button,
-  Grid,
-  MenuItem,
-} from "@mui/material";
+import { Paper, List, ListItem, ListItemText, TextField, Button, Grid, MenuItem, } from "@mui/material";
 import "../Css/UserProfile.css";
 import Navbar from "./Navbar";
 
@@ -148,8 +139,15 @@ const Profile = () => {
     console.log("Saving password:", passwordInfo.newPassword);
   };
 
-const renderProfileInfoItem = (itemKey) => {
-  const label = itemKey === "firstName" ? "First Name" : itemKey.charAt(0).toUpperCase() + itemKey.slice(1);
+  const renderProfileInfoItem = (itemKey) => {
+    const label =
+      itemKey === "firstName"
+        ? "First Name"
+        : itemKey === "lastName"
+        ? "Last Name"
+        : itemKey === "contactNumber"
+        ? "Contact Number"
+        : itemKey.charAt(0).toUpperCase() + itemKey.slice(1);
 
   if (itemKey === "password" && isChangingPassword) {
     return (
@@ -218,20 +216,20 @@ const renderProfileInfoItem = (itemKey) => {
   );
 };
 
-  const renderProfileInfoSection = () => (
-    <>
-      <List>
-        {Object.keys(profileInfo).map((itemKey) => renderProfileInfoItem(itemKey))}
-        {isEditing && (
-          <ListItem>
-            <EditProfileButton variant="outlined" onClick={handleSaveProfile}>
-              Save
-            </EditProfileButton>
-          </ListItem>
-        )}
-      </List>
-    </>
-  );
+const renderProfileInfoSection = () => (
+  <>
+    <List>
+      {Object.keys(profileInfo).map((itemKey) => renderProfileInfoItem(itemKey))}
+      {isEditing && (
+        <ListItem>
+          <EditProfileButton variant="outlined" onClick={handleSaveProfile}>
+            Save
+          </EditProfileButton>
+        </ListItem>
+      )}
+    </List>
+  </>
+);
 
   const renderChangePasswordSection = () => {
     if (isEditing) {

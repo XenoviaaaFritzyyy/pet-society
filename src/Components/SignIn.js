@@ -6,6 +6,8 @@ import '../Css/signin.css';
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userID, setUserID] = useState(null);
+
   const [rememberMe, setRememberMe] = useState(false);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,9 +26,19 @@ function SignIn() {
       });
 
       if (response.ok) {
-        // Login successful
-        setIsLoggedIn(true);
-        console.log("Login successful");
+        const responseData = await response.json();
+
+        // Check if the 'userId' property is present in the response data
+        if ('userId' in responseData) {
+          const userID = responseData.userId;
+          setUserID(userID); // Set the userID in the state
+          setIsLoggedIn(true);
+          console.log("Login successful");
+          console.log("User ID:", userID);
+        } else {
+          // Handle the case where 'userId' is not present in the response
+          console.error("User ID not found in the response");
+        }
       } else {
         // Handle login error
         const data = await response.json();
@@ -39,17 +51,17 @@ function SignIn() {
     }
   };
 
-
   if (isLoggedIn) {
     // Check if the logged-in user is the admin
     if (email === 'admin@gmail.com') {
       // Use Navigate to navigate to Admin component if the user is the admin
       return <Navigate to="/admin" />;
-    } else {
-      // Use Navigate to navigate to Home component for regular users
+    } else if (userID !== null) {
+      // Use Navigate to navigate to Home component for regular users only if userID is not null
       return <Navigate to="/home" />;
     }
   }
+
 
   return (
     <Grid container justifyContent="center" alignItems="center" minHeight="75vh">
