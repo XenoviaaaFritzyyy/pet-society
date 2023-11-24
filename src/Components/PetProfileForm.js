@@ -223,7 +223,7 @@ function PetProfileForm() {
             <span className="title">Pet Profile</span>
 
             <div className="fields">
-              <div className="input-field">
+              <div className="input-field front">
                 <label>PetID*</label>
                 <input
                   type="number"
@@ -234,6 +234,10 @@ function PetProfileForm() {
                   onChange={handleInputChange}
                 />
               </div>
+
+              <button type="button" className="dictionary-Find" onClick={handleFindPetProfile}>
+                <span className="btnFind">Find</span>
+              </button>
 
               <div className="input-field-file">
                     <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#27374D' }}>
@@ -265,9 +269,6 @@ function PetProfileForm() {
                         Choose a photo
                     </label>
                     </div>
-              <button type="button" className="dictionary-Find" onClick={handleFindPetProfile}>
-                <span className="btnFind">Find</span>
-              </button>
 
               <div className="input-field">
                 <label>Name*</label>
