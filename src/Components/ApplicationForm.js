@@ -1,35 +1,41 @@
   import React, { useState, useEffect } from 'react';
   import { useParams } from 'react-router-dom'; 
+  import { useAuth } from '../Components/AuthContext';
 
   import '../Css/ApplicationForm.css';
 
   const ApplicationForm = () => {
     const { petId } = useParams();
+    const { userID } = useAuth(); 
     const [showHouseholdInfo, setShowHouseholdInfo] = useState(false);
+    const [error, setError] = useState('');
+    
 
     const [formData, setFormData] = useState({
-      firstname: '',
-      lastname: '',
+      fname: '',
+      lname: '',
       address: '',
       city: '',
       state: '',
-      adult: '',
-      children: '',
-      household: 'active',
-      residence: 'apartment',
-      ownershipStatus: 'apartment',
-      phone: '',
+      noAdults: '',
+      noChildren: '',
+      desHousehold: 'active',
+      typeResidence: 'apartment',
+      rentHome: 'apartment',
+      landlordContact: '',
     });
 
     useEffect(() => {
       document.body.style.background = '#27374D';
 
       console.log('Pet ID:', petId);
+      console.log('User ID:', userID);
+
 
       return () => {
         document.body.style.background = '';
       };
-    }, [petId]);
+    }, [petId, userID]);
   
     const showHouseholdInfoSection = () => {
       setShowHouseholdInfo(true);
@@ -47,6 +53,63 @@
       }));
     };
 
+    const showConfirmation = () => {
+      return window.confirm("Are you sure you want to submit application form?");
+    };
+  
+
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+  
+      // Check if all required fields are filled in
+      const requiredFields = ['lname', 'fname', 'address', 'city', 'state', 'noAdults', 'noChildren'];
+      const missingFields = requiredFields.filter((field) => !formData[field]);
+  
+      if (missingFields.length > 0) {
+        setError(`Please fill in the following fields: ${missingFields.join(', ')}`);
+        return;
+      }
+  
+      // Check if phone is required and filled in if renting
+      if (formData.ownershipStatus === 'apartment' && !formData.phone.trim()) {
+        setError('Please provide your landlord\'s contact info.');
+        return;
+      }
+  
+      setError('');
+  
+      if (showConfirmation()) {
+        try {
+          const response = await fetch('http://localhost:8080/application/insertApplication', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              userID: userID,
+              fk_petID: petId,
+              isDeleted: false,
+              ...formData,
+            }),
+          });
+  
+          if (response.ok) {
+            // Entry added successfully
+            console.log('Entry added successfully');
+          } else {
+            const data = await response.json();
+            setError('Failed to add entry');
+            console.error('Failed to add entry');
+          }
+        } catch (error) {
+          console.error('Error during adding of entry:', error);
+          setError('An error occurred during adding of entry. Please try again later.');
+        }
+      } else {
+        console.log('Entry addition canceled');
+      }
+    };
+
 
     return (
       <div className="application-container">
@@ -60,12 +123,12 @@
               <div className="fields">
                 <div className="input-field">
                   <label>First Name*</label>
-                  <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" onChange={handleChange}/>
+                  <input type="text" id="fname" name="fname" placeholder="Enter your first name" onChange={handleChange}/>
                 </div>
 
                 <div className="input-field">
                   <label>Last Name*</label>
-                  <input type="text" id="lastname" name="lastname" placeholder="Enter your last name"  onChange={handleChange} />
+                  <input type="text" id="lname" name="lname" placeholder="Enter your last name"  onChange={handleChange} />
                 </div>
 
                 <div className="input-field address">
@@ -99,17 +162,17 @@
               <div className="fields">
                 <div className="input-field">
                   <label>How many adults are there in your family?*</label>
-                  <input type="number" id="adult" name="adult" placeholder="Enter number"  onChange={handleChange}/>
+                  <input type="number" id="noAdults" name="noAdults" placeholder="Enter number"  onChange={handleChange}/>
                 </div>
 
                 <div className="input-field">
                   <label>How many children?*</label>
-                  <input type="number" id="children" name="children" placeholder="Enter number"  onChange={handleChange}/>
+                  <input type="number" id="noChildren" name="noChildren" placeholder="Enter number"  onChange={handleChange}/>
                 </div>
 
                 <div className="input-field">
                   <label>Please describe your household:*</label>
-                  <select id="household" name="household"  onChange={handleChange}>
+                  <select id="desHousehold" name="desHousehold"  onChange={handleChange}>
                     <option value="active">Active</option>
                     <option value="noisy">Noisy</option>
                     <option value="quiet">Quiet</option>
@@ -119,7 +182,7 @@
 
                 <div className="input-field">
                   <label>Type of residence (Apartment, House)*</label>
-                  <select id="residence" name="residence"  onChange={handleChange}>
+                  <select id="typeResidence" name="typeResidence"  onChange={handleChange}>
                     <option value="apartment">Apartment</option>
                     <option value="house">House</option>
                     <option value="others">Others</option>
@@ -128,15 +191,15 @@
 
                 <div className="input-field">
                   <label>Do you rent or own home?*</label>
-                  <select id="ownershipStatus" name="ownershipStatus"  onChange={handleChange}>
-                    <option value="apartment">Yes</option>
-                    <option value="house">No</option>
+                  <select id="rentHome" name="rentHome"  onChange={handleChange}>
+                    <option value="apartment">Rent</option>
+                    <option value="house">Own Home</option>
                   </select>
                 </div>
 
                 <div className="input-field">
                   <label>Landlord&apos;s contact info (if renting)</label>
-                  <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" placeholder="09232267859"  onChange={handleChange}/>
+                  <input type="tel" id="landlordContact" name="landlordContact" pattern="[0-9]{11}" placeholder="09232267859"  onChange={handleChange}/>
                 </div>
               </div>
 
@@ -145,12 +208,13 @@
                   <span className="btnBack">Back</span>
                 </button>
 
-                <button type="Submit" className="nextBtn">
+                <button type="Submit" className="nextBtn" onClick={handleSubmit}>
                   <span className="btnSubmit">Submit</span>
                 </button>
               </div>
             </div>
           </div>
+          <div className="error-message">{error}</div>
         </form>
       </div>
     );
