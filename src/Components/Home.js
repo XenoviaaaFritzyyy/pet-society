@@ -12,15 +12,31 @@ function Home() {
   const [pets, setPets] = React.useState([]);
 
 
-  useEffect(()=>{
-    const fetchPets = async() =>{
-    const response = await fetch("http://localhost:8080/pet/getAllPets")
-    const data = await response.json()
-    console.log(data)
-    setPets(data)
-  }
-  fetchPets()
-},[])
+  useEffect(() => {
+    const fetchPets = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/pet/getAllPets");
+        const data = await response.json();
+  
+        if (response.ok) {
+          // Filter out pets where is_deleted is true
+          const filteredPets = data.filter((pet) => !pet.deleted);
+
+          //const sortedPets = filteredPets.sort((a, b) => a.name.localeCompare(b.name));
+          setPets(filteredPets);
+        } else {
+          console.error("Failed to fetch pets:", data);
+        }
+      } catch (error) {
+        console.error("Error during fetching pets:", error);
+      } finally {
+        // You might want to add additional logic here if needed
+      }
+    };
+  
+    fetchPets();
+  }, []);
+  
 
 
   const handleColourChange = (event) => {

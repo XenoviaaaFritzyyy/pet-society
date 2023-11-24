@@ -17,6 +17,7 @@ function PetProfileForm() {
     size: 'Small',
     vaccinated: 'Yes',
     photo_path: '',
+    deleted: false
   });
 
   const handleInputChange = (e) => {
@@ -30,51 +31,62 @@ function PetProfileForm() {
 
   const handleAddPetProfile = async () => {
     try {
-      const formDataToSend = new FormData();
+      // Check if formData is valid
+      if (!formData.name.trim() || !formData.description.trim()) {
+        alert("Name and description cannot be empty");
+        return;
+      }
   
-      // Append each property to formDataToSend except for petID
-      Object.keys(formData).forEach((key) => {
-        if (key !== 'petID') {
+      // Display a confirmation dialog
+      if (window.confirm("Are you sure you want to add this pet profile?")) {
+        const formDataToSend = new FormData();
+  
+        // Append each property to formDataToSend
+        Object.keys(formData).forEach((key) => {
           formDataToSend.append(key, formData[key]);
-        }
-      });
-  
-      const response = await fetch('http://localhost:8080/pet/insertPet', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(Object.fromEntries(formDataToSend)),
-      });
-  
-      // Handle the response accordingly
-      if (response.ok) {
-        console.log('Pet profile added successfully!');
-        const data = await response.json();
-  
-        const formDataForImage = new FormData();
-        formDataForImage.append('image', formData.photo_path);
-  
-        console.log(data.petID)
-        const image = await fetch(`http://localhost:8080/pet/insertPet/${data.petID}`, {
-          method: 'POST',
-          body: formDataForImage,
         });
         
-        // Handle the image upload response accordingly
-        if (image.ok) {
-          console.log('Image uploaded successfully!');
-          // You might want to redirect or update state here
+        
+        const response = await fetch('http://localhost:8080/pet/insertPet', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(Object.fromEntries(formDataToSend)),
+        });
+  
+        // Handle the response accordingly
+        if (response.ok) {
+          console.log('Pet profile added successfully!');
+          const data = await response.json();
+  
+          const formDataForImage = new FormData();
+          formDataForImage.append('image', formData.photo_path);
+  
+          console.log(data.petID);
+          const image = await fetch(`http://localhost:8080/pet/insertPet/${data.petID}`, {
+            method: 'POST',
+            body: formDataForImage,
+          });
+  
+          // Handle the image upload response accordingly
+          if (image.ok) {
+            console.log('Image uploaded successfully!');
+            // You might want to redirect or update state here
+          } else {
+            console.error('Error uploading image:', image.statusText);
+          }
         } else {
-          console.error('Error uploading image:', image.statusText);
+          console.error('Error adding pet profile:', response.statusText);
         }
       } else {
-        console.error('Error adding pet profile:', response.statusText);
+        console.log("Pet profile addition canceled");
       }
     } catch (error) {
       console.error('Error adding pet profile:', error.message);
     }
   };
+  
 
   const handleFindPetProfile = async () => {
     try {
@@ -124,88 +136,121 @@ function PetProfileForm() {
   };
 
   const handleDeletePetProfile = async () => {
+  // Check if petID is provided
+  if (!formData.petID.trim()) {
+    alert("PetID cannot be empty for deleting");
+    return;
+  }
+
+  // Display a confirmation dialog
+  if (window.confirm("Are you sure you want to delete this pet profile?")) {
+    try {
+      // Check if the pet profile exists in the database
+      const response = await fetch(`http://localhost:8080/pet/info/${formData.petID}`);
+      const data = await response.json();
+
+      if (response.ok && data) {
+        // Pet profile exists, proceed with "soft" delete
+        const deleteResponse = await fetch(`http://localhost:8080/pet/deletePet/${formData.petID}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            petID: formData.petID,
+            deleted: true, // Mark as deleted
+          }),
+        });
+
+        if (deleteResponse.ok) {
+          // Pet profile "soft" deleted successfully
+          console.log("Pet profile marked as deleted successfully");
+          // You might want to redirect or update state here
+        } else {
+          console.error("Failed to mark pet profile as deleted:", deleteResponse.statusText);
+        }
+      } else {
+        // Pet profile does not exist, alert the user
+        alert(`Pet profile with ID ${formData.petID} does not exist`);
+      }
+    } catch (error) {
+      console.error("Error during marking pet profile as deleted:", error);
+      // Handle the error accordingly
+    }
+  } else {
+    console.log("Pet profile deletion canceled");
+  }
+};
+
+
+  const handleUpdatePetProfile = async () => {
     // Check if petID is provided
     if (!formData.petID.trim()) {
-      alert("PetID cannot be empty for deleting");
+      alert("PetID cannot be empty for updating");
       return;
     }
-
+  
     // Display a confirmation dialog
-    if (window.confirm("Are you sure you want to delete this pet profile?")) {
+    if (window.confirm("Are you sure you want to update this pet profile?")) {
       try {
         // Check if the pet profile exists in the database
         const response = await fetch(`http://localhost:8080/pet/info/${formData.petID}`);
         const data = await response.json();
-
+  
         if (response.ok && data) {
-          // Pet profile exists, proceed with the delete
-          const deleteResponse = await fetch(`http://localhost:8080/pet/deletePet/${formData.petID}`, {
+          // Check if the pet profile is marked as deleted
+          if (data.deleted) {
+            alert(`Pet profile with ID ${formData.petID} is already deleted`);
+            return;
+          }
+  
+          // Create a payload with the updated pet data
+          const updatedPetData = {
+            petID: formData.petID,
+            name: formData.name,
+            description: formData.description,
+            age: formData.age,
+            temperament: formData.temperament,
+            color: formData.color,
+            gender: formData.gender,
+            size: formData.size,
+            vaccinated: formData.vaccinated,
+            photo_path: formData.photo_path,
+          };
+  
+          // Make a PUT request to update the pet profile
+          const updateResponse = await fetch(`http://localhost:8080/pet/updatePet?petID=${formData.petID}`, {
             method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedPetData),
           });
-
-          if (deleteResponse.ok) {
-            // Pet profile deleted successfully
-            console.log("Pet profile deleted successfully");
+  
+          // Handle the update response accordingly
+          if (updateResponse.ok) {
+            // Pet profile updated successfully
+            console.log(`Pet profile with ID ${formData.petID} updated successfully!`);
             // You might want to redirect or update state here
           } else {
-            console.error("Failed to delete pet profile:", deleteResponse.statusText);
+            const updateData = await updateResponse.json();
+            console.error("Failed to update pet profile", updateData);
+            alert("Failed to update pet profile");
           }
         } else {
           // Pet profile does not exist, alert the user
           alert(`Pet profile with ID ${formData.petID} does not exist`);
         }
       } catch (error) {
-        console.error("Error during deleting pet profile:", error);
-        // Handle the error accordingly
+        console.error("Error during updating pet profile:", error);
+        alert("An error occurred during updating pet profile. Please try again later.");
       }
     } else {
-      console.log("Pet profile deletion canceled");
+      console.log("Pet profile update canceled");
     }
   };
-
-  const handleUpdatePetProfile = async () => {
-    try {
-      // Check if petID is provided
-      if (!formData.petID.trim()) {
-        alert("PetID cannot be empty for updating");
-        return;
-      }
   
-      // Create a payload with the updated pet data
-      const updatedPetData = {
-        petID: formData.petID,
-        name: formData.name,
-        description: formData.description,
-        age: formData.age,
-        temperament: formData.temperament,
-        color: formData.color,
-        gender: formData.gender,
-        size: formData.size,
-        vaccinated: formData.vaccinated,
-        photo_path: formData.photo_path,
-      };
   
-      // Make a PUT request to update the pet profile
-      const response = await fetch(`http://localhost:8080/pet/updatePet?petID=${formData.petID}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedPetData),
-      });
-  
-      // Handle the response accordingly
-      if (response.ok) {
-        console.log(`Pet profile with ID ${formData.petID} updated successfully!`);
-        // You might want to redirect or update state here
-      } else {
-        console.error(`Failed to update pet profile: ${response.statusText}`);
-      }
-    } catch (error) {
-      console.error("Error during updating pet profile:", error.message);
-      // Handle the error accordingly
-    }
-  };
 
   useEffect(() => {
     document.body.style.background = '#27374D';
