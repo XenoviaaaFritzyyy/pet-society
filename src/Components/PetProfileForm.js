@@ -163,6 +163,50 @@ function PetProfileForm() {
     }
   };
 
+  const handleUpdatePetProfile = async () => {
+    try {
+      // Check if petID is provided
+      if (!formData.petID.trim()) {
+        alert("PetID cannot be empty for updating");
+        return;
+      }
+  
+      // Create a payload with the updated pet data
+      const updatedPetData = {
+        petID: formData.petID,
+        name: formData.name,
+        description: formData.description,
+        age: formData.age,
+        temperament: formData.temperament,
+        color: formData.color,
+        gender: formData.gender,
+        size: formData.size,
+        vaccinated: formData.vaccinated,
+        photo_path: formData.photo_path,
+      };
+  
+      // Make a PUT request to update the pet profile
+      const response = await fetch(`http://localhost:8080/pet/updatePet?petID=${formData.petID}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedPetData),
+      });
+  
+      // Handle the response accordingly
+      if (response.ok) {
+        console.log(`Pet profile with ID ${formData.petID} updated successfully!`);
+        // You might want to redirect or update state here
+      } else {
+        console.error(`Failed to update pet profile: ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error("Error during updating pet profile:", error.message);
+      // Handle the error accordingly
+    }
+  };
+
   useEffect(() => {
     document.body.style.background = '#27374D';
 
@@ -342,7 +386,10 @@ function PetProfileForm() {
                 <span className="btnBack">Back</span>
               </button>
 
-              <button type="button" className="Petprofile-Update">
+              <button
+                  type="button"
+                  className="Petprofile-Delete"
+                  onClick={handleUpdatePetProfile}>
                 <span className="btnUpdate">Update</span>
               </button>
 
