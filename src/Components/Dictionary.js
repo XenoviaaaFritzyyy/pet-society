@@ -12,10 +12,13 @@ function Dictionary() {
       try {
         const response = await fetch("http://localhost:8080/dictionary/getAllEntry");
         const data = await response.json();
-
+  
         if (response.ok) {
-          // Sort entries alphabetically based on the entry name
-          const sortedEntries = data.sort((a, b) => a.entry.localeCompare(b.entry));
+          // Filter out entries where isDeleted is true
+          const filteredEntries = data.filter(entry => !entry.isDeleted);
+  
+          // Sort remaining entries alphabetically based on the entry name
+          const sortedEntries = filteredEntries.sort((a, b) => a.entry.localeCompare(b.entry));
           setEntries(sortedEntries);
         } else {
           console.error("Failed to fetch entries:", data);
@@ -26,7 +29,7 @@ function Dictionary() {
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
 
