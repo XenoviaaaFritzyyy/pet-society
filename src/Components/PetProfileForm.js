@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../Css/Form.css';
 
 function PetProfileForm() {
   const navigate = useNavigate();
+  const { petId } = useParams();
 
   const [formData, setFormData] = useState({
     petID: '',
@@ -75,6 +76,93 @@ function PetProfileForm() {
     }
   };
 
+  const handleFindPetProfile = async () => {
+    try {
+      // Check if petID is provided
+      if (!formData.petID.trim()) {
+        alert("PetID cannot be empty for finding");
+        return;
+      }
+
+      const response = await fetch(`http://localhost:8080/pet/info/${formData.petID}`);
+      const data = await response.json();
+
+      if (response.ok && data) {
+        // Pet profile found, update state with the details
+        setFormData({
+          ...formData,
+          name: data.name,
+          description: data.description,
+          age: data.age,
+          temperament: data.temperament,
+          color: data.color,
+          gender: data.gender,
+          size: data.size,
+          vaccinated: data.vaccinated,
+          photo_path: data.photo_path,
+        });
+      } else {
+        // Pet profile does not exist, alert the user
+        alert(`Pet profile with ID ${formData.petID} does not exist`);
+        setFormData({
+          petID: '',
+          name: '',
+          description: '',
+          age: '',
+          temperament: 'Friendly',
+          color: 'Black',
+          gender: 'Male',
+          size: 'Small',
+          vaccinated: 'Yes',
+          photo_path: '',
+        });
+      }
+    } catch (error) {
+      console.error("Error during finding pet profile:", error);
+      // Handle the error accordingly
+    }
+  };
+
+  const handleDeletePetProfile = async () => {
+    // Check if petID is provided
+    if (!formData.petID.trim()) {
+      alert("PetID cannot be empty for deleting");
+      return;
+    }
+
+    // Display a confirmation dialog
+    if (window.confirm("Are you sure you want to delete this pet profile?")) {
+      try {
+        // Check if the pet profile exists in the database
+        const response = await fetch(`http://localhost:8080/pet/info/${formData.petID}`);
+        const data = await response.json();
+
+        if (response.ok && data) {
+          // Pet profile exists, proceed with the delete
+          const deleteResponse = await fetch(`http://localhost:8080/pet/deletePet/${formData.petID}`, {
+            method: "PUT",
+          });
+
+          if (deleteResponse.ok) {
+            // Pet profile deleted successfully
+            console.log("Pet profile deleted successfully");
+            // You might want to redirect or update state here
+          } else {
+            console.error("Failed to delete pet profile:", deleteResponse.statusText);
+          }
+        } else {
+          // Pet profile does not exist, alert the user
+          alert(`Pet profile with ID ${formData.petID} does not exist`);
+        }
+      } catch (error) {
+        console.error("Error during deleting pet profile:", error);
+        // Handle the error accordingly
+      }
+    } else {
+      console.log("Pet profile deletion canceled");
+    }
+  };
+
   useEffect(() => {
     document.body.style.background = '#27374D';
 
@@ -133,6 +221,9 @@ function PetProfileForm() {
                         Choose a photo
                     </label>
                     </div>
+              <button type="button" className="dictionary-Find" onClick={handleFindPetProfile}>
+                <span className="btnFind">Find</span>
+              </button>
 
               <div className="input-field">
                 <label>Name*</label>
@@ -255,7 +346,10 @@ function PetProfileForm() {
                 <span className="btnUpdate">Update</span>
               </button>
 
-              <button type="button" className="Petprofile-Delete">
+              <button
+                  type="button"
+                  className="Petprofile-Delete"
+                  onClick={handleDeletePetProfile}>
                 <span className="btnDelete">Delete</span>
               </button>
 

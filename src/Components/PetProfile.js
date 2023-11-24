@@ -15,7 +15,7 @@ function PetProfile() {
   useEffect(() => {
     const fetchPetInfo = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/pet/info/${petId}`); // Replace with your actual API endpoint
+        const response = await fetch(`http://localhost:8080/pet/info/${petId}`); 
         const data = await response.json();
         console.log(data)
         setPetInfo(data);
