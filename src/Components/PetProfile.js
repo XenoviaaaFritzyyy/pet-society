@@ -68,7 +68,7 @@ function PetProfile() {
                 <br />
                 <p style={{color: '#27374D'}}>Temperament &emsp;&emsp;&emsp;&emsp;{petInfo?.temperament || "N/A"}<br /> </p>
                 <br />
-              <Link to="/Application" style={{ textDecoration: 'none' }}>
+              <Link to={`/petprofile/${petId}/application`} style={{ textDecoration: 'none' }}>
               <Button
                 type="button"
                 variant="contained"

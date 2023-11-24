@@ -67,9 +67,9 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/About us" element={<AboutUs />} />
         <Route path="/userprofile" element={<UserProfile />} />
-        <Route path="/application" element={<ApplicationForm />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/petprofile/:petId" element={<PetProfile />} />
+        <Route path="/petprofile/:petId/application" element={<ApplicationForm />} />
         <Route path="/petprofileform" element={<PetProfileForm />} />
         <Route path="/dictionaryform" element={<DictionaryForm />} />
         <Route path="/request" element={<Request />} />
