@@ -218,12 +218,12 @@ function DictionaryForm() {
                 <input type="number" id="dicID" name="dicID" placeholder="Enter dictionaryID" value={dicID} onChange={(e) => setDicID(e.target.value)} />
               </div>
 
-              <button type="button" className="dictionary-Reset" onClick={handleReset}>
-                <span className="btnFind">Reset</span>
-              </button>
-
               <button type="button" className="dictionary-Find" onClick={handleFindEntry}>
                 <span className="btnFind">Find</span>
+              </button>
+              
+              <button type="button" className="dictionary-Reset" onClick={handleReset}>
+                <span className="btnFind">Reset</span>
               </button>
               
               <div className="input-field description">

@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 import { Button, Checkbox, TextField, FormControlLabel, Grid, Box } from '@mui/material';
 import { Link, Navigate } from 'react-router-dom';
+import { useAuth } from '../Components/AuthContext';
 import '../Css/signin.css';
 
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userID, setUserID] = useState(null);
 
   const [rememberMe, setRememberMe] = useState(false);
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(""); // State to store error messages
+
+  const { userID, setUserID } = useAuth();
 
   const handleLogin = async (event) => {
     event.preventDefault();
