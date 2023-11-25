@@ -9,6 +9,7 @@ import ApplicationForm from './Components/ApplicationForm';
 import Admin from './Components/Admin';
 import AboutUs from './Components/Aboutus';
 import UserProfile from './Components/UserProfile';
+import UserProfileEdit from './Components/UserProfileEdit';
 import PetProfile from './Components/PetProfile';
 import PetProfileForm from './Components/PetProfileForm';
 import DictionaryForm from './Components/DictionaryForm';
@@ -67,6 +68,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/About us" element={<AboutUs />} />
         <Route path="/userprofile" element={<UserProfile />} />
+        <Route path="/userprofileedit" element={<UserProfileEdit />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/petprofile/:petId" element={<PetProfile />} />
         <Route path="/petprofile/:petId/application" element={<ApplicationForm />} />
