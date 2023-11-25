@@ -35,6 +35,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px; /* Add margin-bottom to create space */
 }
 
 .profile-image img {
@@ -46,12 +47,13 @@
 
 .edit-profile-btn {
   margin-top: 10px;
-  padding: 10px;
+  padding: 15px 20px; /* Adjust padding as needed */
   background-color: #27374D;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 16px; /* Adjust font-size as needed */
 }
 
 .grid-container {
