@@ -6,7 +6,7 @@ import '../Css/UserProfileEdit.css'; // You can create a separate CSS file for a
 const UserProfileEdit = () => {
   return (
     <div className="box-container">
-      <Grid container spacing={2} justifyContent="center" alignItems="center">
+      <Grid container spacing={2} justifyContent="center" alignItems="horizontal">
         <Grid item xs={12} sm={4} component={Paper} className="profile-pic">
           {/* Content for profile-pic */}
           <Typography variant="h6">Profile Picture</Typography>
