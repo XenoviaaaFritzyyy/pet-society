@@ -1,21 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Navbar from './Navbar';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import GalleryCard from "./GalleryCard";
+import '../Css/Gallery.css';
 
 
 function Gallery() {
-  const [isFavoriteClicked, setIsFavoriteClicked] = useState(false);
-
-  const handleFavoriteClick = () => {
-    setIsFavoriteClicked(!isFavoriteClicked);
-  };
-
+  
 
   const [formData, setFormData] = useState({
     galID: '',
@@ -88,7 +78,7 @@ function Gallery() {
             console.error('Error uploading image:', image.statusText);
           }
         } else {
-          console.error('Error adding pet profile:', response.statusText);
+          console.error('Error adding Gallery:', response.statusText);
         }
       } else {
         console.log("Gallery addition canceled");
@@ -97,6 +87,33 @@ function Gallery() {
       console.error('Error adding Gallery picture:', error.message);
     }
   };
+
+  const [gallerys, setGallerys] = React.useState([]);
+
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/gallery/getAllGallery");
+        const data = await response.json();
+  
+        if (response.ok) {
+          // Filter out pets where is_deleted is true
+          const filteredPets = data.filter((gallery) => !gallery.deleted);
+
+          //const sortedPets = filteredPets.sort((a, b) => a.name.localeCompare(b.name));
+          setGallerys(filteredPets);
+        } else {
+          console.error("Failed to fetch gallery:", data);
+        }
+      } catch (error) {
+        console.error("Error during fetching gallery:", error);
+      } finally {
+        // You might want to add additional logic here if needed
+      }
+    };
+  
+    fetchGallery();
+  }, []);
 
 
 
@@ -127,9 +144,9 @@ function Gallery() {
               />
             </label>
             <button
-               type="button"
-               className="Petprofile-Add"
-               onClick={handleAddGallery}
+              type="button"
+              className="Petprofile-Add"
+              onClick={handleAddGallery}
               style={{ backgroundColor: 'white', color: '#27374D', borderRadius: '8px', border: '.1px solid #27374D', display: "flex", width: 150, whiteSpace: "nowrap", fontSize: "10" }}
             >
               <span className="btnAdd">POST</span>
@@ -140,46 +157,10 @@ function Gallery() {
       </div>
 
 
-
-
-
-
-
-
-
-
-
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh' }}>
-        {/* Container with flexbox styling */}
-        <Card sx={{ maxWidth: 700 }}>
-          <CardMedia
-            component="img"
-            height="450"
-            image="/images/rob.jpg"
-          />
-          <CardContent>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Typography variant="h5" color="text.primary" sx={{ fontWeight: 'bold' }}>
-            Shrimp and Chorizo Paella
-          </Typography>
-              <IconButton
-                aria-label="add to favorites"
-                onClick={handleFavoriteClick}
-                style={{ color: isFavoriteClicked ? 'red' : 'inherit' }}
-              >
-                <FavoriteIcon />
-              </IconButton>
-            </div>
-            <Typography variant="body2" color="text.secondary">
-              This impressive paella is a perfect party dish and a fun meal to cook
-              together with your guests. Add 1 cup of frozen peas along with the mussels,
-              if you like.
-            </Typography>
-          </CardContent>
-          <CardActions disableSpacing>
-            {/* Additional actions if needed */}
-          </CardActions>
-        </Card>
+      <div className="content-container" style={{ display: 'block', flexWrap:"wrap"}}>
+        {gallerys.map(gallery=> (
+            <GalleryCard galId={gallery.galID} name={gallery.name} description={gallery.description} image={gallery.photoPath} />
+        ))}
       </div>
     </>
   );
