@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
 import AddPhotoIcon from '@mui/icons-material/AddPhotoAlternate';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
@@ -88,6 +88,117 @@ const UserProfileEdit = () => {
               </div>
             </Box>
           </div>
+
+          <div className="details-pet" style={{ paddingTop: '50px' }} >
+            <span className="title">Personal Information</span>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row', // Align items horizontally
+                alignItems: 'center', // Center items vertically
+                borderRadius: '38px',
+                backgroundColor: '#ffffff',
+                borderColor: '#cccccc',
+                padding: '10px',
+                paddingTop: '20px',
+                marginTop: '20px',
+              }}
+            >
+              <TextField id="first-name" label="FirstName" variant="filled" />
+              <TextField id="last-name" label="LastName" variant="filled" sx={{ marginLeft: '100px' }}/>
+            </Box>
+          </div>
+
+          <div className="details-pet" >
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row', // Align items horizontally
+                alignItems: 'center', // Center items vertically
+                borderRadius: '38px',
+                backgroundColor: '#ffffff',
+                borderColor: '#cccccc',
+                padding: '10px',
+              }}
+            >
+              <TextField id="email" label="Email" variant="filled" />
+              <TextField id="gender" label="Gender" variant="filled" sx={{ marginLeft: '100px' }}/>
+            </Box>
+          </div>
+
+          <div className="details-pet" >
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row', // Align items horizontally
+                alignItems: 'center', // Center items vertically
+                borderRadius: '38px',
+                backgroundColor: '#ffffff',
+                borderColor: '#cccccc',
+                padding: '10px',
+              }}
+            >
+              <TextField id="address" label="Address" variant="filled" />
+              <TextField id="contact-number" label="Contact Number" variant="filled" sx={{ marginLeft: '100px' }}/>
+            </Box>
+          </div>
+
+          <div className="details-pet" >
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row', // Align items horizontally
+                alignItems: 'center', // Center items vertically
+                borderRadius: '38px',
+                backgroundColor: '#ffffff',
+                borderColor: '#cccccc',
+                padding: '10px',
+              }}
+            >
+                <Button
+                  component="label"
+                  color="primary"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: 'white',
+                    color: '#27374D',
+                    '&:hover': {
+                      backgroundColor: '#142132',
+                      color: 'white',
+                    },
+                    borderRadius: '8px',
+                    border: '.1px solid #27374D',
+                    display: 'flex',
+                    whiteSpace: 'nowrap',
+                    fontSize: 10,
+                    marginTop: '10px',
+                  }}
+                >
+                  Edit info
+                </Button>
+            </Box>
+          </div>
+
+          <div className="details-pet" style={{ paddingTop: '50px' }} >
+            <span className="title">Password</span>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row', // Align items horizontally
+                alignItems: 'center', // Center items vertically
+                borderRadius: '38px',
+                backgroundColor: '#ffffff',
+                borderColor: '#cccccc',
+                padding: '10px',
+                paddingTop: '20px',
+                marginTop: '20px',
+              }}
+            >
+              <TextField id="current-password" label="Current Password" variant="filled" />
+              <TextField id="new-password" label="New Password" variant="filled" sx={{ marginLeft: '100px' }}/>
+            </Box>
+          </div>
+
         </div>
       </form>
     </div>
