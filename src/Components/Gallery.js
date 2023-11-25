@@ -144,9 +144,9 @@ function Gallery() {
               />
             </label>
             <button
-               type="button"
-               className="Petprofile-Add"
-               onClick={handleAddGallery}
+              type="button"
+              className="Petprofile-Add"
+              onClick={handleAddGallery}
               style={{ backgroundColor: 'white', color: '#27374D', borderRadius: '8px', border: '.1px solid #27374D', display: "flex", width: 150, whiteSpace: "nowrap", fontSize: "10" }}
             >
               <span className="btnAdd">POST</span>
