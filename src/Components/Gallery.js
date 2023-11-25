@@ -157,7 +157,7 @@ function Gallery() {
       </div>
 
 
-      <div className="content-container" style={{ display: 'block', flexWrap:"wrap"}}>
+      <div className="gallery-container" style={{ display: 'block', flexWrap:"wrap"}}>
         {gallerys.map(gallery=> (
             <GalleryCard galId={gallery.galID} name={gallery.name} description={gallery.description} image={gallery.photoPath} />
         ))}
