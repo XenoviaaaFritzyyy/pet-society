@@ -21,16 +21,15 @@
       noChildren: '',
       desHousehold: 'active',
       typeResidence: 'apartment',
-      rentHome: 'apartment',
+      rentHome: 'Rent',
       landlordContact: '',
+      fk_petID: petId,
+      fk_userID: userID,
+      isDeleted: false,
     });
 
     useEffect(() => {
       document.body.style.background = '#27374D';
-
-      console.log('Pet ID:', petId);
-      console.log('User ID:', userID);
-
 
       return () => {
         document.body.style.background = '';
@@ -60,39 +59,40 @@
 
     const handleSubmit = async (event) => {
       event.preventDefault();
-  
+    
+      console.log('Pet ID:', petId);
+      console.log('User ID:', userID);
+      console.log('Form', formData);
+    
       // Check if all required fields are filled in
       const requiredFields = ['lname', 'fname', 'address', 'city', 'state', 'noAdults', 'noChildren'];
       const missingFields = requiredFields.filter((field) => !formData[field]);
-  
+    
       if (missingFields.length > 0) {
         setError(`Please fill in the following fields: ${missingFields.join(', ')}`);
         return;
       }
-  
-      // Check if phone is required and filled in if renting
-      if (formData.ownershipStatus === 'apartment' && !formData.phone.trim()) {
-        setError('Please provide your landlord\'s contact info.');
-        return;
-      }
-  
+    
       setError('');
-  
+    
       if (showConfirmation()) {
+        // Use the updated state in the API call
+        const dataToSend = {
+          ...formData,
+          fk_petID: petId,
+          fk_userID: userID,
+          isDeleted: false,
+        };
+    
         try {
           const response = await fetch('http://localhost:8080/application/insertApplication', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-              userID: userID,
-              fk_petID: petId,
-              isDeleted: false,
-              ...formData,
-            }),
+            body: JSON.stringify(dataToSend),
           });
-  
+    
           if (response.ok) {
             // Entry added successfully
             console.log('Entry added successfully');
@@ -109,7 +109,6 @@
         console.log('Entry addition canceled');
       }
     };
-
 
     return (
       <div className="application-container">
@@ -192,8 +191,8 @@
                 <div className="input-field">
                   <label>Do you rent or own home?*</label>
                   <select id="rentHome" name="rentHome"  onChange={handleChange}>
-                    <option value="apartment">Rent</option>
-                    <option value="house">Own Home</option>
+                    <option value="Rent">Rent</option>
+                    <option value="Own Home">Own Home</option>
                   </select>
                 </div>
 

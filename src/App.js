@@ -15,6 +15,7 @@ import PetProfileForm from './Components/PetProfileForm';
 import DictionaryForm from './Components/DictionaryForm';
 import Request from './Components/Request';
 import './Css/App.css';
+import RequestForm from './Components/Requestform';
 
 function Welcome() {
   const containerStyle = {
@@ -74,6 +75,7 @@ function App() {
         <Route path="/petprofile/:petId/application" element={<ApplicationForm />} />
         <Route path="/petprofileform" element={<PetProfileForm />} />
         <Route path="/dictionaryform" element={<DictionaryForm />} />
+        <Route path="/requestform" element={<RequestForm />} />
         <Route path="/request" element={<Request />} />
 
       </Routes>

@@ -1,5 +1,6 @@
 // UserProfile.js
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import "../Css/UserProfile.css";
 import Navbar from './Navbar';
 
@@ -24,7 +25,9 @@ const Profile = () => {
             <div className="profile-image">
               <img src="/images/RobFinal.jpg" alt="Profile Image" />
             </div>
-            <button className="edit-profile-btn">EDIT PROFILE</button>
+            <Link to="/userprofileedit">
+              <button className="edit-profile-btn">EDIT PROFILE</button>
+            </Link>
           </div>
 
           <div className="paper-container">
