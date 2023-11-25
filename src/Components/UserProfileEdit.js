@@ -3,8 +3,9 @@ import { Box, Button, TextField } from '@mui/material';
 import AddPhotoIcon from '@mui/icons-material/AddPhotoAlternate';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
+import { Link } from 'react-router-dom';
 import '../Css/UserProfileEdit.css';
-
+//test
 const UserProfileEdit = () => {
 
   const VisuallyHiddenInput = styled('input')({
@@ -104,8 +105,8 @@ const UserProfileEdit = () => {
                 marginTop: '20px',
               }}
             >
-              <TextField id="first-name" label="FirstName" variant="filled" />
-              <TextField id="last-name" label="LastName" variant="filled" sx={{ marginLeft: '100px' }}/>
+              <TextField id="first-name" label="FirstName" variant="standard" />
+              <TextField id="last-name" label="LastName" variant="standard" sx={{ marginLeft: '100px' }}/>
             </Box>
           </div>
 
@@ -121,8 +122,8 @@ const UserProfileEdit = () => {
                 padding: '10px',
               }}
             >
-              <TextField id="email" label="Email" variant="filled" />
-              <TextField id="gender" label="Gender" variant="filled" sx={{ marginLeft: '100px' }}/>
+              <TextField id="email" label="Email" variant="standard" />
+              <TextField id="contact-number" label="Contact Number" variant="standard" sx={{ marginLeft: '100px' }}/>
             </Box>
           </div>
 
@@ -138,8 +139,17 @@ const UserProfileEdit = () => {
                 padding: '10px',
               }}
             >
-              <TextField id="address" label="Address" variant="filled" />
-              <TextField id="contact-number" label="Contact Number" variant="filled" sx={{ marginLeft: '100px' }}/>
+              <TextField id="address" label="Address" variant="standard" />
+              <div className="input-field" style={{ marginLeft: '100px' }}>
+                <label>Gender</label>
+                <select
+                  id="gender"
+                  name="gender"
+                >
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
             </Box>
           </div>
 
@@ -176,6 +186,28 @@ const UserProfileEdit = () => {
                 >
                   Edit info
                 </Button>
+                <Button
+                  component="label"
+                  color="primary"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: 'white',
+                    color: '#27374D',
+                    '&:hover': {
+                      backgroundColor: '#142132',
+                      color: 'white',
+                    },
+                    borderRadius: '8px',
+                    border: '.1px solid #27374D',
+                    display: 'flex',
+                    whiteSpace: 'nowrap',
+                    fontSize: 10,
+                    marginTop: '10px',
+                    marginLeft: '210px' 
+                  }}
+                >
+                  Save Changes
+                </Button>
             </Box>
           </div>
 
@@ -194,8 +226,105 @@ const UserProfileEdit = () => {
                 marginTop: '20px',
               }}
             >
-              <TextField id="current-password" label="Current Password" variant="filled" />
-              <TextField id="new-password" label="New Password" variant="filled" sx={{ marginLeft: '100px' }}/>
+              <TextField id="current-password" label="Current Password" variant="standard" />
+              <TextField id="new-password" label="New Password" variant="standard" sx={{ marginLeft: '100px' }}/>
+            </Box>
+          </div>
+
+          <div className="details-pet" >
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row', // Align items horizontally
+                alignItems: 'center', // Center items vertically
+                borderRadius: '38px',
+                backgroundColor: '#ffffff',
+                borderColor: '#cccccc',
+                padding: '10px',
+              }}
+            >
+                <Button
+                  component="label"
+                  color="primary"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: 'white',
+                    color: '#27374D',
+                    '&:hover': {
+                      backgroundColor: '#142132',
+                      color: 'white',
+                    },
+                    borderRadius: '8px',
+                    border: '.1px solid #27374D',
+                    display: 'flex',
+                    whiteSpace: 'nowrap',
+                    fontSize: 10,
+                    marginTop: '10px',
+                  }}
+                >
+                  Confirm new Password
+                </Button>
+
+                <Button
+                  component="label"
+                  color="primary"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: 'white',
+                    color: '#27374D',
+                    '&:hover': {
+                      backgroundColor: '#142132',
+                      color: 'white',
+                    },
+                    borderRadius: '8px',
+                    border: '.1px solid #27374D',
+                    display: 'flex',
+                    whiteSpace: 'nowrap',
+                    fontSize: 10,
+                    marginTop: '10px',
+                    marginLeft: '120px' 
+                  }}
+                >
+                  Save new Password
+                </Button>
+            </Box>
+          </div>
+
+          <div className="details-pet" >
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row', // Align items horizontally
+                alignItems: 'center', // Center items vertically
+                borderRadius: '38px',
+                backgroundColor: '#ffffff',
+                borderColor: '#cccccc',
+                padding: '10px',
+              }}
+            >
+              <Link to="/userprofile">
+                <Button
+                  component="label"
+                  color="primary"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: 'white',
+                    color: '#27374D',
+                    '&:hover': {
+                      backgroundColor: '#142132',
+                      color: 'white',
+                    },
+                    borderRadius: '8px',
+                    border: '.1px solid #27374D',
+                    display: 'flex',
+                    whiteSpace: 'nowrap',
+                    fontSize: 10,
+                    marginTop: '10px',
+                  }}
+                >
+                  Cancel Changes
+                </Button>
+                </Link>
             </Box>
           </div>
 
