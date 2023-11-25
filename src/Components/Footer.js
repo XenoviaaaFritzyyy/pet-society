@@ -6,7 +6,7 @@ import '../Css/Footer.css';
 const Footer = () => {
   return (
     <Box
-      className="box-container"
+      className="rectangle-container"
       sx={{
         width: "100%",
         height: "auto",
