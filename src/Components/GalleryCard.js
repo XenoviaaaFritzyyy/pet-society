@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+import {
+    Card,
+    CardMedia,
+    CardContent,
+    CardActions,
+    IconButton,
+    Typography,
+    Button,} from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const GalleryCard = ({ galID, name, image, description }) => {
@@ -14,15 +16,13 @@ const GalleryCard = ({ galID, name, image, description }) => {
         setIsFavoriteClicked(!isFavoriteClicked);
     };
 
-
     return (
         <Card 
         sx={{
-            width: '740px', // Set your desired width
-            height: 'auto', // Set your desired height
+            width: '740px',
+            height: 'auto',
             marginBottom: '20px',
-            borderRadius: '10px',
-          }}
+            borderRadius: '10px', }}
         >
             <CardMedia
                 component="img"
@@ -46,10 +46,31 @@ const GalleryCard = ({ galID, name, image, description }) => {
                 <Typography variant="body2" color="text.secondary">
                 {description}
                 </Typography>
+                <Button
+                    color="primary"
+                    variant="contained"
+                    sx={{
+                        backgroundColor: 'white',
+                        color: '#27374D',
+                        '&:hover': {
+                        backgroundColor: '#142132',
+                        color: 'white',
+                        },
+                        borderRadius: '8px',
+                        border: '.1px solid #27374D',
+                        marginLeft: 'auto',
+                        display: 'flex',
+                        width: 100,
+                        whiteSpace: 'nowrap',
+                        fontSize: 10,
+                    }}
+                    >
+                    Delete
+                    </Button>
             </CardContent>
-          <CardActions disableSpacing>
+        <CardActions disableSpacing>
             {/* Additional actions if needed */}
-          </CardActions>
+        </CardActions>
         </Card>
         );
 };

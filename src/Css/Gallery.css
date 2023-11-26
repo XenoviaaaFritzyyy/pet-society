@@ -12,3 +12,41 @@
     align-items: center;
   }
   
+  .file-label {
+    background-color: white;
+    color: #27374D;
+    border-radius: 8px;
+    border: 0.1px solid #27374D;
+    display: flex;
+    width: 150px;
+    white-space: nowrap;
+    font-size: 15px;
+    align-items: center;
+    padding-left: 10px;
+    cursor: pointer;
+  }
+  
+  .file-label:hover {
+    background-color: #142132;
+    color: white;
+  }
+  
+  .Petprofile-Add {
+    background-color: white;
+    color: #27374D;
+    border-radius: 8px;
+    border: 0.1px solid #27374D;
+    display: flex;
+    width: 150px;
+    white-space: nowrap;
+    font-size: 18px;
+    align-items: center;
+    padding-left: 10px;
+    cursor: pointer;
+  }
+  
+  .Petprofile-Add:hover {
+    background-color: #142132;
+    color: white;
+  }
+  

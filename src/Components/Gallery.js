@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import Navbar from './Navbar';
 import GalleryCard from "./GalleryCard";
 import '../Css/Gallery.css';
+import { Card, CardContent } from '@mui/material';
+import AddPhotoIcon from '@mui/icons-material/AddPhotoAlternate';
 
 
 function Gallery() {
   
-
   const [formData, setFormData] = useState({
     galID: '',
     description: '',
@@ -28,8 +29,6 @@ function Gallery() {
     console.log("Form submitted!", formData);
   };
 
-
-
   const handleAddGallery = async () => {
     try {
       // Check if formData is valid
@@ -46,7 +45,6 @@ function Gallery() {
         Object.keys(formData).forEach((key) => {
           formDataToSend.append(key, formData[key]);
         });
-        
         
         const response = await fetch('http://localhost:8080/gallery/insertGallery', {
           method: 'POST',
@@ -115,55 +113,66 @@ function Gallery() {
     fetchGallery();
   }, []);
 
-
-
   return (
     <>
       <Navbar />
-    <div style={{ justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
-      <form onSubmit={handleFormSubmit} id="gallery-profile-form" encType="multipart/form-data">
-        <div style={{ maxWidth: 750, margin: 'auto' }}>
-          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px' }}>
-            <img src="/images/RobFinal.jpg" alt="User Profile" className="user-profile-image" style={{ width: '45px', height: '45px' }} />
-            <input
-              type="text"
-              name="description"
-              value={formData.description}
-              placeholder="Whats on your mind"
-              onChange={handleInputChange}
-              style={{ width: '500px', height: '54px', borderRadius: '8px', border: '.1px solid #27374D', paddingLeft: '24px', fontSize: '18px', color: '#828282' }}
-            />
-            <label htmlFor="file" style={{ backgroundColor: 'white', color: '#27374D', borderRadius: '8px', border: '.1px solid #27374D', display: "flex", width: 150, whiteSpace: "nowrap", fontSize: "10" }}>
-              Add Photo
+      <div style={{ justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
+        <form onSubmit={handleFormSubmit} id="gallery-profile-form" encType="multipart/form-data">
+          <Card sx={{ maxWidth: 750, margin: 'auto' }}>
+            <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px' }}>
+              <img src="/images/RobFinal.jpg" alt="User Profile" className="user-profile-image" style={{ width: '45px', height: '45px' }} />
               <input
-                type="file"
-                id="file"
-                accept="image/*"
-                onChange={(e) => setFormData({ ...formData, photo_path: e.target.files[0] })}
-                style={{ display: 'none' }}
+                type="text"
+                name="description"
+                value={formData.description}
+                placeholder="Whats on your mind"
+                onChange={handleInputChange}
+                style={{
+                  width: '500px',
+                  height: '54px',
+                  borderRadius: '8px',
+                  border: '.1px solid #27374D',
+                  paddingLeft: '24px',
+                  fontSize: '18px',
+                  color: '#828282',
+                  backgroundColor: '#fff',
+                }}
               />
-            </label>
-            <button
-              type="button"
-              className="Petprofile-Add"
-              onClick={handleAddGallery}
-              style={{ backgroundColor: 'white', color: '#27374D', borderRadius: '8px', border: '.1px solid #27374D', display: "flex", width: 150, whiteSpace: "nowrap", fontSize: "10" }}
-            >
-              <span className="btnAdd">POST</span>
-            </button>
-          </div>
-        </div>
-      </form>
+              <label
+                htmlFor="file"
+                className="file-label"
+              >
+                <AddPhotoIcon style={{ marginRight: '5px' }} />
+                Add Photo
+                <input
+                  type="file"
+                  id="file"
+                  accept="image/*"
+                  onChange={(e) => setFormData({ ...formData, photo_path: e.target.files[0] })}
+                  style={{ display: 'none' }}
+                />
+              </label>
+              <button
+                type="button"
+                className="Petprofile-Add"
+                onClick={handleAddGallery}
+              >
+                <span className="btnAdd">POST</span>
+              </button>
+            </CardContent>
+          </Card>
+        </form>
       </div>
-
-
-      <div className="gallery-container" style={{ display: 'block', flexWrap:"wrap"}}>
-        {gallerys.map(gallery=> (
-            <GalleryCard galId={gallery.galID} name={gallery.name} description={gallery.description} image={gallery.photoPath} />
+  
+      <div className="gallery-container" style={{ display: 'block', flexWrap: "wrap" }}>
+        {gallerys.map(gallery => (
+          <GalleryCard galId={gallery.galID} name={gallery.name} 
+            description={gallery.description} image={gallery.photoPath} />
         ))}
       </div>
     </>
   );
+  
 }
 
 export default Gallery;
