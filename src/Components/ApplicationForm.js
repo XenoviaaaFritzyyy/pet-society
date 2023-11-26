@@ -23,8 +23,6 @@
       typeResidence: 'apartment',
       rentHome: 'Rent',
       landlordContact: '',
-      fk_petID: petId,
-      fk_userID: userID,
       isDeleted: false,
     });
 
@@ -81,7 +79,7 @@
           ...formData,
           fk_petID: petId,
           fk_userID: userID,
-          isDeleted: false,
+          isDeleted: false,  // Update this based on your application logic
         };
     
         try {
@@ -99,7 +97,7 @@
           } else {
             const data = await response.json();
             setError('Failed to add entry');
-            console.error('Failed to add entry');
+            console.error('Failed to add entry', data);
           }
         } catch (error) {
           console.error('Error during adding of entry:', error);
@@ -108,7 +106,7 @@
       } else {
         console.log('Entry addition canceled');
       }
-    };
+    };     
 
     return (
       <div className="application-container">
