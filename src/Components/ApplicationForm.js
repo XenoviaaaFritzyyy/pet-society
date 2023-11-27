@@ -1,5 +1,5 @@
   import React, { useState, useEffect } from 'react';
-  import { useParams } from 'react-router-dom'; 
+  import { useParams, Navigate } from 'react-router-dom'; 
   import { useAuth } from '../Components/AuthContext';
 
   import '../Css/ApplicationForm.css';
@@ -9,6 +9,7 @@
     const { userID, setUserID } = useAuth(); 
     const [showHouseholdInfo, setShowHouseholdInfo] = useState(false);
     const [error, setError] = useState('');
+    const [ submit, setSubmit] = useState(false);
     
 
     const [formData, setFormData] = useState({
@@ -108,7 +109,7 @@
           });
     
           if (response.ok) {
-            // Entry added successfully
+            setSubmit(true);
             console.log('Entry added successfully');
           } else {
             const data = await response.json();
@@ -123,6 +124,10 @@
         console.log('Entry addition canceled');
       }
     };     
+
+    if(submit) {
+      return <Navigate to="/thankyou" />;
+    }
 
     return (
       <div className="application-container">
