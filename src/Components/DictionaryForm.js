@@ -14,8 +14,16 @@ function DictionaryForm() {
     navigate('/admin');
   };
 
-  const showConfirmation = () => {
-    return window.confirm("Are you sure you want to add/update/delete an entry to the dictionary?");
+  const showAddConfirmation = () => {
+    return window.confirm("Are you sure you want to add an entry to the dictionary?");
+  };
+  
+  const showDeleteConfirmation = () => {
+    return window.confirm("Are you sure you want to delete an entry to the dictionary?");
+  };
+
+  const showUpdateConfirmation = () => {
+    return window.confirm("Are you sure you want to update an entry to the dictionary?");
   };
 
   useEffect(() => {
@@ -30,7 +38,7 @@ function DictionaryForm() {
     setEntry('');
     setDescription('');
     setDicID('');
-    setError(''); // Clear any previous error messages
+    setError('');
   };
   
   const handleFindEntry = async () => {
@@ -71,7 +79,7 @@ function DictionaryForm() {
     }
 
     // Display a confirmation dialog
-    if (showConfirmation()) {
+    if (showAddConfirmation()) {
       try {
         const response = await fetch("http://localhost:8080/dictionary/insertEntry", {
           method: "POST",
@@ -109,7 +117,7 @@ function DictionaryForm() {
     }
 
     // Display a confirmation dialog
-    if (showConfirmation()) {
+    if (showUpdateConfirmation()) {
         try {
             // Check if the entry exists in the database
             const response = await fetch(`http://localhost:8080/dictionary/getEntry/${dicID}`);
@@ -164,7 +172,7 @@ function DictionaryForm() {
         }
     
         // Display a confirmation dialog
-        if (showConfirmation()) {
+        if (showDeleteConfirmation()) {
         try {
             // Check if the entry exists in the database
             const response = await fetch(`http://localhost:8080/dictionary/getEntry/${dicID}`);
