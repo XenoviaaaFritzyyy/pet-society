@@ -16,6 +16,8 @@ import DictionaryForm from './Components/DictionaryForm';
 import Request from './Components/Request';
 import './Css/App.css';
 import RequestForm from './Components/Requestform';
+import ThankYou from './Components/ThankYou';
+
 
 function Welcome() {
   const containerStyle = {
@@ -77,6 +79,7 @@ function App() {
         <Route path="/dictionaryform" element={<DictionaryForm />} />
         <Route path="/requestform" element={<RequestForm />} />
         <Route path="/request" element={<Request />} />
+        <Route path="/thankyou" element={<ThankYou />} />
 
       </Routes>
     </Router>

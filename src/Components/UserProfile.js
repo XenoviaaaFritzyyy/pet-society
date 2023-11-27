@@ -1,19 +1,42 @@
-// UserProfile.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "../Css/UserProfile.css";
 import Navbar from './Navbar';
+import '../Css/UserProfile.css';
+import { useAuth } from '../Components/AuthContext';
 
 const Profile = () => {
-  // State for storing profile information
-  const profileInfo = {
-    firstName: 'John Rob',
-    lastName: 'Borinaga',
-    email: 'rob.borinaga@gmail.com',
-    gender: 'Male',
-    address: '123 Main St, Cityville',
-    contactNumber: '+1234567890',
-  };
+  const { userID } = useAuth();
+  const [profileInfo, setProfileInfo] = useState({
+    fname: '',
+    lname: '',
+    email: '',
+    gender: '',
+    address: '',
+    contact: '',
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/user/user/${userID}`);
+        if (response.ok) {
+          const data = await response.json();
+          setProfileInfo(data);
+        } else {
+          console.error('Failed to fetch user profile');
+        }
+      } catch (error) {
+        console.error('Error during user profile fetch:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (userID) {
+      fetchUserProfile();
+    }
+  }, [userID]);
 
   return (
     <div>
@@ -33,31 +56,37 @@ const Profile = () => {
           <div className="paper-container">
             <div className="info-column">
               <div className="personal-info">
-                {/* Display non-editable profile information */}
-                <div className="info-item">
-                  <span className="bold-text">First Name: </span>
-                  <span>{profileInfo.firstName}</span>
-                </div>
-                <div className="info-item">
-                  <span className="bold-text">Last Name: </span>
-                  <span>{profileInfo.lastName}</span>
-                </div>
-                <div className="info-item">
-                  <span className="bold-text">Email: </span>
-                  <span>{profileInfo.email}</span>
-                </div>
-                <div className="info-item">
-                  <span className="bold-text">Gender: </span>
-                  <span>{profileInfo.gender}</span>
-                </div>
-                <div className="info-item">
-                  <span className="bold-text">Address: </span>
-                  <span>{profileInfo.address}</span>
-                </div>
-                <div className="info-item">
-                  <span className="bold-text">Contact Number: </span>
-                  <span>{profileInfo.contactNumber}</span>
-                </div>
+                {loading ? (
+                  <p>Loading...</p>
+                ) : (
+                  // Display fetched user profile information
+                  <>
+                    <div className="info-item">
+                      <span className="bold-text">Firstname: </span>
+                      <span style={{fontSize:'18px'}}>{profileInfo.fname}</span>
+                    </div>
+                    <div className="info-item">
+                      <span className="bold-text">Lastname: </span>
+                      <span style={{fontSize:'18px'}}>{profileInfo.lname}</span>
+                    </div>
+                    <div className="info-item">
+                      <span className="bold-text">Email: </span>
+                      <span style={{fontSize:'18px'}}>{profileInfo.email}</span>
+                    </div>
+                    <div className="info-item">
+                      <span className="bold-text">Gender: </span>
+                      <span style={{fontSize:'18px'}}>{profileInfo.gender}</span>
+                    </div>
+                    <div className="info-item">
+                      <span className="bold-text">Address: </span>
+                      <span style={{fontSize:'18px'}}>{profileInfo.address}</span>
+                    </div>
+                    <div className="info-item">
+                      <span className="bold-text">Contact Number: </span>
+                      <span style={{fontSize:'18px'}}>{profileInfo.contact}</span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

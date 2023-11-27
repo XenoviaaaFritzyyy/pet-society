@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from '../Components/AuthContext';
+import { Link } from 'react-router-dom';
+
+
+import '../Css/form1.css';
+
 
 function RequestForm() {
   const { userID } = useAuth();
@@ -29,42 +34,59 @@ function RequestForm() {
   return (
     <>
       <div>
-        <h2 style={{textAlign:'center', margin:'50px 0 20px 0'}}>All Applications</h2>
+      <Link to="/admin" style={{ textDecoration: 'none' }}>
+        <button style={{ position: 'absolute', top: '25px', right: '50px', textDecoration: 'none', fontSize: '15px', padding: '8px 15px', borderRadius: '10px', color: '#27374D'}}>
+          Back
+        </button>
+      </Link>
+
+      <div classname="request-status" style={{marginTop: '20px'}}>
+            <label style={{marginLeft: '650px'}}>Application ID: </label>
+            <input type="number" id="lname" name="lname" style={{marginRight: '5px', marginBottom:'10px', padding:'5px', borderRadius: '5px', width: '60px'}}/>  
+            <button style={{borderRadius: '5px', padding: '3px'}}>Find ID</button>
+            
+            <div className="request-buttons">
+            <button>Reject Request</button>
+            <button>Accept Request</button>
+            </div>
+          </div>
+
+        <h2 style={{textAlign:'center', margin:'30px 0 20px 0', color: '#27374D'}}>All Applications</h2>
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: "10px" }}>
+          <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: "5px", fontSize: '12px'}}>
             <thead>
               <tr>
-                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white' }}>Application ID</th>
-                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white' }}>First Name</th>
-                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white' }}>Last Name</th>
-                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white' }}>Address</th>
-                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white' }}>City</th>
-                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white' }}>State</th>
-                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white' }}>no of children</th>
-                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white'}}>no of adults</th>
-                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white'}} >household</th>
-                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white'}}>Type of Residence</th>
-                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white'}}>Rent or own home?</th>
-                <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center", background: '#27374D', borderRadius: '5px', color: 'white'}}>landlordContact</th>
+                <th>ID</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>no. children</th>
+                <th>no. adults</th>
+                <th>Type of Household</th>
+                <th>Type of Residence</th>
+                <th>Rent or Own Home?</th>
+                <th>Landlord Contact</th>
               </tr>
             </thead>
             <tbody>
               {applications.map(application => (
                 <tr key={application.applicationID}>
-                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '15px', fontWeight: 'bold', color: '#27374D' }}>{application.applicationID}</td>
-                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '15px', fontWeight: 'bold', color: '#27374D' }}>{application.fname}</td>
-                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '15px', fontWeight: 'bold', color: '#27374D' }}>{application.lname}</td>
-                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '15px', fontWeight: 'bold', color: '#27374D' }}>{application.address}</td>
-                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '15px', fontWeight: 'bold', color: '#27374D' }}>{application.city}</td>
-                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '15px', fontWeight: 'bold', color: '#27374D' }}>{application.state}</td>
-                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '15px', fontWeight: 'bold', color: '#27374D' }}>{application.noAdults}</td>
-                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '15px', fontWeight: 'bold', color: '#27374D' }}>{application.noChildren}</td>
-                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '15px', fontWeight: 'bold', color: '#27374D' }}>{application.desHousehold}</td>
-                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '15px', fontWeight: 'bold', color: '#27374D' }}>{application.typeResidence}</td>
-                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '15px', fontWeight: 'bold', color: '#27374D' }}>{application.rentHome}</td>
-                  <td style={{ border: "1px solid #ddd", padding: "20px 100px", textAlign: "center", background: 'white', borderRadius: '5px', fontSize: '15px', fontWeight: 'bold', color: '#27374D' }}>{application.landlordContact}</td>
+                  <td>{application.applicationID}</td>
+                  <td>{application.fname}</td>
+                  <td>{application.lname}</td>
+                  <td>{application.address}</td>
+                  <td>{application.city}</td>
+                  <td>{application.state}</td>
+                  <td>{application.noChildren}</td>
+                  <td>{application.noAdults}</td>
+                  <td>{application.desHousehold}</td>
+                  <td>{application.typeResidence}</td>
+                  <td>{application.rentHome}</td>
+                  <td>{application.landlordContact}</td>
                 </tr>
               ))}
             </tbody>

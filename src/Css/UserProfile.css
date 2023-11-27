@@ -1,96 +1,65 @@
 /* UserProfile.css */
+
 .profile-container {
-  width: 100%;
-  max-width: 1199px;
-  height: 650px;
-  margin: 20px auto 0;
-  display: flex;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #FFFFFF;
-}
-
-
-.box {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 75vh;
+  margin-top: 8px;
+}
+
+.box {
+  display: flex;
+  width: 70%;
 }
 
 .profile-column {
-  flex: 1;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.profile-image {
-  width: 350px;
-  height: 350px;
-  border-radius: 200px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px; /* Add margin-bottom to create space */
+  background-color: white;
+  border-radius: 20px;
+  padding: 100px;
 }
 
 .profile-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  align-self: center;
+  width: 250px; /* Adjust as needed */
+  height: 250px; /* Adjust as needed */
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
 .edit-profile-btn {
-  margin-top: 10px;
-  padding: 15px 20px; /* Adjust padding as needed */
   background-color: #27374D;
-  color: #fff;
+  color: white;
   border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 16px; /* Adjust font-size as needed */
+  font-size: 16px;
+  border-radius: 10px;
 }
 
-.grid-container {
-  width: 100%;
+.paper-container {
+  flex: 1;
+  padding: 120px;
+  background-color: #27374D;
+  margin-left: 10px;
+  border-radius: 20px;
 }
 
 .info-column {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  font-size: 20px;
-}
-
-.personal-info {
-  margin-top: 20px;
-  color: #FFFFFF;
 }
 
 .info-item {
-  margin-bottom: 40px; /* Add margin between personal-info items */
-  font-size: 28px;
+  margin-bottom: 25px;
+  color: #DDE6ED;
 }
 
 .bold-text {
   font-weight: bold;
+  font-size: 20px;
+  color: white;
 }
 
-.paper-container {
-  background-color: #27374D;
-  padding: 40px;
-  border-radius: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 44px;  /* Add left margin */
-  margin-right: 44px; /* Add right margin */
-  width: calc(100% - 40px); /* Adjust the width to account for the margins */
-  min-height: 554px;
-  max-width: 800px;
-  flex: 1;
-}

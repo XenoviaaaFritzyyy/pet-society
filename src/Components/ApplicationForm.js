@@ -24,6 +24,8 @@
       rentHome: 'Rent',
       landlordContact: '',
       isDeleted: false,
+      fk_petID: petId,
+      fk_userID: userID,
     });
 
     useEffect(() => {
@@ -62,7 +64,6 @@
       console.log('User ID:', userID);
       console.log('Form', formData);
     
-      // Check if all required fields are filled in
       const requiredFields = ['lname', 'fname', 'address', 'city', 'state', 'noAdults', 'noChildren'];
       const missingFields = requiredFields.filter((field) => !formData[field]);
     
@@ -70,16 +71,23 @@
         setError(`Please fill in the following fields: ${missingFields.join(', ')}`);
         return;
       }
+
+      if (formData.rentHome === 'Rent' && (!formData.landlordContact || formData.landlordContact.length !== 11)) {
+        setError('Landlord\'s contact info should be 11 digits ex. 09362677352');
+        return;
+      }
     
+      if (formData.rentHome === 'Own Home' && formData.landlordContact) {
+        setError('Landlord\'s contact info should be empty for if not renting');
+        return;
+      }
+
       setError('');
     
       if (showConfirmation()) {
         // Use the updated state in the API call
         const dataToSend = {
           ...formData,
-          fk_petID: petId,
-          fk_userID: userID,
-          isDeleted: false,  // Update this based on your application logic
         };
     
         try {
@@ -170,19 +178,19 @@
                 <div className="input-field">
                   <label>Please describe your household:*</label>
                   <select id="desHousehold" name="desHousehold"  onChange={handleChange}>
-                    <option value="active">Active</option>
-                    <option value="noisy">Noisy</option>
-                    <option value="quiet">Quiet</option>
-                    <option value="average">Average</option>
+                    <option value="Active">Active</option>
+                    <option value="Noisy">Noisy</option>
+                    <option value="Quiet">Quiet</option>
+                    <option value="Average">Average</option>
                   </select>
                 </div>
 
                 <div className="input-field">
                   <label>Type of residence (Apartment, House)*</label>
                   <select id="typeResidence" name="typeResidence"  onChange={handleChange}>
-                    <option value="apartment">Apartment</option>
-                    <option value="house">House</option>
-                    <option value="others">Others</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="House">House</option>
+                    <option value="Others">Others</option>
                   </select>
                 </div>
 
@@ -205,7 +213,7 @@
                   <span className="btnBack">Back</span>
                 </button>
 
-                <button type="Submit" className="nextBtn" onClick={handleSubmit}>
+                <button type="submit" className="nextBtn" onClick={handleSubmit}>
                   <span className="btnSubmit">Submit</span>
                 </button>
               </div>

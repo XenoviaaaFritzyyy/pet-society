@@ -1,0 +1,32 @@
+th {
+    border: 1px solid #ddd; 
+    padding: 5px;
+    text-align: center;
+    background: #27374D; 
+    border-radius: 5px; 
+    color: white;
+}
+
+td {
+    border: 1px solid #ddd; 
+    padding: 5px 10px;
+    text-align: center;
+    background:white; 
+    border-radius: 5px; 
+    font-weight: bold;
+    color: #27374D;
+}
+
+.request-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.request-buttons button{
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+
