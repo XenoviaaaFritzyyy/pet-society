@@ -14,15 +14,13 @@ function Home() {
   const [size, setSize] = React.useState('');
   const [pets, setPets] = React.useState([]);
 
+
   useEffect(() => {
-    // Retrieve userID from localStorage when the component mounts
     const storedUserID = localStorage.getItem('userID');
     if (storedUserID) {
       setUserID(storedUserID);
     }
-  }, [setUserID]);
-
-  useEffect(() => {
+    
     const fetchPets = async () => {
       try {
         const response = await fetch("http://localhost:8080/pet/getAllPets");
