@@ -5,7 +5,7 @@ import '../Css/UserProfile.css';
 import { useAuth } from '../Components/AuthContext';
 
 const Profile = () => {
-  const { userID } = useAuth();
+  const { userID, setUserID } = useAuth();
   const [profileInfo, setProfileInfo] = useState({
     fname: '',
     lname: '',
@@ -38,6 +38,22 @@ const Profile = () => {
     }
   }, [userID]);
 
+  useEffect(() => {
+    // Save userID to local storage when it changes
+    if (userID) {
+      localStorage.setItem('userID', userID);
+    }
+  }, [userID]);
+
+  useEffect(() => {
+    // Retrieve userID from local storage when the component mounts
+    const storedUserID = localStorage.getItem('userID');
+    if (storedUserID) {
+      // Set the userID from local storage
+      setUserID(storedUserID);
+    }
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -63,27 +79,27 @@ const Profile = () => {
                   <>
                     <div className="info-item">
                       <span className="bold-text">Firstname: </span>
-                      <span style={{fontSize:'18px'}}>{profileInfo.fname}</span>
+                      <span style={{ fontSize: '18px' }}>{profileInfo.fname}</span>
                     </div>
                     <div className="info-item">
                       <span className="bold-text">Lastname: </span>
-                      <span style={{fontSize:'18px'}}>{profileInfo.lname}</span>
+                      <span style={{ fontSize: '18px' }}>{profileInfo.lname}</span>
                     </div>
                     <div className="info-item">
                       <span className="bold-text">Email: </span>
-                      <span style={{fontSize:'18px'}}>{profileInfo.email}</span>
+                      <span style={{ fontSize: '18px' }}>{profileInfo.email}</span>
                     </div>
                     <div className="info-item">
                       <span className="bold-text">Gender: </span>
-                      <span style={{fontSize:'18px'}}>{profileInfo.gender}</span>
+                      <span style={{ fontSize: '18px' }}>{profileInfo.gender}</span>
                     </div>
                     <div className="info-item">
                       <span className="bold-text">Address: </span>
-                      <span style={{fontSize:'18px'}}>{profileInfo.address}</span>
+                      <span style={{ fontSize: '18px' }}>{profileInfo.address}</span>
                     </div>
                     <div className="info-item">
                       <span className="bold-text">Contact Number: </span>
-                      <span style={{fontSize:'18px'}}>{profileInfo.contact}</span>
+                      <span style={{ fontSize: '18px' }}>{profileInfo.contact}</span>
                     </div>
                   </>
                 )}

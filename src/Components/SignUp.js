@@ -82,7 +82,7 @@ function SignUp() {
   };
 
   if (isAccountCreated) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/signin" />;
   }
 
   return (

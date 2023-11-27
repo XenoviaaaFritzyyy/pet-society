@@ -6,7 +6,7 @@
 
   const ApplicationForm = () => {
     const { petId } = useParams();
-    const { userID } = useAuth(); 
+    const { userID, setUserID } = useAuth(); 
     const [showHouseholdInfo, setShowHouseholdInfo] = useState(false);
     const [error, setError] = useState('');
     
@@ -27,6 +27,14 @@
       fk_petID: petId,
       fk_userID: userID,
     });
+
+    useEffect(() => {
+      // Retrieve userID from localStorage when the component mounts
+      const storedUserID = localStorage.getItem('userID');
+      if (storedUserID) {
+        setUserID(storedUserID);
+      }
+    }, [setUserID]);
 
     useEffect(() => {
       document.body.style.background = '#27374D';

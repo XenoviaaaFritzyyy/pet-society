@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Button, Checkbox, TextField, FormControlLabel, Grid, Box } from '@mui/material';
 import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../Components/AuthContext';
@@ -34,6 +34,7 @@ function SignIn() {
           const userID = responseData.userId;
           setUserID(userID); // Set the userID in the state
           setIsLoggedIn(true);
+          localStorage.setItem('userID', userID); // Save userID to localStorage
           console.log("Login successful");
           console.log("User ID:", userID);
         } else {

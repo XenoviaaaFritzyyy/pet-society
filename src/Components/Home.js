@@ -3,14 +3,24 @@ import Navbar from './Navbar';
 import {Button, MenuItem, FormControl, Select } from '@mui/material';
 import '../Css/Home.css';
 import PetCard from "./PetCard";
+import { useAuth } from '../Components/AuthContext'; 
 
 
 function Home() {
+  const { userID, setUserID } = useAuth();
+  
   const [colour, setColour] = React.useState('');
   const [sex, setSex] = React.useState('');
   const [size, setSize] = React.useState('');
   const [pets, setPets] = React.useState([]);
 
+  useEffect(() => {
+    // Retrieve userID from localStorage when the component mounts
+    const storedUserID = localStorage.getItem('userID');
+    if (storedUserID) {
+      setUserID(storedUserID);
+    }
+  }, [setUserID]);
 
   useEffect(() => {
     const fetchPets = async () => {
@@ -19,9 +29,9 @@ function Home() {
         const data = await response.json();
   
         if (response.ok) {
+          console.log("userID: ", userID);
           // Filter out pets where is_deleted is true
           const filteredPets = data.filter((pet) => !pet.deleted);
-
           //const sortedPets = filteredPets.sort((a, b) => a.name.localeCompare(b.name));
           setPets(filteredPets);
         } else {
@@ -35,7 +45,7 @@ function Home() {
     };
   
     fetchPets();
-  }, []);
+  }, [userID]);
   
 
 
