@@ -1,12 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import AddPhotoIcon from '@mui/icons-material/AddPhotoAlternate';
 import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
 import { Link } from 'react-router-dom';
-import '../Css/UserProfileEdit.css';
-//test
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+
+import { useAuth } from '../Components/AuthContext';
+
 const UserProfileEdit = () => {
+  const { userID, setUserID } = useAuth(); 
+
+  // State for profile information
+  const [profileInfo, setProfileInfo] = useState({
+    fname: '',
+    lname: '',
+    email: '',
+    gender: '',
+    address: '',
+    contact: '',
+  });
+
+  useEffect(() => {
+    const storedUserID = localStorage.getItem('userID');
+    if (storedUserID) {
+      setUserID(storedUserID);
+    }
+  
+    document.body.style.background = '#27374D';
+  
+    // Fetch user profile information
+    const fetchUserProfile = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/user/user/${userID}`);
+        if (response.ok) {
+          const data = await response.json();
+          setProfileInfo(data);
+        } else {
+          console.error('Failed to fetch user profile');
+        }
+      } catch (error) {
+        console.error('Error during user profile fetch:', error);
+      }
+    };
+  
+    // Fetch profile only if userID is available
+    if (userID) {
+      fetchUserProfile();
+    }
+  
+    return () => {
+      document.body.style.background = '';
+    };
+  }, [userID, setUserID, setProfileInfo]);
+  
 
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -19,22 +68,11 @@ const UserProfileEdit = () => {
     whiteSpace: 'nowrap',
     width: 1,
   });
-
-  const ExpandMore = styled((props) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  }));
   
   return (
     <div className="box-container">
       <form action="#" id="pet-profile-form" encType="multipart/form-data">
-        <div className="admin-form pet-profile">
+        <div className="admin-form pet-profile" style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div className="details-pet">
             <span className="title">My Profile</span>
             <Box
@@ -45,23 +83,20 @@ const UserProfileEdit = () => {
                 borderRadius: '38px',
                 backgroundColor: '#ffffff',
                 borderColor: '#cccccc',
-                padding: '10px',
-                paddingTop: '20px',
-                marginTop: '20px',
-              }}
-            >
+              }}>
+
               <img
                 src="/images/RobFinal.jpg"
                 alt="User Profile"
                 className="user-profile-image"
                 style={{
-                  width: '90px',
-                  height: '90px',
+                  width: '100px',
+                  height: '100px',
                   marginRight: '20px',
-                  objectFit: 'cover', // or 'contain' based on your preference
-                  borderRadius: '50%', // Optional: add this if you want a circular image
-                }}
-              />
+                  objectFit: 'cover', 
+                  borderRadius: '50%',
+                }}/>
+
               <div>
                 <Button
                   component="label"
@@ -81,9 +116,8 @@ const UserProfileEdit = () => {
                     whiteSpace: 'nowrap',
                     fontSize: 10,
                     marginTop: '10px',
-                  }}
-                >
-                  Upload New
+                  }}>
+                  Change Photo
                   <VisuallyHiddenInput type="file" />
                 </Button>
               </div>
@@ -100,13 +134,36 @@ const UserProfileEdit = () => {
                 borderRadius: '38px',
                 backgroundColor: '#ffffff',
                 borderColor: '#cccccc',
-                padding: '10px',
-                paddingTop: '20px',
-                marginTop: '20px',
-              }}
-            >
-              <TextField id="first-name" label="FirstName" variant="standard" />
-              <TextField id="last-name" label="LastName" variant="standard" sx={{ marginLeft: '100px' }}/>
+                marginTop: '20px'
+              }}>
+
+<TextField
+  id="first-name"
+  label="First Name"
+  variant="standard"
+  value={profileInfo.fname}
+  onChange={(e) => setProfileInfo({ ...profileInfo, fname: e.target.value })}
+  sx={{ width: '250px' }} // Adjust the width as needed
+/>
+
+<TextField
+  id="last-name"
+  label="Last Name"
+  variant="standard"
+  sx={{ marginLeft: '20px', width: '250px' }} // Adjust the width as needed
+  value={profileInfo.lname}
+  onChange={(e) => setProfileInfo({ ...profileInfo, lname: e.target.value })}
+/>
+
+<TextField
+  id="email"
+  label="Email"
+  variant="standard"
+  sx={{ marginLeft: '20px', width: '300px' }} // Adjust the width as needed
+  value={profileInfo.email}
+  onChange={(e) => setProfileInfo({ ...profileInfo, email: e.target.value })}
+/>
+
             </Box>
           </div>
 
@@ -119,95 +176,40 @@ const UserProfileEdit = () => {
                 borderRadius: '38px',
                 backgroundColor: '#ffffff',
                 borderColor: '#cccccc',
-                padding: '10px',
-              }}
-            >
-              <TextField id="email" label="Email" variant="standard" />
-              <TextField id="contact-number" label="Contact Number" variant="standard" sx={{ marginLeft: '100px' }}/>
-            </Box>
-          </div>
+                marginTop: '20px'
+              }}>
 
-          <div className="details-pet" >
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'row', // Align items horizontally
-                alignItems: 'center', // Center items vertically
-                borderRadius: '38px',
-                backgroundColor: '#ffffff',
-                borderColor: '#cccccc',
-                padding: '10px',
-              }}
-            >
-              <TextField id="address" label="Address" variant="standard" />
-              <div className="input-field" style={{ marginLeft: '100px' }}>
-                <label>Gender</label>
-                <select
-                  id="gender"
-                  name="gender"
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </div>
-            </Box>
-          </div>
+              <TextField
+                id="address"
+                label="Address"
+                variant="standard"
+                sx={{ width: '380px'}}
+                value={profileInfo.address}
+                onChange={(e) => setProfileInfo({ ...profileInfo, address: e.target.value })}
+                />
 
-          <div className="details-pet" >
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'row', // Align items horizontally
-                alignItems: 'center', // Center items vertically
-                borderRadius: '38px',
-                backgroundColor: '#ffffff',
-                borderColor: '#cccccc',
-                padding: '10px',
-              }}
-            >
-                <Button
-                  component="label"
-                  color="primary"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: 'white',
-                    color: '#27374D',
-                    '&:hover': {
-                      backgroundColor: '#142132',
-                      color: 'white',
-                    },
-                    borderRadius: '8px',
-                    border: '.1px solid #27374D',
-                    display: 'flex',
-                    whiteSpace: 'nowrap',
-                    fontSize: 10,
-                    marginTop: '10px',
-                  }}
-                >
-                  Edit info
-                </Button>
-                <Button
-                  component="label"
-                  color="primary"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: 'white',
-                    color: '#27374D',
-                    '&:hover': {
-                      backgroundColor: '#142132',
-                      color: 'white',
-                    },
-                    borderRadius: '8px',
-                    border: '.1px solid #27374D',
-                    display: 'flex',
-                    whiteSpace: 'nowrap',
-                    fontSize: 10,
-                    marginTop: '10px',
-                    marginLeft: '210px' 
-                  }}
-                >
-                  Save Changes
-                </Button>
+              <TextField
+                id="contact-number"
+                label="Contact Number"
+                variant="standard"
+                sx={{ marginLeft: '20px', width: '250px' }} 
+                value={profileInfo.contact}
+                onChange={(e) => setProfileInfo({ ...profileInfo, contact: e.target.value })}
+              />
+
+            <FormControl variant="standard" sx={{ marginLeft: '20px', width: '250px' }}>
+              <InputLabel id="gender-label">Gender</InputLabel>
+              <Select
+                label="Gender"
+                id="gender"
+                displayEmpty
+                value={profileInfo.gender}
+                onChange={(e) => setProfileInfo({ ...profileInfo, gender: e.target.value })}
+              >
+                <MenuItem value="male">Male</MenuItem>
+                <MenuItem value="female">Female</MenuItem>
+              </Select>
+            </FormControl>
             </Box>
           </div>
 
@@ -221,13 +223,10 @@ const UserProfileEdit = () => {
                 borderRadius: '38px',
                 backgroundColor: '#ffffff',
                 borderColor: '#cccccc',
-                padding: '10px',
-                paddingTop: '20px',
-                marginTop: '20px',
-              }}
-            >
-              <TextField id="current-password" label="Current Password" variant="standard" />
-              <TextField id="new-password" label="New Password" variant="standard" sx={{ marginLeft: '100px' }}/>
+              }}>
+              <TextField id="current-password" label="Current Password" variant="standard" sx={{ width: '250px' }} />
+              <TextField id="new-password" label="New Password" variant="standard" sx={{ marginLeft: '20px', width: '250px' }}/>
+              
             </Box>
           </div>
 
@@ -235,14 +234,15 @@ const UserProfileEdit = () => {
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'row', // Align items horizontally
-                alignItems: 'center', // Center items vertically
+                flexDirection: 'row', 
+                alignItems: 'center',
                 borderRadius: '38px',
                 backgroundColor: '#ffffff',
                 borderColor: '#cccccc',
                 padding: '10px',
               }}
             >
+              <Link to="/userprofile" style={{ textDecoration: 'none'}}>
                 <Button
                   component="label"
                   color="primary"
@@ -259,72 +259,34 @@ const UserProfileEdit = () => {
                     display: 'flex',
                     whiteSpace: 'nowrap',
                     fontSize: 10,
-                    marginTop: '10px',
-                  }}
-                >
-                  Confirm new Password
-                </Button>
-
-                <Button
-                  component="label"
-                  color="primary"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: 'white',
-                    color: '#27374D',
-                    '&:hover': {
-                      backgroundColor: '#142132',
-                      color: 'white',
-                    },
-                    borderRadius: '8px',
-                    border: '.1px solid #27374D',
-                    display: 'flex',
-                    whiteSpace: 'nowrap',
-                    fontSize: 10,
-                    marginTop: '10px',
-                    marginLeft: '120px' 
-                  }}
-                >
-                  Save new Password
-                </Button>
-            </Box>
-          </div>
-
-          <div className="details-pet" >
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'row', // Align items horizontally
-                alignItems: 'center', // Center items vertically
-                borderRadius: '38px',
-                backgroundColor: '#ffffff',
-                borderColor: '#cccccc',
-                padding: '10px',
-              }}
-            >
-              <Link to="/userprofile">
-                <Button
-                  component="label"
-                  color="primary"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: 'white',
-                    color: '#27374D',
-                    '&:hover': {
-                      backgroundColor: '#142132',
-                      color: 'white',
-                    },
-                    borderRadius: '8px',
-                    border: '.1px solid #27374D',
-                    display: 'flex',
-                    whiteSpace: 'nowrap',
-                    fontSize: 10,
-                    marginTop: '10px',
-                  }}
-                >
+                    marginTop: '50px',
+                  }}>
                   Cancel Changes
                 </Button>
                 </Link>
+
+                <Button
+                  component="label"
+                  color="primary"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: 'white',
+                    color: '#27374D',
+                    '&:hover': {
+                      backgroundColor: '#142132',
+                      color: 'white',
+                    },
+                    borderRadius: '8px',
+                    border: '.1px solid #27374D',
+                    display: 'flex',
+                    whiteSpace: 'nowrap',
+                    fontSize: 10,
+                    marginTop: '50px',
+                    marginLeft: '570px'
+                  }}
+                >
+                  Save Changes
+                </Button>
             </Box>
           </div>
 
