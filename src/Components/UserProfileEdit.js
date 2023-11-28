@@ -147,8 +147,8 @@ const UserProfileEdit = () => {
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'row', // Align items horizontally
-                alignItems: 'center', // Center items vertically
+                flexDirection: 'row', 
+                alignItems: 'center',
                 borderRadius: '38px',
                 backgroundColor: '#ffffff',
                 borderColor: '#cccccc',
@@ -280,23 +280,6 @@ const UserProfileEdit = () => {
                 <MenuItem value="female">Female</MenuItem>
               </Select>
             </FormControl>
-            </Box>
-          </div>
-
-          <div className="details-pet" style={{ paddingTop: '50px' }} >
-            <span className="title">Password</span>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'row', // Align items horizontally
-                alignItems: 'center', // Center items vertically
-                borderRadius: '38px',
-                backgroundColor: '#ffffff',
-                borderColor: '#cccccc',
-              }}>
-              <TextField id="current-password" label="Current Password" variant="standard" sx={{ width: '250px' }} />
-              <TextField id="new-password" label="New Password" variant="standard" sx={{ marginLeft: '20px', width: '250px' }}/>
-              
             </Box>
           </div>
 
