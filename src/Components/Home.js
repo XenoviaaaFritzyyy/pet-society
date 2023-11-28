@@ -119,7 +119,6 @@ function Home() {
                 labelId="colour-label"
                 id="colour"
                 value={colour}
-                label="Colour"
                 onChange={handleColourChange}
                 sx={{ borderRadius: '15px' }}
               >
@@ -142,7 +141,6 @@ function Home() {
                 labelId="sex-label"
                 id="sex"
                 value={sex}
-                label="Sex"
                 onChange={handleSexChange}
                 sx={{ borderRadius: '15px' }}
               >
@@ -161,7 +159,6 @@ function Home() {
                 labelId="size-label"
                 id="size"
                 value={size}
-                label="Size"
                 onChange={handleSizeChange}
                 sx={{ borderRadius: '15px' }}>
                 <MenuItem value="">
