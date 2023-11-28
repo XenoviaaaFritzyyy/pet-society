@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import AddPhotoIcon from '@mui/icons-material/AddPhotoAlternate';
 import { styled } from '@mui/material/styles';
@@ -7,11 +7,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
-
 import { useAuth } from '../Components/AuthContext';
 
 const UserProfileEdit = () => {
-  const { userID, setUserID } = useAuth(); 
+  const { userID, setUserID } = useAuth();
 
   // State for profile information
   const [profileInfo, setProfileInfo] = useState({
@@ -21,16 +20,19 @@ const UserProfileEdit = () => {
     gender: '',
     address: '',
     contact: '',
+    photo_path: '',
   });
+
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const storedUserID = localStorage.getItem('userID');
     if (storedUserID) {
       setUserID(storedUserID);
     }
-  
+
     document.body.style.background = '#27374D';
-  
+
     // Fetch user profile information
     const fetchUserProfile = async () => {
       try {
@@ -45,16 +47,83 @@ const UserProfileEdit = () => {
         console.error('Error during user profile fetch:', error);
       }
     };
-  
+
     // Fetch profile only if userID is available
     if (userID) {
       fetchUserProfile();
     }
-  
+
     return () => {
       document.body.style.background = '';
     };
   }, [userID, setUserID, setProfileInfo]);
+
+  const handleImageChange = (event) => {
+    setSelectedImage(event.target.files[0]);
+  };
+
+  const handleUpdateProfile = async () => {
+    // Display a confirmation dialog
+    if (window.confirm('Are you sure you want to update your profile?')) {
+      try {
+        // Create FormData for user data
+        const updatedUserData = {
+          userID,
+          fname: profileInfo.fname,
+          lname: profileInfo.lname,
+          email: profileInfo.email,
+          gender: profileInfo.gender,
+          address: profileInfo.address,
+          contact: profileInfo.contact,
+        };
+
+        // Make a PUT request to update the user profile
+        const updateResponse = await fetch(`http://localhost:8080/user/updateUser?userID=${userID}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedUserData),
+        });
+
+        // Handle the update response accordingly
+        if (updateResponse.ok) {
+          console.log(`User profile with ID ${userID} updated successfully!`);
+
+          // Check if a new image is selected
+          if (selectedImage) {
+            // Create FormData for image upload
+            const formDataForImage = new FormData();
+            formDataForImage.append('image', selectedImage);
+
+            // Make a POST request to upload the image
+            const imageResponse = await fetch(`http://localhost:8080/user/insertUser/${userID}`, {
+              method: 'POST',
+              body: formDataForImage,
+            });
+
+            // Handle the image upload response accordingly
+            if (imageResponse.ok) {
+              console.log('Image uploaded successfully!');
+              // You might want to redirect or update state here
+            } else {
+              console.error('Error uploading image:', imageResponse.statusText);
+            }
+          }
+        } else {
+          const updateData = await updateResponse.json();
+          console.error('Failed to update user profile', updateData);
+          alert('Failed to update user profile');
+        }
+      } catch (error) {
+        console.error('Error during updating user profile:', error);
+        alert('An error occurred during updating user profile. Please try again later.');
+      }
+    } else {
+      console.log('User profile update canceled');
+    }
+  };
+
   
 
   const VisuallyHiddenInput = styled('input')({
@@ -86,7 +155,7 @@ const UserProfileEdit = () => {
               }}>
 
               <img
-                src="/images/RobFinal.jpg"
+                src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/rob.jpg"}
                 alt="User Profile"
                 className="user-profile-image"
                 style={{
@@ -118,7 +187,7 @@ const UserProfileEdit = () => {
                     marginTop: '10px',
                   }}>
                   Change Photo
-                  <VisuallyHiddenInput type="file" />
+                  <VisuallyHiddenInput type="file" onChange={handleImageChange} />
                 </Button>
               </div>
             </Box>
@@ -264,29 +333,30 @@ const UserProfileEdit = () => {
                   Cancel Changes
                 </Button>
                 </Link>
-
+                
                 <Button
-                  component="label"
-                  color="primary"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: 'white',
-                    color: '#27374D',
-                    '&:hover': {
-                      backgroundColor: '#142132',
-                      color: 'white',
-                    },
-                    borderRadius: '8px',
-                    border: '.1px solid #27374D',
-                    display: 'flex',
-                    whiteSpace: 'nowrap',
-                    fontSize: 10,
-                    marginTop: '50px',
-                    marginLeft: '570px'
-                  }}
-                >
-                  Save Changes
-                </Button>
+                component="label"
+                color="primary"
+                variant="contained"
+                onClick={handleUpdateProfile}
+                sx={{
+                  backgroundColor: 'white',
+                  color: '#27374D',
+                  '&:hover': {
+                    backgroundColor: '#142132',
+                    color: 'white',
+                  },
+                  borderRadius: '8px',
+                  border: '.1px solid #27374D',
+                  display: 'flex',
+                  whiteSpace: 'nowrap',
+                  fontSize: 10,
+                  marginTop: '50px',
+                  marginLeft: '570px', // Adjust the marginLeft as needed
+                }}
+              >
+                Save Changes
+              </Button>
             </Box>
           </div>
 

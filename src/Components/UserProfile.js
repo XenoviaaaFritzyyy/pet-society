@@ -62,7 +62,10 @@ const Profile = () => {
         <div className="box">
           <div className="profile-column">
             <div className="profile-image">
-              <img src="/images/RobFinal.jpg" alt="Profile Image" />
+              <img
+                src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/rob.jpg"}
+                alt="User Profile"
+              />
             </div>
             <Link to="/userprofileedit">
               <button className="edit-profile-btn">EDIT PROFILE</button>
