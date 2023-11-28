@@ -17,6 +17,7 @@ import Request from './Components/Request';
 import './Css/App.css';
 import RequestForm from './Components/Requestform';
 import ThankYou from './Components/ThankYou';
+import TriviaForm from './Components/TriviaForm';
 
 
 function Welcome() {
@@ -66,18 +67,26 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Welcome />} />
+
         <Route path="/home" element={<Home />} />
         <Route path="/dictionary" element={<Dictionary />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/About us" element={<AboutUs />} />
+
         <Route path="/userprofile" element={<UserProfile />} />
         <Route path="/userprofileedit" element={<UserProfileEdit />} />
+
         <Route path="/admin" element={<Admin />} />
+
         <Route path="/petprofile/:petId" element={<PetProfile />} />
         <Route path="/petprofile/:petId/application" element={<ApplicationForm />} />
+
         <Route path="/petprofileform" element={<PetProfileForm />} />
         <Route path="/dictionaryform" element={<DictionaryForm />} />
         <Route path="/requestform" element={<RequestForm />} />
+        <Route path="/triviaform" element={<TriviaForm />} />
+
+
         <Route path="/request" element={<Request />} />
         <Route path="/thankyou" element={<ThankYou />} />
 
