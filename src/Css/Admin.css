@@ -25,7 +25,8 @@
 
 .petprofile,
 .dictionary, 
-.requestform {
+.requestform,
+.triviaform {
     background-color: #526D82;
     border-radius: 5px;
     padding: 50px;
@@ -40,7 +41,8 @@
 
 .petprofile:hover,
 .dictionary:hover,
-.requestform:hover {
+.requestform:hover,
+.triviaform:hover {
     background: #27374D;
     color: DDE6ED;
     transition: background-color 0.3s ease-in-out;
