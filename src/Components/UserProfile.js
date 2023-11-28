@@ -63,7 +63,7 @@ const Profile = () => {
           <div className="profile-column">
             <div className="profile-image">
               <img
-                src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/rob.jpg"}
+                src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/default-pic.jpg"}
                 alt="User Profile"
               />
             </div>

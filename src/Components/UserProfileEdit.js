@@ -155,7 +155,7 @@ const UserProfileEdit = () => {
               }}>
 
               <img
-                src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/rob.jpg"}
+                src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/default-pic.jpg"}
                 alt="User Profile"
                 className="user-profile-image"
                 style={{
@@ -164,6 +164,7 @@ const UserProfileEdit = () => {
                   marginRight: '20px',
                   objectFit: 'cover', 
                   borderRadius: '50%',
+                  border: '1px solid black',
                 }}/>
 
               <div>

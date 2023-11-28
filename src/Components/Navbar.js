@@ -17,7 +17,7 @@ function UserProfileDropdown({ profileInfo, onClick }) {
     <div className="profile-dropdown">
       <div className="selected-option" onClick={toggleDropdown}>
         <img
-          src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/rob.jpg"}
+          src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/default-pic.jpg"}
           alt="User Profile"
           className="user-profile-image"
           style={{ objectFit: 'cover' }}
