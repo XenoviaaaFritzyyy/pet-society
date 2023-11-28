@@ -318,6 +318,7 @@ const UserProfileEdit = () => {
                 </Button>
                 </Link>
                 
+                <Link to="/userprofile" style={{ textDecoration: 'none'}}>
                 <Button
                 component="label"
                 color="primary"
@@ -336,11 +337,11 @@ const UserProfileEdit = () => {
                   whiteSpace: 'nowrap',
                   fontSize: 10,
                   marginTop: '50px',
-                  marginLeft: '570px', // Adjust the marginLeft as needed
-                }}
-              >
+                  marginLeft: '570px', 
+                }}>
                 Save Changes
               </Button>
+              </Link>
             </Box>
           </div>
 
