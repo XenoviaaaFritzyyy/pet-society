@@ -96,7 +96,7 @@ function Gallery() {
   
         if (response.ok) {
           // Filter out pets where is_deleted is true
-          const filteredPets = data.filter((gallery) => !gallery.deleted);
+          const filteredPets = data.filter((gallery) => !gallery.isDeleted);
 
           //const sortedPets = filteredPets.sort((a, b) => a.name.localeCompare(b.name));
           setGallerys(filteredPets);
@@ -112,7 +112,7 @@ function Gallery() {
   
     fetchGallery();
   }, []);
-
+  
   return (
     <>
       <Navbar />
@@ -165,10 +165,9 @@ function Gallery() {
       </div>
   
       <div className="gallery-container" style={{ display: 'block', flexWrap: "wrap" }}>
-        {gallerys.map(gallery => (
-          <GalleryCard galId={gallery.galID} name={gallery.name} 
-            description={gallery.description} image={gallery.photoPath} />
-        ))}
+      {gallerys.map(gallery => (
+        <GalleryCard key={gallery.galID} galID={gallery.galID} name={gallery.name} description={gallery.description} image={gallery.photoPath} />
+      ))}
       </div>
     </>
   );
