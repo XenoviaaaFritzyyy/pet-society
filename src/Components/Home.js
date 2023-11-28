@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Button, MenuItem, FormControl, Select, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import Navbar from './Navbar';
-import {Button, MenuItem, FormControl, Select } from '@mui/material';
 import '../Css/Home.css';
 import PetCard from "./PetCard";
 import { useAuth } from '../Components/AuthContext'; 
@@ -9,25 +9,29 @@ import { useAuth } from '../Components/AuthContext';
 function Home() {
   const { userID, setUserID } = useAuth();
   
-  const [colour, setColour] = React.useState('');
-  const [sex, setSex] = React.useState('');
-  const [size, setSize] = React.useState('');
-  const [pets, setPets] = React.useState([]);
+  const [colour, setColour] = useState('');
+  const [sex, setSex] = useState('');
+  const [size, setSize] = useState('');
+  const [pets, setPets] = useState([]);
+
+  const [openDialog, setOpenDialog] = useState(false);
+  const [triviaContent, setTriviaContent] = useState('');
+  const [triviaTitle, setTriviaTitle] = useState('');
+  const [triviaAuthor, setTriviaAuthor] = useState('');
+  const [triviaCategory, setTriviaCategory] = useState('');
+  const [loadingTrivia, setLoadingTrivia] = useState(true);
 
   useEffect(() => {
-    // Retrieve userID from localStorage when the component mounts
     const storedUserID = localStorage.getItem('userID');
     if (storedUserID) {
       setUserID(storedUserID);
     }
-  }, [setUserID]);
-
-  useEffect(() => {
+    
     const fetchPets = async () => {
       try {
         const response = await fetch("http://localhost:8080/pet/getAllPets");
         const data = await response.json();
-  
+
         if (response.ok) {
           console.log("userID: ", userID);
           // Filter out pets where is_deleted is true
@@ -45,9 +49,35 @@ function Home() {
     };
   
     fetchPets();
-  }, [userID]);
   
+    setOpenDialog(true);
+  }, [userID, setUserID]);
+  
+  useEffect(() => {
+    const fetchRandomTrivia = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/trivia/getRandomTriviaDetails');
+        const data = await response.json();
 
+        if (response.ok && data) {
+          setTriviaTitle(data.title);
+          setTriviaCategory(data.category);
+          setTriviaAuthor(data.author);
+          setTriviaContent(data.content);
+        } else {
+          console.error('Failed to fetch random trivia');
+        }
+      } catch (error) {
+        console.error('Error fetching random trivia:', error);
+      } finally {
+        setLoadingTrivia(false);
+      }
+    };
+
+    if (openDialog) {
+      fetchRandomTrivia();
+    }
+  }, [openDialog]);
 
   const handleColourChange = (event) => {
     setColour(event.target.value);
@@ -68,11 +98,13 @@ function Home() {
   };
   
   const handleSearch = () => {
-    // Add your search logic here using the selected values (colour, sex, size)
-    // For now, you can log the selected values to the console
     console.log("Selected Colour:", colour);
     console.log("Selected Sex:", sex);
     console.log("Selected Size:", size);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
   };
 
   return (
@@ -87,7 +119,6 @@ function Home() {
                 labelId="colour-label"
                 id="colour"
                 value={colour}
-                label="Colour"
                 onChange={handleColourChange}
                 sx={{ borderRadius: '15px' }}
               >
@@ -110,7 +141,6 @@ function Home() {
                 labelId="sex-label"
                 id="sex"
                 value={sex}
-                label="Sex"
                 onChange={handleSexChange}
                 sx={{ borderRadius: '15px' }}
               >
@@ -129,7 +159,6 @@ function Home() {
                 labelId="size-label"
                 id="size"
                 value={size}
-                label="Size"
                 onChange={handleSizeChange}
                 sx={{ borderRadius: '15px' }}>
                 <MenuItem value="">
@@ -179,11 +208,34 @@ function Home() {
           </Button>
         </div>
       </div>
-      <div className="content-container" style={{ display: 'flex', flexWrap:"wrap"}}>
+      <div className="content-container" style={{ display: 'flex', flexWrap:"wrap", textAlign: 'center'}}>
         {pets.map(pet=> (
             <PetCard petId={pet.petID} name={pet.name} image={pet.photoPath} />
         ))}
       </div> 
+
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>Did you know?</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {loadingTrivia ? (
+              <p>Loading trivia...</p>
+            ) : (
+              <>
+                Title: {triviaTitle}&emsp;
+                Category: {triviaCategory}&emsp; 
+                Author: {triviaAuthor}<br /><br />
+                {triviaContent}
+              </>
+            )}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }

@@ -32,6 +32,9 @@ function Admin() {
           <Link to="/requestform" className="requestform">
             Request Form
           </Link>
+          <Link to="/triviaform" className="triviaform">
+            Trivia Form
+          </Link>
         </div>
       </div>
     </>

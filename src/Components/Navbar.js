@@ -1,68 +1,99 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "./Button";
+import { useAuth } from '../Components/AuthContext';
 import '../Css/Navbar.css';
 
-function Navbar() {
-  const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
-  const navigate = useNavigate(); // Hook for programmatic navigation
+function UserProfileDropdown({ profileInfo, onClick }) {
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
+  const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
 
-  const UserProfileDropdown = () => {
-    const [isDropdownOpen, setDropdownOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('Settings');
-  
-    const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
-  
-    const changeOption = (option) => {
-      setSelectedOption(option);
-      toggleDropdown(); // Close the dropdown after an option is selected
-      handleOptionClick(option); // Navigate based on the selected option
-    };
+  const handleOptionClick = (option) => {
+    toggleDropdown(); // Close the dropdown after an option is selected
+    onClick(option); // Navigate based on the selected option
+  };
 
-    const handleOptionClick = (option) => {
-      switch (option) {
-        case 'Profile':
-          navigate('/userprofile'); // Adjust the path as needed
-          break;
-        case 'Request':
-          navigate('/request'); // Adjust the path as needed
-          break;
-        case 'Log out':
-          navigate('/'); // Navigate to the home page or wherever needed
-          break;
-        // Add more cases as needed
-        default:
-          break;
-      }
-    };
-  
-    return (
-      <div className="profile-dropdown">
+  return (
+    <div className="profile-dropdown">
       <div className="selected-option" onClick={toggleDropdown}>
         <img
-          src="/images/RobFinal.jpg"
+          src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/default-pic.jpg"}
           alt="User Profile"
           className="user-profile-image"
           style={{ objectFit: 'cover' }}
         />
       </div>
-        {isDropdownOpen && (
-          <div className="profile-dropdown-content">
-            <div onClick={() => changeOption('Profile')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Profile</div>
-            <div onClick={() => changeOption('Request')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Request</div>
-            <div onClick={() => changeOption('Log out')} style={{cursor: 'pointer'}}>Log out</div>
-            {/* Add more options as needed */}
-          </div>
-        )}
-      </div>
-    );
+      {isDropdownOpen && (
+        <div className="profile-dropdown-content">
+          <div onClick={() => handleOptionClick('Profile')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Profile</div>
+          <div onClick={() => handleOptionClick('Request')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Request</div>
+          <div onClick={() => handleOptionClick('Log out')} style={{ cursor: 'pointer' }}>Log out</div>
+          {/* Add more options as needed */}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Navbar() {
+  const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
+  const navigate = useNavigate(); // Hook for programmatic navigation
+  const { userID } = useAuth();
+  const [profileInfo, setProfileInfo] = useState({
+    fname: '',
+    lname: '',
+    email: '',
+    gender: '',
+    address: '',
+    contact: '',
+    photoPath: '',
+  });
+  const [loading, setLoading] = useState(true);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
+  const handleOptionClick = (option) => {
+    switch (option) {
+      case 'Profile':
+        navigate('/userprofile'); // Adjust the path as needed
+        break;
+      case 'Request':
+        navigate('/request'); // Adjust the path as needed
+        break;
+      case 'Log out':
+        navigate('/'); // Navigate to the home page or wherever needed
+        break;
+      // Add more cases as needed
+      default:
+        break;
+    }
   };
-  
+
   const showButton = () => setButton(window.innerWidth > 960);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/user/user/${userID}`);
+        if (response.ok) {
+          const data = await response.json();
+          setProfileInfo(data);
+        } else {
+          console.error('Failed to fetch user profile');
+        }
+      } catch (error) {
+        console.error('Error during user profile fetch:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (userID) {
+      fetchUserProfile();
+    }
+  }, [userID]);
 
   useEffect(() => {
     showButton();
@@ -89,7 +120,7 @@ function Navbar() {
               </li>
             ))}
           </ul>
-          <UserProfileDropdown />
+          <UserProfileDropdown profileInfo={profileInfo} onClick={handleOptionClick} />
         </div>
       </nav>
     </>

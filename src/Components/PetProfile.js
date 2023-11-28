@@ -64,7 +64,7 @@ function PetProfile() {
                 <br />
                 <p style={{color: '#27374D'}}>Size  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;{petInfo?.size || "N/A"}<br /> </p>
                 <br />
-                <p style={{color: '#27374D'}}>Vaccinated&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;{petInfo?.vaccinated ? "Yes" : "No"}<br /> </p>
+                <p style={{color: '#27374D'}}>Vaccinated&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;{petInfo?.vaccinated || "N/A"}<br /> </p>
                 <br />
                 <p style={{color: '#27374D'}}>Temperament &emsp;&emsp;&emsp;&emsp;{petInfo?.temperament || "N/A"}<br /> </p>
                 <br />

@@ -35,15 +35,13 @@
       if (storedUserID) {
         setUserID(storedUserID);
       }
-    }, [setUserID]);
-
-    useEffect(() => {
+    
       document.body.style.background = '#27374D';
-
+    
       return () => {
         document.body.style.background = '';
       };
-    }, [petId, userID]);
+    }, [setUserID, petId, userID]);
   
     const showHouseholdInfoSection = () => {
       setShowHouseholdInfo(true);
