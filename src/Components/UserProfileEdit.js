@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import AddPhotoIcon from '@mui/icons-material/AddPhotoAlternate';
 import { styled } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -10,6 +10,7 @@ import InputLabel from '@mui/material/InputLabel';
 import { useAuth } from '../Components/AuthContext';
 
 const UserProfileEdit = () => {
+  const navigate = useNavigate();
   const { userID, setUserID } = useAuth();
 
   // State for profile information
@@ -119,6 +120,7 @@ const UserProfileEdit = () => {
         console.error('Error during updating user profile:', error);
         alert('An error occurred during updating user profile. Please try again later.');
       }
+        navigate("/userprofile");
     } else {
       console.log('User profile update canceled');
     }
@@ -318,7 +320,7 @@ const UserProfileEdit = () => {
                 </Button>
                 </Link>
                 
-                <Link to="/userprofile" style={{ textDecoration: 'none'}}>
+                
                 <Button
                 component="label"
                 color="primary"
@@ -341,7 +343,6 @@ const UserProfileEdit = () => {
                 }}>
                 Save Changes
               </Button>
-              </Link>
             </Box>
           </div>
 

@@ -74,7 +74,7 @@ const GalleryCard = ({ galID, name, image, description }) => {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            petID: galID,
+                            galID: galID, // Update to galID
                             deleted: true, // Mark as deleted
                         }),
                     });
@@ -82,7 +82,9 @@ const GalleryCard = ({ galID, name, image, description }) => {
                     if (deleteResponse.ok) {
                         // Gallery "soft" deleted successfully
                         console.log("Gallery marked as deleted successfully");
-                        // You might want to redirect or update state here
+    
+                        // Update local state to remove the deleted gallery
+                        setGallerys(prevGallerys => prevGallerys.filter(gallery => gallery.galID !== galID));
                     } else {
                         console.error("Failed to mark Gallery as deleted:", deleteResponse.statusText);
                     }
@@ -98,6 +100,8 @@ const GalleryCard = ({ galID, name, image, description }) => {
             console.log("Gallery deletion canceled");
         }
     };
+    
+    
     
 
     return (

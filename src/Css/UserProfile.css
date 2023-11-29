@@ -23,6 +23,7 @@
 }
 
 .profile-image img {
+  object-fit: cover;
   width: 250px; /* Adjust as needed */
   height: 250px; /* Adjust as needed */
   border-radius: 50%;

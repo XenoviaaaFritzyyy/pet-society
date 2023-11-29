@@ -4,7 +4,7 @@ import GalleryCard from "./GalleryCard";
 import '../Css/Gallery.css';
 import { Card, CardContent } from '@mui/material';
 import AddPhotoIcon from '@mui/icons-material/AddPhotoAlternate';
-
+import { useAuth } from '../Components/AuthContext';
 
 function Gallery() {
   
@@ -112,15 +112,75 @@ function Gallery() {
   
     fetchGallery();
   }, []);
+
+  const { userID, setUserID } = useAuth();
+  const [profileInfo, setProfileInfo] = useState({
+    fname: '',
+    lname: '',
+    email: '',
+    gender: '',
+    address: '',
+    contact: '',
+  }); 
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/user/user/${userID}`);
+        if (response.ok) {
+          const data = await response.json();
+          setProfileInfo(data);
+        } else {
+          console.error('Failed to fetch user profile');
+        }
+      } catch (error) {
+        console.error('Error during user profile fetch:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (userID) {
+      fetchUserProfile();
+    }
+  }, [userID]);
+
+  useEffect(() => {
+    // Save userID to local storage when it changes
+    if (userID) {
+      localStorage.setItem('userID', userID);
+    }
+  }, [userID]);
+
+  useEffect(() => {
+    // Retrieve userID from local storage when the component mounts
+    const storedUserID = localStorage.getItem('userID');
+    if (storedUserID) {
+      // Set the userID from local storage
+      setUserID(storedUserID);
+    }
+  }, []);
   
   return (
     <>
       <Navbar />
       <div style={{ justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
         <form onSubmit={handleFormSubmit} id="gallery-profile-form" encType="multipart/form-data">
-          <Card sx={{ maxWidth: 750, margin: 'auto' }}>
-            <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px' }}>
-              <img src="/images/RobFinal.jpg" alt="User Profile" className="user-profile-image" style={{ width: '45px', height: '45px' }} />
+          <Card sx={{ maxWidth: 800, margin: 'auto', borderRadius: '10px', }}>
+            <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
+            <img 
+              src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/default-pic.jpg"}
+              alt="User Profile" 
+              className="user-profile-image" 
+              style={{
+                width: '55px',
+                height: '50px',
+                objectFit: 'cover',
+                borderRadius: '50%',
+              }}
+            />
+
               <input
                 type="text"
                 name="description"
@@ -168,6 +228,7 @@ function Gallery() {
       {gallerys.map(gallery => (
         <GalleryCard key={gallery.galID} galID={gallery.galID} name={gallery.name} description={gallery.description} image={gallery.photoPath} />
       ))}
+
       </div>
     </>
   );
