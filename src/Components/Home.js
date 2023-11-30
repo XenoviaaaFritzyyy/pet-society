@@ -230,14 +230,13 @@ function Home() {
       </div> 
 
       <Dialog open={openDialog} onClose={handleCloseDialog}>
-        <DialogTitle>Did you know?</DialogTitle>
+        <DialogTitle>Did you know? {triviaTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             {loadingTrivia ? (
               <p>Loading trivia...</p>
             ) : (
               <>
-                Title: {triviaTitle}&emsp;
                 Category: {triviaCategory}&emsp; 
                 Author: {triviaAuthor}<br /><br />
                 {triviaContent}

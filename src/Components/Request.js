@@ -48,7 +48,7 @@ function Request() {
           <thead>
             <tr>
               <th>User ID</th>
-              <th>Pet Name</th>
+                <th>Pet Name</th>
               <th>Message</th>
               <th>Status</th>
             </tr>
