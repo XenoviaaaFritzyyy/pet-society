@@ -98,10 +98,25 @@ function Home() {
   };
   
   const handleSearch = () => {
-    console.log("Selected Colour:", colour);
-    console.log("Selected Sex:", sex);
-    console.log("Selected Size:", size);
-  };
+  // Filter pets based on selected criteria
+  const filteredPets = pets.filter((pet) => {
+    // Check color
+    const colorMatch = colour === '' || pet.color === colour;
+
+    // Check sex
+    const sexMatch = sex === '' || pet.sex === sex;
+
+    // Check size
+    const sizeMatch = size === '' || pet.size === size;
+
+    // Return true if all criteria match
+    return colorMatch && sexMatch && sizeMatch;
+  });
+
+  // Update the pets state with the filtered pets
+  setPets(filteredPets);
+};
+
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
@@ -210,7 +225,7 @@ function Home() {
       </div>
       <div className="content-container" style={{ display: 'flex', flexWrap:"wrap", textAlign: 'center'}}>
         {pets.map(pet=> (
-            <PetCard petId={pet.petID} name={pet.name} image={pet.photoPath} />
+            <PetCard key={pet.petID}petId={pet.petID} name={pet.name} image={pet.photoPath} />
         ))}
       </div> 
 
