@@ -25,8 +25,6 @@
       rentHome: 'Rent',
       landlordContact: '',
       isDeleted: false,
-      fk_petID: petId,
-      fk_userID: userID,
     });
 
     useEffect(() => {
@@ -80,22 +78,25 @@
       }
 
       if (formData.rentHome === 'Rent' && (!formData.landlordContact || formData.landlordContact.length !== 11)) {
-        setError('Landlord\'s contact info should be 11 digits ex. 09362677352');
+        setError('Please provide landlord\'s info if your renting. format: 09362677352');
         return;
       }
     
       if (formData.rentHome === 'Own Home' && formData.landlordContact) {
-        setError('Landlord\'s contact info should be empty for if not renting');
+        setError('Landlord\'s contact info should be empty if not renting');
         return;
       }
 
       setError('');
     
       if (showConfirmation()) {
-        // Use the updated state in the API call
         const dataToSend = {
           ...formData,
+          fk_petID: petId,
+          fk_userID: userID,
         };
+        console.log('Data to send:', dataToSend);
+
     
         try {
           const response = await fetch('http://localhost:8080/application/insertApplication', {

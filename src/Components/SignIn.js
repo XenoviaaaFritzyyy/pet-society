@@ -48,7 +48,7 @@ function SignIn() {
       }
     } catch (error) {
       console.error("Error during login:", error);
-      setError("An error occurred during login. Please try again later.");
+      setError("Invalid email or password. Please try again.");
     }
   };
 
@@ -102,8 +102,8 @@ function SignIn() {
                   color="primary"
                 />
               }
-              label="Remember me"
-            />
+              label="Remember me"/>
+            <div className="error-message" style={{color: 'red', textAlign: 'center'}}>{error}</div>
             <div style={{ textDecoration: 'none', color: 'inherit' }}>
               <Button
                 type="submit"
@@ -116,8 +116,7 @@ function SignIn() {
                   backgroundColor: '#27374D',
                   color: 'white',
                   '&:hover': { backgroundColor: '#142132' },
-                }}
-              >
+                }}>
                 Sign In
               </Button>
             </div>

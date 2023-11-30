@@ -156,8 +156,7 @@ const UserProfileEdit = () => {
                 borderColor: '#cccccc',
               }}>
 
-              <img
-                src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/default-pic.jpg"}
+              <img src={selectedImage ? URL.createObjectURL(selectedImage) : (profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/default-pic.jpg")}
                 alt="User Profile"
                 className="user-profile-image"
                 style={{
