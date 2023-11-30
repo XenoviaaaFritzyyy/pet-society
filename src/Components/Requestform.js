@@ -178,7 +178,7 @@ function RequestForm() {
   </table>
 )}
 
-        {/* <h2 style={{ textAlign: 'center', margin: '30px 0 20px 0', color: '#27374D' }}>User Information</h2>
+        <h2 style={{ textAlign: 'center', margin: '30px 0 20px 0', color: '#27374D' }}>User Information</h2>
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -240,7 +240,7 @@ function RequestForm() {
               ))}
             </tbody>
           </table>
-        )} */}
+        )}
       </div>
     </>
   );
