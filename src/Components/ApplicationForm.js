@@ -1,5 +1,5 @@
   import React, { useState, useEffect } from 'react';
-  import { useParams, Navigate } from 'react-router-dom'; 
+  import { useParams, Navigate, Link } from 'react-router-dom'; 
   import { useAuth } from '../Components/AuthContext';
 
   import '../Css/ApplicationForm.css';
@@ -28,7 +28,6 @@
     });
 
     useEffect(() => {
-      // Retrieve userID from localStorage when the component mounts
       const storedUserID = localStorage.getItem('userID');
       if (storedUserID) {
         setUserID(storedUserID);
@@ -99,13 +98,13 @@
 
     
         try {
-          const response = await fetch('http://localhost:8080/application/insertApplication', {
+          const response = await fetch(`http://localhost:8080/application/insertApplication?petId=${petId}&userId=${userID}`, {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(dataToSend),
-          });
+        });
     
           if (response.ok) {
             setSubmit(true);
@@ -129,10 +128,15 @@
     }
 
     return (
-      <div className="application-container">
+      <>
+        <Link to="/Home">
+          <img src="/images/logo.png" alt="Logo" style={{ height: '160px', marginLeft: '50px', backgroundColor: '#27374D' }} />
+        </Link>    
+
+        <div className="application-container">
         <header>Application Form</header>
 
-        <form action="#">
+        <form onSubmit={handleSubmit}>
           <div className={`form personal-info ${!showHouseholdInfo ? '' : 'hidden'}`}>
             <div className="details-personal">
               <span className="title">Personal Information</span>
@@ -225,7 +229,7 @@
                   <span className="btnBack">Back</span>
                 </button>
 
-                <button type="submit" className="nextBtn" onClick={handleSubmit}>
+                <button type="submit" className="nextBtn">
                   <span className="btnSubmit">Submit</span>
                 </button>
               </div>
@@ -234,6 +238,7 @@
           <div className="error-message">{error}</div>
         </form>
       </div>
+      </>
     );
   };
 
