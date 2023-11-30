@@ -309,9 +309,8 @@ function PetProfileForm() {
                         fontSize: '14px',
                         fontWeight: '400',
                         cursor: 'pointer',
-                        }}
-                    >
-                        Choose a photo
+                        }}>
+                        {formData.photo_path ? formData.photo_path.name : 'Choose a photo'}
                     </label>
                     </div>
 
