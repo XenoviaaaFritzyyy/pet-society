@@ -143,7 +143,7 @@ const UserProfileEdit = () => {
   return (
     <div className="box-container">
       <form action="#" id="pet-profile-form" encType="multipart/form-data">
-        <div className="admin-form pet-profile" style={{ maxWidth: '900px', margin: '0 auto' }}>
+        <div className="admin-form pet-profile" style={{ maxWidth: '580px', margin: '0 auto' }}>
           <div className="details-pet">
             <span className="title">My Profile</span>
             <Box
@@ -208,33 +208,67 @@ const UserProfileEdit = () => {
                 marginTop: '20px'
               }}>
 
-<TextField
-  id="first-name"
-  label="First Name"
-  variant="standard"
-  value={profileInfo.fname}
-  onChange={(e) => setProfileInfo({ ...profileInfo, fname: e.target.value })}
-  sx={{ width: '250px' }} // Adjust the width as needed
-/>
+              <TextField
+                id="first-name"
+                label="First Name"
+                variant="standard"
+                value={profileInfo.fname}
+                onChange={(e) => setProfileInfo({ ...profileInfo, fname: e.target.value })}
+                sx={{ width: '250px' }} // Adjust the width as needed
+              />
 
-<TextField
-  id="last-name"
-  label="Last Name"
-  variant="standard"
-  sx={{ marginLeft: '20px', width: '250px' }} // Adjust the width as needed
-  value={profileInfo.lname}
-  onChange={(e) => setProfileInfo({ ...profileInfo, lname: e.target.value })}
-/>
+              <TextField
+                id="last-name"
+                label="Last Name"
+                variant="standard"
+                sx={{ marginLeft: '20px', width: '250px' }} // Adjust the width as needed
+                value={profileInfo.lname}
+                onChange={(e) => setProfileInfo({ ...profileInfo, lname: e.target.value })}
+              />
+            </Box>
+          </div>
 
-<TextField
-  id="email"
-  label="Email"
-  variant="standard"
-  sx={{ marginLeft: '20px', width: '300px' }} // Adjust the width as needed
-  value={profileInfo.email}
-  onChange={(e) => setProfileInfo({ ...profileInfo, email: e.target.value })}
-/>
+          <div className="details-pet" style={{ paddingTop: '5px' }} >
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row', // Align items horizontally
+                alignItems: 'center', // Center items vertically
+                borderRadius: '38px',
+                backgroundColor: '#ffffff',
+                borderColor: '#cccccc',
+                marginTop: '20px'
+              }}>
+              <TextField
+                id="email"
+                label="Email"
+                variant="standard"
+                sx={{ width: '520px' }} // Adjust the width as needed
+                value={profileInfo.email}
+                onChange={(e) => setProfileInfo({ ...profileInfo, email: e.target.value })}
+              />  
+            </Box>
+          </div>
 
+          <div className="details-pet" style={{ paddingTop: '5px' }} >
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row', // Align items horizontally
+                alignItems: 'center', // Center items vertically
+                borderRadius: '38px',
+                backgroundColor: '#ffffff',
+                borderColor: '#cccccc',
+                marginTop: '20px'
+              }}>
+              <TextField
+                id="address"
+                label="Address"
+                variant="standard"
+                sx={{ width: '520px'}}
+                value={profileInfo.address}
+                onChange={(e) => setProfileInfo({ ...profileInfo, address: e.target.value })}
+                />
             </Box>
           </div>
 
@@ -251,19 +285,10 @@ const UserProfileEdit = () => {
               }}>
 
               <TextField
-                id="address"
-                label="Address"
-                variant="standard"
-                sx={{ width: '380px'}}
-                value={profileInfo.address}
-                onChange={(e) => setProfileInfo({ ...profileInfo, address: e.target.value })}
-                />
-
-              <TextField
                 id="contact-number"
                 label="Contact Number"
                 variant="standard"
-                sx={{ marginLeft: '20px', width: '250px' }} 
+                sx={{ width: '250px' }} 
                 value={profileInfo.contact}
                 onChange={(e) => setProfileInfo({ ...profileInfo, contact: e.target.value })}
               />
@@ -338,7 +363,7 @@ const UserProfileEdit = () => {
                   whiteSpace: 'nowrap',
                   fontSize: 10,
                   marginTop: '50px',
-                  marginLeft: '570px', 
+                  marginLeft: '240px', 
                 }}>
                 Save Changes
               </Button>
