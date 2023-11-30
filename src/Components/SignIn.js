@@ -7,12 +7,12 @@ import '../Css/signin.css';
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [error, setError] = useState(""); // State to store error messages
+  const [error, setError] = useState("");
 
   const { userID, setUserID } = useAuth();
+  const [userRole, setUserRole] = useState('');
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -29,41 +29,36 @@ function SignIn() {
       if (response.ok) {
         const responseData = await response.json();
 
-        // Check if the 'userId' property is present in the response data
-        if ('userId' in responseData) {
+        if ('userId' in responseData && 'userRole' in responseData) {
           const userID = responseData.userId;
-          setUserID(userID); // Set the userID in the state
+          const userRole = responseData.userRole;
+
+          setUserID(userID);
+          setUserRole(userRole);
           setIsLoggedIn(true);
-          localStorage.setItem('userID', userID); // Save userID to localStorage
-          console.log("Login successful");
-          console.log("User ID:", userID);
+
+          localStorage.setItem('userID', userID); 
         } else {
-          // Handle the case where 'userId' is not present in the response
-          console.error("User ID not found in the response");
+          console.error("User ID or User Role not found in the response");
         }
       } else {
-        // Handle login error
         const data = await response.json();
-        setError("Invalid email or password"); // Set an appropriate error message
+        setError("Invalid email or password"); 
         console.error("Login failed");
       }
     } catch (error) {
       console.error("Error during login:", error);
-      setError("An error occurred during login. Please try again later.");
+      setError("Invalid email or password. Please try again.");
     }
   };
 
   if (isLoggedIn) {
-    // Check if the logged-in user is the admin
-    if (email === 'admin@gmail.com') {
-      // Use Navigate to navigate to Admin component if the user is the admin
+    if (userRole === 'admin') {
       return <Navigate to="/admin" />;
     } else if (userID !== null) {
-      // Use Navigate to navigate to Home component for regular users only if userID is not null
       return <Navigate to="/home" />;
     }
   }
-
 
   return (
     <Grid container justifyContent="center" alignItems="center" minHeight="75vh">
@@ -107,8 +102,8 @@ function SignIn() {
                   color="primary"
                 />
               }
-              label="Remember me"
-            />
+              label="Remember me"/>
+            <div className="error-message" style={{color: 'red', textAlign: 'center'}}>{error}</div>
             <div style={{ textDecoration: 'none', color: 'inherit' }}>
               <Button
                 type="submit"
@@ -121,8 +116,7 @@ function SignIn() {
                   backgroundColor: '#27374D',
                   color: 'white',
                   '&:hover': { backgroundColor: '#142132' },
-                }}
-              >
+                }}>
                 Sign In
               </Button>
             </div>
