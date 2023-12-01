@@ -17,7 +17,7 @@ function RequestForm() {
       if (response.ok) {
         const data = await response.json();
         setApplications(data);
-        setFilteredApplications(data); // Initially set filtered applications to all applications
+        setFilteredApplications(data);
       } else {
         console.error('Failed to fetch applications');
       }
@@ -112,10 +112,11 @@ function RequestForm() {
         </div>
 
         <div style={{textAlign:'center', marginTop: '20px'}}>
-          <button onClick={() => handleStatusFilter('')}>All</button>
-          <button onClick={() => handleStatusFilter('Pending')}>Pending</button>
-          <button onClick={() => handleStatusFilter('Accepted')}>Accept</button>
-          <button onClick={() => handleStatusFilter('Rejected')}>Reject</button>
+          <button onClick={() => handleStatusFilter('')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>All</button>
+          <button onClick={() => handleStatusFilter('Pending')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Pending</button>
+          <button onClick={() => handleStatusFilter('Accepted')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Accepted</button>
+          <button onClick={() => handleStatusFilter('Rejected')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Rejected</button>
+          <button onClick={() => handleStatusFilter('Cancelled')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Cancelled</button>
         </div>
 
 
@@ -141,7 +142,6 @@ function RequestForm() {
         <th>User ID</th>
         <th>Pet ID</th>
         <th>Status</th>
-        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -165,9 +165,9 @@ function RequestForm() {
           <td>{application.pet.petID}</td>
           <td>{application.status}</td>
           <td>
-            <button onClick={() => handleReject(application.applicationID)}>Reject</button>
-            <button onClick={() => handleAccept(application.applicationID)}>Accept</button>
+            <button onClick={() => handleReject(application.applicationID)} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Reject</button>
           </td>
+          <td><button onClick={() => handleAccept(application.applicationID)} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px'  }}>Accept</button></td>
         </tr>
             );
               } else {

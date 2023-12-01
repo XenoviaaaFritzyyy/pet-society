@@ -9,7 +9,7 @@ th {
 
 td {
     border: 1px solid #ddd; 
-    padding: 5px 10px;
+    padding: 20px;
     text-align: center;
     background:white; 
     border-radius: 5px; 
@@ -28,5 +28,4 @@ td {
     margin: 5px;
     border-radius: 5px;
 }
-
 
