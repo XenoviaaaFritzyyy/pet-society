@@ -14,11 +14,11 @@ import PetProfile from './Components/PetProfile';
 import PetProfileForm from './Components/PetProfileForm';
 import DictionaryForm from './Components/DictionaryForm';
 import Request from './Components/Request';
-import './Css/App.css';
 import RequestForm from './Components/Requestform';
 import ThankYou from './Components/ThankYou';
 import TriviaForm from './Components/TriviaForm';
-
+import Forum from './Components/Forum';
+import './Css/App.css';
 
 function Welcome() {
   const containerStyle = {
@@ -89,6 +89,8 @@ function App() {
 
         <Route path="/request" element={<Request />} />
         <Route path="/thankyou" element={<ThankYou />} />
+
+        <Route path="/forum" element={<Forum />} />
 
       </Routes>
     </Router>
