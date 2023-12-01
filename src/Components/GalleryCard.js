@@ -8,6 +8,7 @@ import {
     Typography,
     Button,} from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useAuth } from '../Components/AuthContext';
 
 const GalleryCard = ({ galID, name, image, description }) => {
     const [isFavoriteClicked, setIsFavoriteClicked] = useState(false);
@@ -19,7 +20,6 @@ const GalleryCard = ({ galID, name, image, description }) => {
         isDeleted: false
         });
         
-
     const handleFavoriteClick = () => {
         setIsFavoriteClicked(!isFavoriteClicked);
     };
@@ -100,9 +100,51 @@ const GalleryCard = ({ galID, name, image, description }) => {
             console.log("Gallery deletion canceled");
         }
     };
-    
-    
-    
+
+    const { userID, setUserID } = useAuth();
+    const [profileInfo, setProfileInfo] = useState({
+        fname: '',
+        lname: '',
+    });
+
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+    const fetchUserProfile = async () => {
+        try {
+            const response = await fetch(`http://localhost:8080/user/user/${userID}`);
+        if (response.ok) {
+            const data = await response.json();
+            setProfileInfo(data);
+        } else {
+            console.error('Failed to fetch user profile');
+        }
+        } catch (error) {
+            console.error('Error during user profile fetch:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (userID) {
+        fetchUserProfile();
+    }
+    }, [userID]);
+
+    useEffect(() => {
+        // Save userID to local storage when it changes
+    if (userID) {
+        localStorage.setItem('userID', userID);
+    }
+    }, [userID]);
+
+    useEffect(() => {
+    // Retrieve userID from local storage when the component mounts
+    const storedUserID = localStorage.getItem('userID');
+    if (storedUserID) {
+      // Set the userID from local storage
+        setUserID(storedUserID);
+    }
+    }, []);
 
     return (
         <Card 
@@ -119,47 +161,53 @@ const GalleryCard = ({ galID, name, image, description }) => {
                 image={image ? `http://localhost:8080/gallery/${image}` : "/images/logo.png"}
             />
             <CardContent>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Typography variant="h5" color="text.primary" sx={{ fontWeight: 'bold' }}>
-                        {name}
-                        </Typography>
-                        <IconButton
-                            aria-label="add to favorites"
-                            onClick={handleFavoriteClick}
-                            style={{ color: isFavoriteClicked ? 'red' : 'inherit' }}
-                        >
-                            <FavoriteIcon />
-                        </IconButton>
-                    </div>
-                <Typography variant="body2" color="text.secondary">
-                {description}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : 
+                        "/images/default-pic.jpg"}
+                        alt="User Profile"
+                        className="user-profile-image"
+                        style={{
+                        width: '45px',
+                        height: '40px',
+                        objectFit: 'cover',
+                        borderRadius: '50%',
+                        }} />
+                <div style={{ marginLeft: '10px' }}>
+                    <Typography variant="h5" color="text.primary" sx={{ fontWeight: 'bold' }}>
+                        {profileInfo.fname} {profileInfo.lname}
+                    </Typography>
+                </div>
+                <div style={{ marginLeft: 'auto' }}>
+                    <IconButton
+                        aria-label="add to favorites"
+                        onClick={handleFavoriteClick}
+                        style={{ color: isFavoriteClicked ? 'red' : 'inherit' }} >
+                    <FavoriteIcon />
+                    </IconButton>
+                </div>
+                </div>
+                <Typography variant="body2" color="text.secondary" style={{ marginLeft: '55px' }}>
+                    {description}
                 </Typography>
                 <Button
                     color="primary"
                     variant="contained"
                     sx={{
-                        backgroundColor: 'white',
-                        color: '#27374D',
-                        '&:hover': {
-                        backgroundColor: '#142132',
-                        color: 'white',
-                        },
-                        borderRadius: '8px',
-                        border: '.1px solid #27374D',
-                        marginLeft: 'auto',
-                        display: 'flex',
-                        width: 100,
-                        whiteSpace: 'nowrap',
-                        fontSize: 10,
+                    backgroundColor: 'white', color: '#27374D',
+                    '&:hover': { backgroundColor: '#142132', color: 'white', },
+                    borderRadius: '8px', border: '.1px solid #27374D',
+                    marginLeft: 'auto', display: 'flex',
+                    width: 100, whiteSpace: 'nowrap',
+                    fontSize: 10,
                     }}
-                    onClick={handleDeleteGallery}>
-                    Delete
-                    </Button>
+                    onClick={handleDeleteGallery} >
+                        Delete
+                </Button>
             </CardContent>
-        <CardActions disableSpacing>
-            {/* Additional actions if needed */}
-        </CardActions>
+                <CardActions disableSpacing>
+                    {/* Additional actions if needed */}
+                </CardActions>
         </Card>
-        );
+    );
 };
 export default GalleryCard;
