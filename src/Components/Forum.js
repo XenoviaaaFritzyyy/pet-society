@@ -15,6 +15,12 @@ function Forum() {
 
     const { userID, setUserID } = useAuth();
     const [profileInfo, setProfileInfo] = useState({
+        fname: '',
+        lname: '',
+        email: '',
+        gender: '',
+        address: '',
+        contact: '',
     });
 
     const [loading, setLoading] = useState(true);
@@ -70,7 +76,7 @@ function Forum() {
             alignItems: 'center',
             justifyContent: 'center' }}>
         <h1 className="postLabel" style={{ color: '#000000', textAlign: 'center' }}>
-            Your Forum Post
+            Welcome to Forums
         </h1>
         <textarea
             id="postni"
@@ -119,26 +125,19 @@ function Forum() {
         </Container>
 
         <Paper elevation={3} style={{ textAlign: 'left', padding: '10px', 
-                        width: '80%', margin: '10px auto', position: 'relative' }}>
-            <img 
-                src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` 
-                    : "/images/default-pic.jpg"}
-                alt="User Profile" 
-                className="user-profile-image" 
-                style={{
-                width: '55px',
-                height: '50px',
-                objectFit: 'cover',
+            width: '80%', margin: '10px auto', position: 'relative' }}>
+            <img src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` 
+                : "/images/default-pic.jpg"}
+                alt="User Profile" className="user-profile-image" 
+                style={{ width: '55px', height: '50px', objectFit: 'cover',
                 borderRadius: '50%',
-                }}
-            />
-                <h3 style={{ color: '#27374D', fontWeight: 'bold' }}>Sample Username</h3>
+                }} />
+                <h3 style={{ color: '#27374D', fontWeight: 'bold' }}>{profileInfo.fname} {profileInfo.lname}</h3>
                 <h5 style={{ fontStyle: 'italic', color: '#27374D' }}>Sample forum</h5>
             <Button
                 variant="contained"
                 color="error"
-                style={{ fontSize: '11px', 
-                backgroundColor: '#27374D',
+                style={{ fontSize: '11px', backgroundColor: '#27374D',
                 color: 'white',
                 '&:hover': {
                 backgroundColor: '#142132',
@@ -152,27 +151,23 @@ function Forum() {
                     <Typography>Replies</Typography>
                 </AccordionSummary>
             <AccordionDetails style={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', 
-                            flexDirection: 'column', alignItems: 'flex-start' }}>
+                    flexDirection: 'column', alignItems: 'flex-start' }}>
                 <>
                 <TextField
                     label="Your Reply"
                     variant="outlined"
                     fullWidth
                     multiline
-                    rows={2}
+                    rows={1}
                     InputLabelProps={{ style: { color: 'white' } }}
                     inputProps={{ style: { color: 'white' } }} />
                     <Box mt={2} display="flex" justifyContent="center">
                         <Button variant="contained"
-                            style={{ display: 'flex', 
-                                    backgroundColor: 'white',
-                                    color: '#27374D',
-                                    '&:hover': {
-                                    backgroundColor: '#142132',
-                                    color: 'white' 
-                                    },justifyContent: 'flex-start', 
-                                    alignItems: 'center' }}>
-                                        Reply
+                            style={{ display: 'flex', backgroundColor: 'white',
+                                    color: '#27374D', '&:hover': { backgroundColor: '#142132', color: 'white' 
+                                    },
+                                    justifyContent: 'flex-start', alignItems: 'center' }}>
+                                    Reply
                         </Button>
                     </Box>
                 </>
