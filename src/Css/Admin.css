@@ -10,15 +10,15 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
+    width: 60%;
     border-radius: 6px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Add this line to create space between items */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; 
 }
 
 .petprofile,
@@ -27,11 +27,9 @@
 .triviaform,
 .dashboardUser,
 .adminNotif {
-    flex: 0 0 48%;
     background-color: #526D82;
     border-radius: 5px;
     padding: 50px;
-    margin: 5px;
     color: white;
     font-weight: bold;
     cursor: pointer;
@@ -47,6 +45,6 @@
 .dashboardUser:hover,
 .adminNotif:hover {
     background: grey;
-    color: DDE6ED;
+    color: #DDE6ED;
     transition: background-color 0.3s ease-in-out;
 }

@@ -246,7 +246,7 @@ function Home() {
             ) : (
               <>
                 Category: {triviaCategory}&emsp; 
-                Author: {triviaAuthor}<br /><br />
+                Author: {triviaAuthor || 'None'}<br /><br />
                 {triviaContent}
               </>
             )}

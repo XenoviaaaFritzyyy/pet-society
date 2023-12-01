@@ -29,14 +29,14 @@ function Admin() {
           <Link to="/dictionaryform" className="dictionary">
             Dictionary Form
           </Link>
-          <Link to="/requestform" className="requestform">
-            Request Form
-          </Link>
           <Link to="/triviaform" className="triviaform">
             Trivia Form
           </Link>
+          <Link to="/requestform" className="requestform">
+            Request Dashboard
+          </Link>
           <Link to="/dashboardUser" className="dashboardUser">
-            Dashboard user
+            User Dashboard 
           </Link>
           <Link to="/adminNotification" className="adminNotif">
             Notification
