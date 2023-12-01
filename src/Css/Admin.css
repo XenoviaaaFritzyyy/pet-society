@@ -24,7 +24,9 @@
 .petprofile,
 .dictionary,
 .requestform,
-.triviaform {
+.triviaform,
+.dashboardUser,
+.adminNotif {
     flex: 0 0 48%;
     background-color: #526D82;
     border-radius: 5px;
@@ -41,7 +43,9 @@
 .petprofile:hover,
 .dictionary:hover,
 .requestform:hover,
-.triviaform:hover {
+.triviaform:hover,
+.dashboardUser:hover,
+.adminNotif:hover {
     background: grey;
     color: DDE6ED;
     transition: background-color 0.3s ease-in-out;

@@ -10,9 +10,10 @@ function Home() {
   const { userID, setUserID } = useAuth();
   
   const [colour, setColour] = useState('');
-  const [sex, setSex] = useState('');
+  const [gender, setGender] = useState('');
   const [size, setSize] = useState('');
   const [pets, setPets] = useState([]);
+  const [originalPets, setOriginalPets] = useState([]);
 
   const [openDialog, setOpenDialog] = useState(false);
   const [triviaContent, setTriviaContent] = useState('');
@@ -38,6 +39,7 @@ function Home() {
           const filteredPets = data.filter((pet) => !pet.deleted);
           //const sortedPets = filteredPets.sort((a, b) => a.name.localeCompare(b.name));
           setPets(filteredPets);
+          setOriginalPets(filteredPets); // Save the original list
         } else {
           console.error("Failed to fetch pets:", data);
         }
@@ -84,38 +86,44 @@ function Home() {
   };
 
   const handleSexChange = (event) => {
-    setSex(event.target.value);
+    setGender(event.target.value);
   };
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
   };
 
-  const handleReset = () => {
+  const handleSearch = () => {
+    // Filter originalPets based on selected criteria
+    const filteredPets = originalPets.filter((pet) => {
+      const colorMatch = colour === '' || pet.color === colour;
+      const sexMatch = gender === '' || pet.gender === gender;
+      const sizeMatch = size === '' || pet.size === size;
+  
+      return colorMatch && sexMatch && sizeMatch;
+    });
+  
+    // Update the pets state with the filtered pets
+    setPets(filteredPets);
+  
+    // Reset the form values after search
     setColour('');
-    setSex('');
+    setGender('');
     setSize('');
   };
   
-  const handleSearch = () => {
-  // Filter pets based on selected criteria
-  const filteredPets = pets.filter((pet) => {
-    // Check color
-    const colorMatch = colour === '' || pet.color === colour;
-
-    // Check sex
-    const sexMatch = sex === '' || pet.sex === sex;
-
-    // Check size
-    const sizeMatch = size === '' || pet.size === size;
-
-    // Return true if all criteria match
-    return colorMatch && sexMatch && sizeMatch;
-  });
-
-  // Update the pets state with the filtered pets
-  setPets(filteredPets);
-};
+  // ...
+  
+  const handleReset = () => {
+    // Reset the form values
+    setColour('');
+    setGender('');
+    setSize('');
+  
+    // Reset the pets state to the original list
+    setPets(originalPets);
+  };
+  
 
 
   const handleCloseDialog = () => {
@@ -140,11 +148,11 @@ function Home() {
                 <MenuItem style={{ display: 'none' }} value="">
                   <em>None</em>
                 </MenuItem> 
-                <MenuItem value={10}>Black</MenuItem>
-                <MenuItem value={20}>Blonde</MenuItem>
-                <MenuItem value={30}>Brown / Tan</MenuItem>
-                <MenuItem value={40}>White</MenuItem>
-                <MenuItem value={50}>Others</MenuItem>
+                <MenuItem value="Black">Black</MenuItem>
+                <MenuItem value="Blonde">Blonde</MenuItem>
+                <MenuItem value="Brown/Tan">Brown / Tan</MenuItem>
+                <MenuItem value="White">White</MenuItem>
+                <MenuItem value="Others">Others</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -155,15 +163,15 @@ function Home() {
               <Select
                 labelId="sex-label"
                 id="sex"
-                value={sex}
+                value={gender}
                 onChange={handleSexChange}
                 sx={{ borderRadius: '15px' }}
               >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Male</MenuItem>
-                <MenuItem value={20}>Female</MenuItem>
+                <MenuItem value="Male">Male</MenuItem>
+                <MenuItem value="Female">Female</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -179,9 +187,9 @@ function Home() {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Small</MenuItem>
-                <MenuItem value={20}>Medium</MenuItem>
-                <MenuItem value={30}>Large</MenuItem>
+                <MenuItem value="Small">Small</MenuItem>
+                <MenuItem value="Medium">Medium</MenuItem>
+                <MenuItem value="Large">Large</MenuItem>
               </Select>
             </FormControl>
           </div>

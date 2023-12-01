@@ -35,6 +35,13 @@ function Admin() {
           <Link to="/triviaform" className="triviaform">
             Trivia Form
           </Link>
+          <Link to="/dashboardUser" className="dashboardUser">
+            Dashboard user
+          </Link>
+          <Link to="/adminNotification" className="adminNotif">
+            Notification
+          </Link>
+          
         </div>
       </div>
     </>

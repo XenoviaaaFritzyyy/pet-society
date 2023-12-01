@@ -1,0 +1,45 @@
+/* Assuming you have a class or ID for the container, let's call it "user-notifications" */
+.user-notifications {
+    margin: 20px auto;
+    width: 70%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-notifications h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .user-notifications ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .user-notifications li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Style timestamp separately if needed */
+  .user-notifications li span.timestamp {
+    font-size: 0.8rem;
+    color: #666;
+  }
+  
+  /* Optional: Add hover effect for better interactivity */
+  .user-notifications li:hover {
+    background-color: #e0e0e0;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
