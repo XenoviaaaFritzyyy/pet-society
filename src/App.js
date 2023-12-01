@@ -15,10 +15,11 @@ import PetProfileForm from './Components/PetProfileForm';
 import DictionaryForm from './Components/DictionaryForm';
 import Request from './Components/Request';
 import Dashboard from './Components/Dashboard';
-import './Css/App.css';
 import RequestForm from './Components/Requestform';
 import ThankYou from './Components/ThankYou';
 import TriviaForm from './Components/TriviaForm';
+import Forum from './Components/Forum';
+import './Css/App.css';
 import UserNotifications from './Components/Notification';
 import AdminNotification from './Components/AdminNotification';
 import { useState } from 'react';
@@ -98,6 +99,8 @@ function App() {
 
         <Route path="/request" element={<Request />} />
         <Route path="/thankyou" element={<ThankYou />} />
+
+        <Route path="/forum" element={<Forum />} />
 
       </Routes>
     </Router>
