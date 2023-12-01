@@ -28,6 +28,7 @@ function UserProfileDropdown({ profileInfo, onClick }) {
           <div onClick={() => handleOptionClick('Profile')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Profile</div>
           <div onClick={() => handleOptionClick('Forum')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Forum</div>
           <div onClick={() => handleOptionClick('Request')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Request</div>
+          <div onClick={() => handleOptionClick('Notification')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Notification</div>
           <div onClick={() => handleOptionClick('Log out')} style={{ cursor: 'pointer' }}>Log out</div>
           {/* Add more options as needed */}
         </div>
@@ -60,6 +61,9 @@ function Navbar() {
       case 'Profile':
         navigate('/userprofile'); // Adjust the path as needed
         break;
+      case 'Notification':
+        navigate(`/notification/${userID}`); // Adjust the path as needed
+        break;  
       case 'Forum':
         navigate('/forum'); // Adjust the path as needed
         break;
