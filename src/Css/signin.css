@@ -27,3 +27,8 @@
     display: inline;
     font-family: 'Josefin Sans', sans-serif;
    }
+
+   .eye-icon {
+    width: 30px;
+    height: 30px;
+  }
