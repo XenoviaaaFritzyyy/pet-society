@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Checkbox, TextField, FormControlLabel, Grid, Box } from '@mui/material';
+import { Button, Checkbox, TextField, FormControlLabel, Grid, Box, IconButton, InputAdornment } from '@mui/material';
 import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../Components/AuthContext';
 import '../Css/signin.css';
@@ -10,6 +10,8 @@ function SignIn() {
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState("");
+  
+  const [showPassword, setShowPassword] = useState(false);
 
   const { userID, setUserID } = useAuth();
   const [userRole, setUserRole] = useState('');
@@ -60,6 +62,10 @@ function SignIn() {
     }
   }
 
+  const handleTogglePassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
   return (
     <Grid container justifyContent="center" alignItems="center" minHeight="75vh">
       <Grid item xs={12} sm={8} md={6} lg={4}>
@@ -89,10 +95,27 @@ function SignIn() {
               label="Password"
               required
               value={password}
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               onChange={(e) => setPassword(e.target.value)}
               fullWidth
               margin="normal"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleTogglePassword}
+                      className="eye-icon" // Apply the eye-icon class
+                      sx={{ color: '#27374D', fontSize: '1.5rem', '&:hover': { color: '#142132' } }}
+                    >
+                      {showPassword ? (
+                        <img src="/images/eyeclose.png" alt="eye-close" className="eye-icon" />
+                      ) : (
+                        <img src="/images/eyeopen.png" alt="eye-open" className="eye-icon" />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
             <FormControlLabel
               control={
