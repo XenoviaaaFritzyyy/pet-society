@@ -1,34 +1,53 @@
-import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import { Button } from '@mui/material';
+import { Button } from "@mui/material";
 import '../Css/PetProfile.css';
-
 
 function PetProfile() {
   const { petId } = useParams();
   const [imageExists, setImageExists] = useState(false);
   const [petInfo, setPetInfo] = useState(null);
-  
-
+  const navigate = useNavigate();
+  const petContainerRef = useRef(null);
 
   useEffect(() => {
     const fetchPetInfo = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/pet/info/${petId}`); 
+        const response = await fetch(`http://localhost:8080/pet/info/${petId}`);
         const data = await response.json();
-        console.log(data)
+        console.log(data);
         setPetInfo(data);
-        console.log(petInfo)
+        console.log(petInfo);
       } catch (error) {
         console.error("Error fetching pet details:", error);
       }
     };
-    fetchPetInfo()
+    fetchPetInfo();
   }, [petId]);
 
-  if (!petInfo)
-  return  <div>loading</div> 
+  // Event handler for touch events on the document
+  const handleDocumentTouch = (e) => {
+    // Check if the clicked element is outside the pet container
+    if (petContainerRef.current && !petContainerRef.current.contains(e.target)) {
+      // Reset the state when the screen is touched
+      setPetInfo(null);
+      // Navigate back to the home page
+      navigate('/home');
+    }
+  };
+
+  useEffect(() => {
+    // Add an event listener for touch events on the document
+    document.addEventListener("click", handleDocumentTouch);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("click", handleDocumentTouch);
+    };
+  }, [navigate]); // Include navigate in the dependency array
+
+  if (!petInfo) return <div>loading</div>;
 
   const handleAdopt = () => {
     // Add logic to handle adoption, such as making an API call to update the adoption status
@@ -39,14 +58,14 @@ function PetProfile() {
     <>
       <div className='body'>
         <Navbar />
-        <div className='Pethome-container'>
+        <div className='Pethome-container' ref={petContainerRef}>
           <div className='Petcontent-container'>
             <div className='picture'>
               {/* Render the image with a fallback to a default image */}
               <img
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 src={petInfo.photoPath ? `http://localhost:8080/pet/${petInfo.photoPath}` : '/images/RobFinal.jpg'}
-                alt={`Pet ${petId}`}/>  
+                alt={`Pet ${petId}`} />
             </div>
           </div>
 
@@ -68,23 +87,23 @@ function PetProfile() {
                 <br />
                 <p style={{color: '#27374D'}}>Temperament &emsp;&emsp;&emsp;&emsp;{petInfo?.temperament || "N/A"}<br /> </p>
                 <br />
-              <Link to={`/petprofile/${petId}/application`} style={{ textDecoration: 'none' }}>
-              <Button
-                type="button"
-                variant="contained"
-                color="primary"
-                onClick={handleAdopt} 
-                sx={{
-                  width: '250px',
-                  borderRadius: '10px',
-                  marginTop: '5px',
-                  height: '45px',
-                  backgroundColor: '#27374D',
-                  color: 'white',
-                  '&:hover': { backgroundColor: '#142132' },
-                }}>
-                Adopt now
-              </Button>
+                <Link to={`/petprofile/${petId}/application`} style={{ textDecoration: 'none' }}>
+                <Button
+                  type="button"
+                  variant="contained"
+                  color="primary"
+                  onClick={handleAdopt}
+                  sx={{
+                    width: '250px',
+                    borderRadius: '10px',
+                    marginTop: '5px',
+                    height: '45px',
+                    backgroundColor: '#27374D',
+                    color: 'white',
+                    '&:hover': { backgroundColor: '#142132' },
+                  }}>
+                  Adopt now
+                </Button>
               </Link>
             </div>
           </div>

@@ -32,7 +32,8 @@ body {
 }
 
 .welcome-text p {
-  margin: 20px 25px;
+  margin-left: 20px;
+  padding: 20px;
   text-align: justify;
   color: #526D82;
 }
@@ -65,24 +66,27 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-left: 12px;
 }
 
 .member1, .member2, .member3, .member4 {
   background-color: #ffffff;
-  padding: 25px;
-  margin-right: 5px;
+  padding: 24px;
+  margin-right: 10px;
   margin-top: 20px;
   border-radius: 10px;
 }
 
 .card {
-  width: 250px; /* Adjust card width as needed */
-  text-align: center; /* Center card content */
+  width: 248px;
+  text-align: center;
 }
 
 .card-img-top {
   max-width: 100%;
-  height: auto;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .card-body {
