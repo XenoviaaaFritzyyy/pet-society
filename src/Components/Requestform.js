@@ -64,7 +64,7 @@ function RequestForm() {
           return updatedApplications;
         });
 
-        alert(`Application ${status.toLowerCase()}ed successfully!`);
+        alert(`Application request ${status.toLowerCase()} successfully!`);
       } else {
         console.error(`Failed to ${status.toLowerCase()} application`);
       }
@@ -121,64 +121,6 @@ function RequestForm() {
 
 
         <h2 style={{ textAlign: 'center', margin: '30px 0 20px 0', color: '#27374D' }}>All Applications</h2>
-{loading ? (
-  <p>Loading...</p>
-) : (
-  <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: "5px", fontSize: '12px' }}>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Address</th>
-        <th>City</th>
-        <th>State</th>
-        <th>no. children</th>
-        <th>no. adults</th>
-        <th>Type of Household</th>
-        <th>Type of Residence</th>
-        <th>Rent or Own Home?</th>
-        <th>Landlord Contact</th>
-        <th>User ID</th>
-        <th>Pet ID</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-    {applications.map(application => {
-              if (!selectedStatus || application.status === selectedStatus) {
-                return (
-        <tr key={application.applicationID}>
-          <td>{application.applicationID}</td>
-          <td>{application.fname}</td>
-          <td>{application.lname}</td>
-          <td>{application.address}</td>
-          <td>{application.city}</td>
-          <td>{application.state}</td>
-          <td>{application.noChildren}</td>
-          <td>{application.noAdults}</td>
-          <td>{application.desHousehold}</td>
-          <td>{application.typeResidence}</td>
-          <td>{application.rentHome}</td>
-          <td>{application.landlordContact}</td>
-          <td>{application.user.userID}</td>
-          <td>{application.pet.petID}</td>
-          <td>{application.status}</td>
-          <td>
-            <button onClick={() => handleReject(application.applicationID)} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Reject</button>
-          </td>
-          <td><button onClick={() => handleAccept(application.applicationID)} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px'  }}>Accept</button></td>
-        </tr>
-            );
-              } else {
-            return null; 
-          }
-        })}
-    </tbody>
-  </table>
-)}
-
-        <h2 style={{ textAlign: 'center', margin: '30px 0 20px 0', color: '#27374D' }}>User Information</h2>
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -189,55 +131,49 @@ function RequestForm() {
                 <th>Firstname</th>
                 <th>Lastname</th>
                 <th>Address</th>
-                <th>Email</th>
+                <th>City</th>
+                <th>State</th>
+                <th>no. children</th>
+                <th>no. adults</th>
+                <th>Type of Household</th>
+                <th>Type of Residence</th>
+                <th>Rent or Own Home?</th>
+                <th>Landlord Contact</th>
+                <th>User ID</th>
+                <th>Pet ID</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {applications.map(application => (
+            {applications.map(application => {
+                      if (!selectedStatus || application.status === selectedStatus) {
+                        return (
                 <tr key={application.applicationID}>
+                  <td>{application.applicationID}</td>
+                  <td>{application.fname}</td>
+                  <td>{application.lname}</td>
+                  <td>{application.address}</td>
+                  <td>{application.city}</td>
+                  <td>{application.state}</td>
+                  <td>{application.noChildren}</td>
+                  <td>{application.noAdults}</td>
+                  <td>{application.desHousehold}</td>
+                  <td>{application.typeResidence}</td>
+                  <td>{application.rentHome}</td>
+                  <td>{application.landlordContact}</td>
                   <td>{application.user.userID}</td>
-                  <td>{application.user.fname}</td>
-                  <td>{application.user.lname}</td>
-                  <td>{application.user.address}</td>
-                  <td>{application.user.email}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-
-        <h2 style={{ textAlign: 'center', margin: '30px 0 20px 0', color: '#27374D' }}>Pet Information</h2>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: "5px", fontSize: '12px' }}>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Gender</th>
-                <th>Color</th>
-                <th>Size</th>
-                <th>Age</th>
-                <th>Temperament</th>
-                <th>vaccinated</th>
-              </tr>
-            </thead>
-            <tbody>
-              {applications.map(application => (
-                <tr key={application.applicationID}>
                   <td>{application.pet.petID}</td>
-                  <td>{application.pet.name}</td>
-                  <td>{application.pet.description}</td>
-                  <td>{application.pet.gender}</td>
-                  <td>{application.pet.color}</td>
-                  <td>{application.pet.size}</td>
-                  <td>{application.pet.age}</td>
-                  <td>{application.pet.temperament}</td>
-                  <td>{application.pet.vaccinated}</td>
+                  <td>{application.status}</td>
+                  <td>
+                    <button onClick={() => handleReject(application.applicationID)} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Reject</button>
+                  </td>
+                  <td><button onClick={() => handleAccept(application.applicationID)} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px'  }}>Accept</button></td>
                 </tr>
-              ))}
+                    );
+                      } else {
+                    return null; 
+                  }
+                })}
             </tbody>
           </table>
         )}
