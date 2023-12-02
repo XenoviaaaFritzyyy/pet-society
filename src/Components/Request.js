@@ -82,7 +82,7 @@ function Request() {
       <Navbar />
       <div style={{ textAlign: 'center', marginTop: '25px' }}>
         <h2 style={{ color: '#27374D' }}>Application Requests for userID: {userID}</h2>
-
+  
         <div style={{ margin: '20px' }}>
           <button onClick={() => setFilter('All')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px'}}>All</button>
           <button onClick={() => setFilter('Pending')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Pending</button>
@@ -90,7 +90,7 @@ function Request() {
           <button onClick={() => setFilter('Rejected')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Rejected</button>
           <button onClick={() => setFilter('Cancelled')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Cancelled</button>
         </div>
-
+  
         {filteredApplications.length > 0 ? (
           <table style={{ margin: '20px auto' }}>
             <thead>
@@ -114,7 +114,11 @@ function Request() {
             </tbody>
           </table>
         ) : (
-          <p style={{ padding: '50px' }}>No application requests available for the current user.</p>
+          <p style={{ padding: '50px' }}>
+            {applications.length === 0
+              ? 'Loading applications...'
+              : 'No application requests available for the current user.'}
+          </p>
         )}
       </div>
     </>
