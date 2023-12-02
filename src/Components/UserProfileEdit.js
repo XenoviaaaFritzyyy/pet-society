@@ -188,7 +188,7 @@ const UserProfileEdit = () => {
                     fontSize: 10,
                     marginTop: '10px',
                   }}>
-                  Change Photo
+                  Upload Photo
                   <VisuallyHiddenInput type="file" onChange={handleImageChange} />
                 </Button>
               </div>
