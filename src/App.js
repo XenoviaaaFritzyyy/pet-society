@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
@@ -19,10 +20,11 @@ import RequestForm from './Components/Requestform';
 import ThankYou from './Components/ThankYou';
 import TriviaForm from './Components/TriviaForm';
 import Forum from './Components/Forum';
-import './Css/App.css';
 import UserNotifications from './Components/Notification';
 import AdminNotification from './Components/AdminNotification';
-import { useState } from 'react';
+import Contact from './Components/Contact';
+
+import './Css/App.css';
 
 
 function Welcome() {
@@ -96,7 +98,7 @@ function App() {
         <Route path="/adminNotification" element={<AdminNotification/>} />
         
 
-
+        <Route path="/contactus" element={<Contact />} />
         <Route path="/request" element={<Request />} />
         <Route path="/thankyou" element={<ThankYou />} />
 

@@ -228,7 +228,6 @@ function Gallery() {
       {gallerys.map(gallery => (
         <GalleryCard key={gallery.galID} galID={gallery.galID} name={gallery.name} description={gallery.description} image={gallery.photoPath} />
       ))}
-
       </div>
     </>
   );

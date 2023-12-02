@@ -50,7 +50,7 @@ function RequestForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ status, message }),
+        body: JSON.stringify({ status, message, isDeleted: false }),
       });
 
       if (response.ok) {

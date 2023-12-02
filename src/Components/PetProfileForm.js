@@ -281,7 +281,7 @@ const handleUpdatePetProfile = async () => {
             <span className="title">Pet Profile</span>
 
             <div className="fields">
-              <div className="input-field front">
+              <div className="input-field">
                 <label>PetID*</label>
                 <input
                   type="number"
@@ -297,7 +297,23 @@ const handleUpdatePetProfile = async () => {
                 <span className="btnFind">Find</span>
               </button>
 
-              <div className="input-field-file">
+              <button type="button" className="dictionary-Find">
+                <span className="btnFind">Reset</span>
+              </button>
+
+              <div className="input-field">
+                <label>Name*</label>
+                <input
+                  type="text"
+                  id="pet-name"
+                  name="name"
+                  placeholder="Enter Name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                />
+              </div>
+
+              <div className="input-field-file input-field front">
                     <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#27374D' }}>
                         Upload Pet Photo*
                     </label>
@@ -326,18 +342,6 @@ const handleUpdatePetProfile = async () => {
                         {formData.photo_path ? formData.photo_path.name : 'Choose a photo'}
                     </label>
                     </div>
-
-              <div className="input-field">
-                <label>Name*</label>
-                <input
-                  type="text"
-                  id="pet-name"
-                  name="name"
-                  placeholder="Enter Name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                />
-              </div>
 
               <div className="input-field description">
                 <label>Description*</label>

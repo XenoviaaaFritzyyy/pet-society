@@ -11,7 +11,7 @@ function Aboutus() {
         <Navbar />
         <div className="about-us-container">
           <div className="aboutus">
-            <img src="/images/dogbg1.jpg" alt="About Us" className="about-us-image" />
+            <img src="/images/dogbg1.jpg" alt="About Us" className="about-us-image" style={{borderRadius: '10px'}} />
               <div className="welcome-text">
                 <h1>Know More About Us</h1>
                   <p>
@@ -49,7 +49,6 @@ function Aboutus() {
             <h1>The Team</h1>
 
             <div className="team-members">
-              {/* Add your team members' profile cards */}
               <div className="member1">
                 <div className="card">
                   <img src="/images/Fritz.jpg" alt="Team Member 1" className="card-img-top" />
@@ -72,7 +71,7 @@ function Aboutus() {
 
               <div className="member3">
                 <div className="card">
-                  <img src="/images/Rob2.jpg" alt="Team Member 3" className="card-img-top" />
+                  <img src="/images/RobFinal.jpg" alt="Team Member 3" className="card-img-top"s />
                   <div className="card-body">
                     <div className="member-name">Rob Borinaga</div>
                     <p className="card-text">"I knew exactly what to do. But in a much more real sense, I had no idea what to do"</p>
@@ -82,7 +81,7 @@ function Aboutus() {
 
               <div className="member4">
                 <div className="card">
-                  <img src="/images/Hazelyn.jpg" alt="Team Member 4" className="card-img-top" />
+                  <img src="/images/090-.jpg" alt="Team Member 4" className="card-img-top" />
                   <div className="card-body">
                     <div className="member-name">Hazelyn Balingcasag</div>
                     <p className="card-text">"If I don't have to do something, I won't, but if I have to, I'll do it quickly."</p>
