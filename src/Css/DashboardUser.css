@@ -9,21 +9,58 @@
     margin: 5px;
     border-radius: 5px;
 }
-.User-table2 {
+.admin-image{
     display: flex;
+    padding-right: 10px ;
+}
+.admin-profile-image {
+    align-items: center;
+    width: 40px; /* Adjust the size as needed */
+    height: 40px;
+    
+    
+  }
+.User-table2 {
+    display: block;
     background-color: white;
-    width: 98%;
-    margin: 15px auto; /* Auto margin left and right will center the element horizontally */
-    padding: 10px; /* Adjust padding as needed */
+    width: 365px;
+    margin: 0px auto; /* Auto margin left and right will center the element horizontally */
+    padding: 20px; /* Adjust padding as needed */
     border: 0px solid #ddd; /* Add a border */
     border-radius: 8px; /* Optional: Add border-radius for rounded corners */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
   }
-  
+  .User-table3 {
+    display: flex;
+    /* background-color: white; */
+    width: 98%;
+    margin: 0px auto; /* Auto margin left and right will center the element horizontally */
+    padding: 0px; /* Adjust padding as needed */
+    border: 0px solid #ddd; /* Add a border */
+    border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); Optional: Add a subtle box shadow */
+  }
+
+  .bottom-div{
+    display:  flex;
+  }
+  .chart{
+    background-color: white;
+    width: 40%;
+    height: 390px;
+    margin-top: 20px ;
+    margin-right: 20px; /* Adjust margin as needed */
+    padding: 20px; /* Adjust padding as needed */
+    border: 0px solid #ddd; /* Add a border */
+    border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
+  }
 .User-table {
     background-color: white;
     width: 60%;
-    margin: 20px ; /* Adjust margin as needed */
+    height: 390px;
+    margin-left: 20px ;
+    margin-top: 20px ; /* Adjust margin as needed */
     padding: 20px; /* Adjust padding as needed */
     border: 0px solid #ddd; /* Add a border */
     border-radius: 8px; /* Optional: Add border-radius for rounded corners */

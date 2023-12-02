@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import '../Css/Form.css';
+import { useNavigate } from 'react-router-dom';
 
 
 const AdminNotification = () => {
+  const navigate = useNavigate();
   const [userId, setUserId] = useState('');
   const [message, setMessage] = useState('');
 
   const handleReset = () => {
     setUserId('');
     setMessage('');
+  };
+
+  const handleBack = () => {
+    navigate('/admin');
   };
 
   const sendNotification = async () => {
@@ -41,7 +47,7 @@ const AdminNotification = () => {
     <form action="#" id="dictionary-form">
       <div className="admin-form pet-profile">
         <div className="details-pet">
-          <span className="title">Dictionary Entry</span>
+          <span className="title">Notification</span>
 
           <div className="fields">
             <div className="input-field">
@@ -67,10 +73,14 @@ const AdminNotification = () => {
                 </div>
           </div>
 
-          <div className="buttons">
-            <button style={{ marginRight: '440px' }} onClick={sendNotification}>
+          <div className="buttons" >
+            
+            <button style={{ marginRight: '250px' }} onClick={sendNotification}>
               Send Notification
             </button>
+            <button style={{ marginLeft: '100x' }} type="button" className="backBtn" onClick={handleBack}>
+                <span className="btnBack">Back</span>
+              </button>
           </div>
         </div>
       </div>

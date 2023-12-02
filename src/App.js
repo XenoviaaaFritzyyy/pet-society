@@ -66,7 +66,6 @@ function Welcome() {
 }
 
 function App() {
-  const [userId, setUserId] = useState();
   return (
     <Router>
       <Routes>
