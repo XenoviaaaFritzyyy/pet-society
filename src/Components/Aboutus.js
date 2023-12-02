@@ -51,7 +51,7 @@ function Aboutus() {
             <div className="team-members">
               <div className="member1">
                 <div className="card">
-                  <img src="/images/Fritz.jpg" alt="Team Member 1" className="card-img-top" />
+                  <img src="/images/abrea (2).png" alt="Team Member 1" className="card-img-top" />
                   <div className="card-body">
                     <div className="member-name">Fritz Abrea</div>
                     <p className="card-text">“In reality, the least interesting answer is usually the correct one.”</p>
@@ -61,7 +61,7 @@ function Aboutus() {
 
               <div className="member2">
                 <div className="card">
-                  <img src="/images/Rox.jpg" alt="Team Member 2" className="card-img-top" />
+                  <img src="/images/alcordo1.png" alt="Team Member 2" className="card-img-top" />
                   <div className="card-body">
                     <div className="member-name">Roxanne Alcordo</div>
                     <p className="card-text">"Live, Laugh, and Love"</p>
@@ -71,7 +71,7 @@ function Aboutus() {
 
               <div className="member3">
                 <div className="card">
-                  <img src="/images/RobFinal.jpg" alt="Team Member 3" className="card-img-top"s />
+                  <img src="/images/rob.png" alt="Team Member 3" className="card-img-top"s />
                   <div className="card-body">
                     <div className="member-name">Rob Borinaga</div>
                     <p className="card-text">"I knew exactly what to do. But in a much more real sense, I had no idea what to do"</p>
@@ -81,7 +81,7 @@ function Aboutus() {
 
               <div className="member4">
                 <div className="card">
-                  <img src="/images/090-.jpg" alt="Team Member 4" className="card-img-top" />
+                  <img src="/images/balingcasag.png" alt="Team Member 4" className="card-img-top" />
                   <div className="card-body">
                     <div className="member-name">Hazelyn Balingcasag</div>
                     <p className="card-text">"If I don't have to do something, I won't, but if I have to, I'll do it quickly."</p>
