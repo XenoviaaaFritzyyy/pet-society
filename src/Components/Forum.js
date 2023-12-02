@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Accordion, 
-    AccordionDetails, 
-    AccordionSummary, 
-    Box, 
-    Button, 
-    Container, 
-    Paper, 
-    TextField, 
-    Typography, } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Paper, TextField, Typography, } from '@mui/material';
 import Navbar from './Navbar';
 import { useAuth } from '../Components/AuthContext';
 import { formatDistanceToNow } from 'date-fns';
@@ -90,16 +82,14 @@ function Forum() {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center' }}>
-        <h1 className="postLabel" style={{ color: '#000000', textAlign: 'center' }}>
-            Welcome to Forums
-        </h1>
+
         <textarea
             id="postni"
             className="postTextArea"
             rows={2}
             style={{
             background: '#27374D',
-            fontSize: '16px',
+            fontSize: '18px',
             padding: '10px',
             width: '100%',
             borderRadius: '8px',
@@ -108,7 +98,7 @@ function Forum() {
             textAlign: 'center',
             color: '#DDE6ED'
             }}
-            placeholder="Something on your mind?"
+            placeholder="What's happening?"
         />
             <div className="postButton" style={{ display: 'flex', justifyContent: 'center' }}>
                 <Button
@@ -139,27 +129,41 @@ function Forum() {
             </div>
         </Container>
 
-        <Paper elevation={3} style={{ textAlign: 'left', padding: '10px', 
-            width: '80%', margin: '10px auto', position: 'relative' }}>
-            <img src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` 
-                : "/images/default-pic.jpg"}
-                alt="User Profile" className="user-profile-image" 
-                style={{ width: '55px', height: '50px', objectFit: 'cover',
-                borderRadius: '50%',
-                }} />
-                <h3 style={{ color: '#27374D', fontWeight: 'bold' }}>{profileInfo.fname} {profileInfo.lname}</h3>
-                <span className="time"> · {formatDateTime(profileInfo.date)}</span>
-                <h5 style={{ fontStyle: 'italic', color: '#27374D' }}>Sample forum</h5>
+        <Paper elevation={3} style={{ textAlign: 'left', padding: '10px', width: '80%', margin: '10px auto', position: 'relative' }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img
+                    src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/default-pic.jpg"}
+                    alt="User Profile"
+                    className="user-profile-image"
+                    style={{
+                        width: '55px',
+                        height: '50px',
+                        objectFit: 'cover',
+                        borderRadius: '50%',
+                        marginRight: '10px', // Add margin to separate image and text
+                    }}
+                />
+                <div>
+                    <h3 style={{ color: '#27374D', fontWeight: 'bold', margin: 0 }}>{profileInfo.fname} {profileInfo.lname}</h3>
+                    <span className="time"> · {formatDateTime(profileInfo.date)}</span>
+                    <h5 style={{ fontStyle: 'italic', color: '#27374D' }}>Sample forum</h5>
+                </div>
+            </div>
             <Button
                 variant="contained"
                 color="error"
-                style={{ fontSize: '11px', backgroundColor: '#27374D',
-                color: 'white',
-                '&:hover': {
-                backgroundColor: '#142132',
-                color: 'white' 
-                }, 
-                position: 'absolute', top: 12, right: 8 }} >
+                style={{
+                    fontSize: '11px',
+                    backgroundColor: '#27374D',
+                    color: 'white',
+                    '&:hover': {
+                        backgroundColor: '#142132',
+                        color: 'white'
+                    },
+                    position: 'absolute',
+                    top: 12,
+                    right: 8
+                }} >
                 Delete
             </Button>
             <Accordion style={{ background: '#27374D', color: '#FFFFFF' }}>
@@ -170,14 +174,14 @@ function Forum() {
                     flexDirection: 'column', alignItems: 'flex-start' }}>
                 <>
                 <TextField
-                    label="Your Reply"
+                    placeholder="Post your Reply..."
                     variant="outlined"
                     fullWidth
                     multiline
                     rows={1}
                     InputLabelProps={{ style: { color: 'white' } }}
                     inputProps={{ style: { color: 'white' } }} />
-                    <Box mt={2} display="flex" justifyContent="center">
+                    <Box mt={2} display="flex" justifyContent="right">
                         <Button variant="contained"
                             style={{ display: 'flex', backgroundColor: 'white',
                                     color: '#27374D', '&:hover': { backgroundColor: '#142132', color: 'white' 
@@ -190,6 +194,12 @@ function Forum() {
                 <>
                     <Paper style={{ margin: '5px', padding: '10px',
                             textAlign: 'left',  background: 'white' }} elevation={1}>
+
+                        <h2 style={{ color: '#001858', fontWeight: 'bold' }}>
+                            {profileInfo.fname} {profileInfo.lname}</h2>
+                        <span className="time"> · {formatDateTime(profileInfo.date)}</span>
+                        <h5 style={{ fontStyle: 'italic', color: '#001858' }}>Sample reply</h5>
+
                         <Button
                             variant="contained"
                             color="error"
@@ -203,10 +213,6 @@ function Forum() {
                                 }} >
                             Delete Reply
                         </Button>
-                        <h2 style={{ color: '#001858', fontWeight: 'bold' }}>
-                            {profileInfo.fname} {profileInfo.lname}</h2>
-                        <span className="time"> · {formatDateTime(profileInfo.date)}</span>
-                        <h5 style={{ fontStyle: 'italic', color: '#001858' }}>Sample reply</h5>
                     </Paper>
                 </>
                 <>No Replies Yet</>
