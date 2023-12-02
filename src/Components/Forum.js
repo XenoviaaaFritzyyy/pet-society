@@ -10,6 +10,21 @@ import { Accordion,
     Typography, } from '@mui/material';
 import Navbar from './Navbar';
 import { useAuth } from '../Components/AuthContext';
+import { formatDistanceToNow } from 'date-fns';
+
+// Helper function to adjust the time to your local time with a fixed offset
+function formatDateTime(dateString) {
+    const date = new Date(dateString);
+    if (isNaN(date)) {
+        return "Invalid Date";
+    }
+
+    // Add a fixed time offset of 15 hours (15 * 60 minutes, 60 seconds, 1000 milliseconds)
+    date.setTime(date.getTime() + 15 * 60 * 60 * 1000);
+
+    // Format the adjusted date
+    return formatDistanceToNow(date, { addSuffix: true });
+}
 
 function Forum() {
 
@@ -133,6 +148,7 @@ function Forum() {
                 borderRadius: '50%',
                 }} />
                 <h3 style={{ color: '#27374D', fontWeight: 'bold' }}>{profileInfo.fname} {profileInfo.lname}</h3>
+                <span className="time"> · {formatDateTime(profileInfo.date)}</span>
                 <h5 style={{ fontStyle: 'italic', color: '#27374D' }}>Sample forum</h5>
             <Button
                 variant="contained"
@@ -187,7 +203,9 @@ function Forum() {
                                 }} >
                             Delete Reply
                         </Button>
-                        <h2 style={{ color: '#001858', fontWeight: 'bold' }}>Sample username</h2>
+                        <h2 style={{ color: '#001858', fontWeight: 'bold' }}>
+                            {profileInfo.fname} {profileInfo.lname}</h2>
+                        <span className="time"> · {formatDateTime(profileInfo.date)}</span>
                         <h5 style={{ fontStyle: 'italic', color: '#001858' }}>Sample reply</h5>
                     </Paper>
                 </>
