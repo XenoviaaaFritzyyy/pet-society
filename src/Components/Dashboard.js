@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import '../Css/DashboardUser.css';
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 function Dashboard() {
   const { userID } = useAuth();
@@ -398,6 +400,30 @@ function Dashboard() {
     }
   };
 
+  const handleExportPDF = async () => {
+    const element = document.getElementById("dashboard-content");
+  
+    if (!element) {
+      console.error("Dashboard content not found");
+      return;
+    }
+  
+    const canvas = await html2canvas(element);
+    const imgData = canvas.toDataURL("image/png");
+  
+    const pdf = new jsPDF({
+      orientation: "landscape", 
+      format: "a4",
+    });
+  
+    const imgWidth = 290; 
+    const padding = 10; 
+    const imgHeight = (canvas.height * imgWidth) / canvas.width + padding;
+  
+    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+    pdf.save("dashboard.pdf");
+  };
+
   
 
 
@@ -406,6 +432,10 @@ function Dashboard() {
   return (
     <>
       <div>
+
+      <button onClick={handleExportPDF}>
+        Export to PDF
+      </button>
         <Link to="/admin" style={{ textDecoration: "none" }}>
           <button
             style={{
@@ -443,6 +473,8 @@ function Dashboard() {
         </button>
 
         </div>
+
+        <div id="dashboard-content">
 
         <h2
           style={{
@@ -567,6 +599,7 @@ function Dashboard() {
           </div>
           </div>
         )}
+      </div>
       </div>
     </>
   );
