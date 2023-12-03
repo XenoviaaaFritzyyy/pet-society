@@ -5,7 +5,7 @@ import { useAuth } from '../Components/AuthContext';
 function Request() {
   const [applications, setApplications] = useState([]);
   const { userID, setUserID } = useAuth();
-  const [filter, setFilter] = useState('All'); // Default filter
+  const [filter, setFilter] = useState('Pending');
 
   const fetchApplications = async () => {
     try {
