@@ -9,7 +9,7 @@ function RequestForm() {
   const [applications, setApplications] = useState([]);
   const [filteredApplications, setFilteredApplications] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedStatus, setSelectedStatus] = useState(''); // Default: no filter
+  const [selectedStatus, setSelectedStatus] = useState('Pending');
 
   const fetchApplications = async () => {
     try {
@@ -105,13 +105,7 @@ function RequestForm() {
           </button>
         </Link>
 
-        <div className="request-status" style={{ marginTop: '20px' }}>
-          <label style={{ marginLeft: '650px' }}>USER ID: </label>
-          <input type="number" id="lname" name="lname" style={{ marginRight: '5px', marginBottom: '10px', padding: '5px', borderRadius: '5px', width: '60px' }} />
-          <button style={{ borderRadius: '5px', padding: '3px' }}>search</button>
-        </div>
-
-        <div style={{textAlign:'center', marginTop: '20px'}}>
+        <div style={{textAlign:'center', marginTop: '50px'}}>
           <button onClick={() => handleStatusFilter('')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>All</button>
           <button onClick={() => handleStatusFilter('Pending')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Pending</button>
           <button onClick={() => handleStatusFilter('Accepted')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Accepted</button>
