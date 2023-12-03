@@ -33,10 +33,10 @@ function Admin() {
             Trivia Form
           </Link>
           <Link to="/requestform" className="requestform">
-            Request Dashboard
+            Application Request
           </Link>
           <Link to="/dashboardUser" className="dashboardUser">
-            User Dashboard 
+            Dashboard 
           </Link>
           <Link to="/adminNotification" className="adminNotif">
             Notification
