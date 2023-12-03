@@ -64,7 +64,7 @@ function Aboutus() {
                   <img src="/images/alcordo1.png" alt="Team Member 2" className="card-img-top" />
                   <div className="card-body">
                     <div className="member-name">Roxanne Alcordo</div>
-                    <p className="card-text">"Live, Laugh, and Love"</p>
+                    <p className="card-text">"My favorite Optimus Prime quote is, 'I am going to turn into a truck now.'"</p>
                   </div>
                 </div>
               </div>
