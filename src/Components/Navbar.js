@@ -9,8 +9,8 @@ function UserProfileDropdown({ profileInfo, onClick }) {
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
 
   const handleOptionClick = (option) => {
-    toggleDropdown(); // Close the dropdown after an option is selected
-    onClick(option); // Navigate based on the selected option
+    toggleDropdown(); 
+    onClick(option); 
   };
 
   return (
@@ -31,7 +31,6 @@ function UserProfileDropdown({ profileInfo, onClick }) {
           <div onClick={() => handleOptionClick('Notification')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Notification</div>
           <div onClick={() => handleOptionClick('Request')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Request</div>
           <div onClick={() => handleOptionClick('Log out')} style={{ cursor: 'pointer' }}>Log out</div>
-          {/* Add more options as needed */}
         </div>
       )}
     </div>
@@ -41,7 +40,7 @@ function UserProfileDropdown({ profileInfo, onClick }) {
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-  const navigate = useNavigate(); // Hook for programmatic navigation
+  const navigate = useNavigate(); 
   const { userID } = useAuth();
   const [profileInfo, setProfileInfo] = useState({
     fname: '',
@@ -60,24 +59,22 @@ function Navbar() {
   const handleOptionClick = (option) => {
     switch (option) {
       case 'Profile':
-        navigate('/userprofile'); // Adjust the path as needed
+        navigate('/userprofile'); 
         break;
       case 'Notification':
-        navigate(`/notification/${userID}`); // Adjust the path as needed
+        navigate(`/notification/${userID}`); 
         break;  
       case 'Forum':
-        navigate('/forum'); // Adjust the path as needed
+        navigate('/forum'); 
         break;
       case 'ContactUs':
-        navigate('/contactus'); // Adjust the path as needed
-        break;  
+        navigate('/contactus'); 
       case 'Request':
-        navigate('/request'); // Adjust the path as needed
+        navigate('/request'); 
         break;
       case 'Log out':
-        navigate('/'); // Navigate to the home page or wherever needed
+        navigate('/'); 
         break;
-      // Add more cases as needed
       default:
         break;
     }

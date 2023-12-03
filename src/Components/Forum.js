@@ -4,17 +4,16 @@ import Navbar from './Navbar';
 import { useAuth } from '../Components/AuthContext';
 import { formatDistanceToNow } from 'date-fns';
 
-// Helper function to adjust the time to your local time with a fixed offset
+
 function formatDateTime(dateString) {
     const date = new Date(dateString);
     if (isNaN(date)) {
         return "Invalid Date";
     }
 
-    // Add a fixed time offset of 15 hours (15 * 60 minutes, 60 seconds, 1000 milliseconds)
+
     date.setTime(date.getTime() + 15 * 60 * 60 * 1000);
 
-    // Format the adjusted date
     return formatDistanceToNow(date, { addSuffix: true });
 }
 
@@ -54,17 +53,14 @@ function Forum() {
     }, [userID]);
 
     useEffect(() => {
-        // Save userID to local storage when it changes
     if (userID) {
         localStorage.setItem('userID', userID);
     }
     }, [userID]);
 
     useEffect(() => {
-    // Retrieve userID from local storage when the component mounts
     const storedUserID = localStorage.getItem('userID');
     if (storedUserID) {
-      // Set the userID from local storage
         setUserID(storedUserID);
     }
     }, []);
@@ -140,7 +136,7 @@ function Forum() {
                         height: '50px',
                         objectFit: 'cover',
                         borderRadius: '50%',
-                        marginRight: '10px', // Add margin to separate image and text
+                        marginRight: '10px', 
                     }}
                 />
                 <div>

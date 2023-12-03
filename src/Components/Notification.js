@@ -10,9 +10,9 @@ const UserNotifications = () => {
     const fetchNotifications = async () => {
         console.log('userId:', userId);
       try {
-        console.log('Current userId:', userId); // Log userId here
+        console.log('Current userId:', userId);
 
-        // Check if userId is defined before making the request
+    
         if (!userId) {
           console.error('User ID is undefined');
           return;

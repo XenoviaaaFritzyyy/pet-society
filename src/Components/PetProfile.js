@@ -26,31 +26,26 @@ function PetProfile() {
     fetchPetInfo();
   }, [petId]);
 
-  // Event handler for touch events on the document
+ 
   const handleDocumentTouch = (e) => {
-    // Check if the clicked element is outside the pet container
     if (petContainerRef.current && !petContainerRef.current.contains(e.target)) {
-      // Reset the state when the screen is touched
       setPetInfo(null);
-      // Navigate back to the home page
       navigate('/home');
     }
   };
 
   useEffect(() => {
-    // Add an event listener for touch events on the document
     document.addEventListener("click", handleDocumentTouch);
 
-    // Remove the event listener when the component unmounts
     return () => {
       document.removeEventListener("click", handleDocumentTouch);
     };
-  }, [navigate]); // Include navigate in the dependency array
+  }, [navigate]); 
 
   if (!petInfo) return <div>loading</div>;
 
   const handleAdopt = () => {
-    // Add logic to handle adoption, such as making an API call to update the adoption status
+   
     console.log(`Adopting pet with ID: ${petId}`);
   };
 
@@ -61,7 +56,6 @@ function PetProfile() {
         <div className='Pethome-container' ref={petContainerRef}>
           <div className='Petcontent-container'>
             <div className='picture'>
-              {/* Render the image with a fallback to a default image */}
               <img
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 src={petInfo.photoPath ? `http://localhost:8080/pet/${petInfo.photoPath}` : '/images/RobFinal.jpg'}

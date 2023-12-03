@@ -13,7 +13,6 @@ const UserProfileEdit = () => {
   const navigate = useNavigate();
   const { userID, setUserID } = useAuth();
 
-  // State for profile information
   const [profileInfo, setProfileInfo] = useState({
     fname: '',
     lname: '',
@@ -34,7 +33,6 @@ const UserProfileEdit = () => {
 
     document.body.style.background = '#27374D';
 
-    // Fetch user profile information
     const fetchUserProfile = async () => {
       try {
         const response = await fetch(`http://localhost:8080/user/user/${userID}`);
@@ -49,7 +47,6 @@ const UserProfileEdit = () => {
       }
     };
 
-    // Fetch profile only if userID is available
     if (userID) {
       fetchUserProfile();
     }
@@ -64,7 +61,7 @@ const UserProfileEdit = () => {
   };
 
   const handleUpdateProfile = async () => {
-    // Display a confirmation dialog
+
     if (window.confirm('Are you sure you want to update your profile?')) {
       try {
         // Create FormData for user data
@@ -78,7 +75,6 @@ const UserProfileEdit = () => {
           contact: profileInfo.contact,
         };
 
-        // Make a PUT request to update the user profile
         const updateResponse = await fetch(`http://localhost:8080/user/updateUser?userID=${userID}`, {
           method: 'PUT',
           headers: {
@@ -87,26 +83,19 @@ const UserProfileEdit = () => {
           body: JSON.stringify(updatedUserData),
         });
 
-        // Handle the update response accordingly
         if (updateResponse.ok) {
           console.log(`User profile with ID ${userID} updated successfully!`);
 
-          // Check if a new image is selected
           if (selectedImage) {
-            // Create FormData for image upload
             const formDataForImage = new FormData();
             formDataForImage.append('image', selectedImage);
-
-            // Make a POST request to upload the image
             const imageResponse = await fetch(`http://localhost:8080/user/insertUser/${userID}`, {
               method: 'POST',
               body: formDataForImage,
             });
 
-            // Handle the image upload response accordingly
             if (imageResponse.ok) {
               console.log('Image uploaded successfully!');
-              // You might want to redirect or update state here
             } else {
               console.error('Error uploading image:', imageResponse.statusText);
             }
@@ -200,8 +189,8 @@ const UserProfileEdit = () => {
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'row', // Align items horizontally
-                alignItems: 'center', // Center items vertically
+                flexDirection: 'row', 
+                alignItems: 'center',
                 borderRadius: '38px',
                 backgroundColor: '#ffffff',
                 borderColor: '#cccccc',
@@ -214,14 +203,14 @@ const UserProfileEdit = () => {
                 variant="standard"
                 value={profileInfo.fname}
                 onChange={(e) => setProfileInfo({ ...profileInfo, fname: e.target.value })}
-                sx={{ width: '250px' }} // Adjust the width as needed
+                sx={{ width: '250px' }} 
               />
 
               <TextField
                 id="last-name"
                 label="Last Name"
                 variant="standard"
-                sx={{ marginLeft: '20px', width: '250px' }} // Adjust the width as needed
+                sx={{ marginLeft: '20px', width: '250px' }} 
                 value={profileInfo.lname}
                 onChange={(e) => setProfileInfo({ ...profileInfo, lname: e.target.value })}
               />
@@ -232,8 +221,8 @@ const UserProfileEdit = () => {
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'row', // Align items horizontally
-                alignItems: 'center', // Center items vertically
+                flexDirection: 'row', 
+                alignItems: 'center', 
                 borderRadius: '38px',
                 backgroundColor: '#ffffff',
                 borderColor: '#cccccc',
@@ -243,7 +232,7 @@ const UserProfileEdit = () => {
                 id="email"
                 label="Email"
                 variant="standard"
-                sx={{ width: '520px' }} // Adjust the width as needed
+                sx={{ width: '520px' }} 
                 value={profileInfo.email}
                 onChange={(e) => setProfileInfo({ ...profileInfo, email: e.target.value })}
               />  
@@ -254,8 +243,8 @@ const UserProfileEdit = () => {
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'row', // Align items horizontally
-                alignItems: 'center', // Center items vertically
+                flexDirection: 'row', 
+                alignItems: 'center', 
                 borderRadius: '38px',
                 backgroundColor: '#ffffff',
                 borderColor: '#cccccc',
@@ -276,8 +265,8 @@ const UserProfileEdit = () => {
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'row', // Align items horizontally
-                alignItems: 'center', // Center items vertically
+                flexDirection: 'row', 
+                alignItems: 'center', 
                 borderRadius: '38px',
                 backgroundColor: '#ffffff',
                 borderColor: '#cccccc',

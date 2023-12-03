@@ -295,20 +295,18 @@ function Dashboard() {
         <table>
           <thead>{generateFoundDataHeader()}</thead>
           <tbody>
-            {/* Render found data body based on the selected option */}
             {renderFoundDataBody()}
           </tbody>
         </table>
       );
     }
-    return null; // Return null if no data is found
+    return null; 
   };
 
   
 
   const renderTable = () => {
   if (foundData) {
-    // If foundData is present, render found data
     return (
       <table>
         <thead>{generateFoundDataHeader()}</thead>
@@ -316,7 +314,6 @@ function Dashboard() {
       </table>
     );
   } else {
-    // If no foundData, render the regular table
     return (
       <table>
         <thead>{generateTableHeader()}</thead>
@@ -346,15 +343,15 @@ function Dashboard() {
     scales: {
       x: {
         grid: {
-          display: false, // Remove x-axis grid lines
+          display: false, 
         },
         ticks: {
-          maxRotation: 0, // Prevent x-axis labels from rotating
+          maxRotation: 0, 
         },
       },
       y: {
         grid: {
-          display: false, // Remove y-axis grid lines
+          display: false, 
         },
         beginAtZero: true,
       },
@@ -362,7 +359,7 @@ function Dashboard() {
     elements: {
       bar: {
 
-        borderRadius: 10, // Adjust the border radius to smooth the edges
+        borderRadius: 10, 
       },
     },
     plugins: {
@@ -372,7 +369,7 @@ function Dashboard() {
       },
     },
     responsive: true,
-    aspectRatio: false, // Disable aspect ratio
+    aspectRatio: false, 
   };
 
   const loyalUsers = users.filter(user => applications.some(app => app.userID === user.userID));
@@ -382,11 +379,8 @@ function Dashboard() {
   const [foundData, setFoundData] = useState(null);
 
   const handleFindID = () => {
-    // Convert searchID to a number
     const searchIDNumber = Number(searchID);
-   
-  
-    // Check the selected table and search for the ID
+
     switch (selectedOption) {
       case "All users":
         setFoundData(users.find((user) => user.userID === searchIDNumber));
@@ -561,10 +555,8 @@ function Dashboard() {
             ) : (
                 <div>
     {foundData ? (
-      // If foundData is present, render found data
       renderFoundData()
     ) : (
-      // If no foundData, render the regular table
       renderTable()
     )}
   </div>

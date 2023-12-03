@@ -39,17 +39,14 @@ const Profile = () => {
   }, [userID]);
 
   useEffect(() => {
-    // Save userID to local storage when it changes
     if (userID) {
       localStorage.setItem('userID', userID);
     }
   }, [userID]);
 
   useEffect(() => {
-    // Retrieve userID from local storage when the component mounts
     const storedUserID = localStorage.getItem('userID');
     if (storedUserID) {
-      // Set the userID from local storage
       setUserID(storedUserID);
     }
   }, []);
@@ -78,7 +75,7 @@ const Profile = () => {
                 {loading ? (
                   <p>Loading...</p>
                 ) : (
-                  // Display fetched user profile information
+
                   <>
                     <div className="info-item">
                       <span className="bold-text">Firstname: </span>

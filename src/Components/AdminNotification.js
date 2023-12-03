@@ -25,14 +25,13 @@ const AdminNotification = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: userId,  // Corrected key to match the backend
+          userId: userId,  
           message: message,
         }),
       });
 
       if (response.ok) {
         alert('Notification sent successfully');
-        // Add any additional logic or state updates here
       } else {
         const errorMessage = await response.text();
         alert(`Failed to send notification: ${errorMessage}`);
@@ -65,7 +64,7 @@ const AdminNotification = () => {
                 <label>
                     Message:
                     <textarea
-                    rows={4} // Adjust the number of rows as needed
+                    rows={4} 
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     />

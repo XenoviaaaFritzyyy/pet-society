@@ -1,4 +1,4 @@
-// PetCard.js
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
@@ -14,8 +14,8 @@ const PetCard = ({ petId, name, image, isLastInRow }) => {
     <Link to={`/petprofile/${petId}`} style={{ textDecoration: 'none' }}>
       <Card
         sx={{
-          width: '360px', // Set your desired width
-          height: '300px', // Set your desired height
+          width: '360px', 
+          height: '300px', 
           marginRight,
           marginBottom: '20px',
           borderRadius: '10px',
@@ -24,11 +24,11 @@ const PetCard = ({ petId, name, image, isLastInRow }) => {
         <CardActionArea>
           <CardMedia
             component="img"
-            height="235px" // Set your desired height for the image
+            height="235px" 
             width="100%"
             image={image ? `http://localhost:8080/pet/${image}` : "/images/logo.png"}
             alt={name}
-            style={{ backgroundColor: '#27374D' ,objectFit: 'cover' }} // Maintain aspect ratio and cover the container
+            style={{ backgroundColor: '#27374D' ,objectFit: 'cover' }} 
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">

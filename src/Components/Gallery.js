@@ -25,7 +25,6 @@ function Gallery() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // Add your form submission logic here
     console.log("Form submitted!", formData);
   };
 
@@ -95,7 +94,6 @@ function Gallery() {
         const data = await response.json();
   
         if (response.ok) {
-          // Filter out pets where is_deleted is true
           const filteredPets = data.filter((gallery) => !gallery.isDeleted);
 
           //const sortedPets = filteredPets.sort((a, b) => a.name.localeCompare(b.name));
@@ -106,7 +104,6 @@ function Gallery() {
       } catch (error) {
         console.error("Error during fetching gallery:", error);
       } finally {
-        // You might want to add additional logic here if needed
       }
     };
   
@@ -147,17 +144,15 @@ function Gallery() {
   }, [userID]);
 
   useEffect(() => {
-    // Save userID to local storage when it changes
+
     if (userID) {
       localStorage.setItem('userID', userID);
     }
   }, [userID]);
 
   useEffect(() => {
-    // Retrieve userID from local storage when the component mounts
     const storedUserID = localStorage.getItem('userID');
     if (storedUserID) {
-      // Set the userID from local storage
       setUserID(storedUserID);
     }
   }, []);

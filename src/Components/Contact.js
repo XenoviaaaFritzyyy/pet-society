@@ -1,4 +1,4 @@
-// Aboutus.js
+
 import React from 'react';
 import Navbar from './Navbar';
 import '../Css/Aboutus.css';

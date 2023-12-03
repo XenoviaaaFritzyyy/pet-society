@@ -35,18 +35,16 @@ function Home() {
 
         if (response.ok) {
           console.log("userID: ", userID);
-          // Filter out pets where is_deleted is true
           const filteredPets = data.filter((pet) => !pet.deleted);
           //const sortedPets = filteredPets.sort((a, b) => a.name.localeCompare(b.name));
           setPets(filteredPets);
-          setOriginalPets(filteredPets); // Save the original list
+          setOriginalPets(filteredPets);
         } else {
           console.error("Failed to fetch pets:", data);
         }
       } catch (error) {
         console.error("Error during fetching pets:", error);
       } finally {
-        // You might want to add additional logic here if needed
       }
     };
   
@@ -94,7 +92,6 @@ function Home() {
   };
 
   const handleSearch = () => {
-    // Filter originalPets based on selected criteria
     const filteredPets = originalPets.filter((pet) => {
       const colorMatch = colour === '' || pet.color === colour;
       const sexMatch = gender === '' || pet.gender === gender;
@@ -103,24 +100,23 @@ function Home() {
       return colorMatch && sexMatch && sizeMatch;
     });
   
-    // Update the pets state with the filtered pets
+   
     setPets(filteredPets);
   
-    // Reset the form values after search
+   
     setColour('');
     setGender('');
     setSize('');
   };
   
-  // ...
+  
   
   const handleReset = () => {
-    // Reset the form values
     setColour('');
     setGender('');
     setSize('');
   
-    // Reset the pets state to the original list
+  
     setPets(originalPets);
   };
   
