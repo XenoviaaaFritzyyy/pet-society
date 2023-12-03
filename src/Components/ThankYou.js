@@ -9,7 +9,7 @@ const parentContainerStyle = {
 };
 
 const containerStyle = {
-  width: '75%', // Set the desired width
+  width: '75%',
 };
 
 const contentStyle = {
@@ -39,7 +39,7 @@ const ThankYou = () => {
           </p>
 
           <Link to="/home" style={{ textDecoration: 'none' }}>
-            <button style={{  padding: '10px 50px', marginTop: '50px', cursor:'pointer', fontSize:'25px'}}>Go Back to Homepage</button>
+            <button style={{  padding: '15px 50px', marginTop: '50px', cursor:'pointer', fontSize:'25px', borderRadius: '10px'}}>Go Back to Homepage</button>
           </Link>
         </div>
       </div>

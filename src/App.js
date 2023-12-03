@@ -79,6 +79,7 @@ function App() {
         <Route path="/dictionary" element={<Dictionary />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/About us" element={<AboutUs />} />
+        <Route path="/Contact us" element={<Contact />} />
 
         <Route path="/userprofile" element={<UserProfile />} />
         <Route path="/userprofileedit" element={<UserProfileEdit />} />
@@ -97,7 +98,6 @@ function App() {
         <Route path="/adminNotification" element={<AdminNotification/>} />
         
 
-        <Route path="/contactus" element={<Contact />} />
         <Route path="/request" element={<Request />} />
         <Route path="/thankyou" element={<ThankYou />} />
 

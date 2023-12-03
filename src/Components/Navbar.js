@@ -27,7 +27,6 @@ function UserProfileDropdown({ profileInfo, onClick }) {
         <div className="profile-dropdown-content">
           <div onClick={() => handleOptionClick('Profile')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Profile</div>
           <div onClick={() => handleOptionClick('Forum')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Forum</div>
-          <div onClick={() => handleOptionClick('ContactUs')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Contact Us</div>
           <div onClick={() => handleOptionClick('Notification')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Notification</div>
           <div onClick={() => handleOptionClick('Request')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Request</div>
           <div onClick={() => handleOptionClick('Log out')} style={{ cursor: 'pointer' }}>Log out</div>
@@ -66,9 +65,7 @@ function Navbar() {
         break;  
       case 'Forum':
         navigate('/forum'); 
-        break;
-      case 'ContactUs':
-        navigate('/contactus'); 
+        break; 
       case 'Request':
         navigate('/request'); 
         break;
@@ -121,7 +118,7 @@ function Navbar() {
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-            {['Home', 'Dictionary', 'Gallery', 'About us'].map((item, index) => (
+            {['Home', 'Dictionary', 'Gallery', 'About us', 'Contact us'].map((item, index) => (
               <li key={index} className="nav-item">
                 <Link to={`/${item}`} className="nav-links" onClick={closeMobileMenu}>
                   {item}

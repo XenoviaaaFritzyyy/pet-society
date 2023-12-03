@@ -5,7 +5,7 @@
     border-radius: 0px 0px 60px 60px;
     justify-content: center;
     align-items: center;
-    font-size: 17xpx;
+    font-size: 15px;
     font-weight: bold;
     position: relative;
     top: 0; 
@@ -41,7 +41,7 @@
   .nav-menu {
     background-color: #27374D ;
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(5, auto);
     grid-gap: 10px;
     list-style: none;
     text-align: center;
@@ -68,7 +68,7 @@
     border-bottom: 3px solid #fff;
     transition: all 0.2s ease-out;
   }
-  
+
   .fa-bars {
     color: #fff;
   }
