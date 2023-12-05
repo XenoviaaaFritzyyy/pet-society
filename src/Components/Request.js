@@ -128,7 +128,7 @@ function Request() {
         )}
 
         <Dialog open={openDialog} onClose={handleDialogClose}>
-          <DialogTitle>Cancel Application</DialogTitle>
+          <DialogTitle>Confirmation</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Are you sure you want to cancel your application?

@@ -194,7 +194,7 @@ function RequestForm() {
       </div>
 
       <Dialog open={openDialog} onClose={handleDialogClose}>
-        <DialogTitle>{dialogContent.title}</DialogTitle>
+        <DialogTitle>Confirmation</DialogTitle>
         <DialogContent>
           <DialogContentText>
             {dialogContent.text}
