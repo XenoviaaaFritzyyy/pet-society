@@ -64,6 +64,11 @@ function Request() {
 
   const handleConfirmCancel = async () => {
     await updateApplicationStatus(selectedApplicationID, 'Cancelled', "Kindly be advised that your application has been canceled.");
+    
+    setApplications(prevApplications => {
+      const updatedApplications = prevApplications.filter(app => app.applicationID !== selectedApplicationID);
+      return updatedApplications;
+    });
     setOpenDialog(false);
   };
 

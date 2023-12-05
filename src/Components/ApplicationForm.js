@@ -1,65 +1,102 @@
-  import React, { useState, useEffect } from 'react';
-  import { useParams, Navigate, Link } from 'react-router-dom'; 
-  import { useAuth } from '../Components/AuthContext';
+import React, { useState, useEffect } from 'react';
+import { useParams, Navigate, Link } from 'react-router-dom';
+import { useAuth } from '../Components/AuthContext';
+import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 
-  import '../Css/ApplicationForm.css';
+import '../Css/ApplicationForm.css';
 
-  const ApplicationForm = () => {
-    const { petId } = useParams();
-    const { userID, setUserID } = useAuth(); 
-    const [showHouseholdInfo, setShowHouseholdInfo] = useState(false);
-    const [error, setError] = useState('');
-    const [ submit, setSubmit] = useState(false);
-    
+const ApplicationForm = () => {
+  const { petId } = useParams();
+  const { userID, setUserID } = useAuth();
+  const [showHouseholdInfo, setShowHouseholdInfo] = useState(false);
+  const [error, setError] = useState('');
+  const [submit, setSubmit] = useState(false);
+  const [confirmationOpen, setConfirmationOpen] = useState(false);
 
-    const [formData, setFormData] = useState({
-      fname: '',
-      lname: '',
-      address: '',
-      city: '',
-      state: '',
-      noAdults: '',
-      noChildren: '',
-      desHousehold: 'active',
-      typeResidence: 'apartment',
-      rentHome: 'Rent',
-      landlordContact: '',
-      isDeleted: false,
-    });
+  const [formData, setFormData] = useState({
+    fname: '',
+    lname: '',
+    address: '',
+    city: '',
+    state: '',
+    noAdults: '',
+    noChildren: '',
+    desHousehold: 'active',
+    typeResidence: 'apartment',
+    rentHome: 'Rent',
+    landlordContact: '',
+    isDeleted: false,
+  });
 
-    useEffect(() => {
-      const storedUserID = localStorage.getItem('userID');
-      if (storedUserID) {
-        setUserID(storedUserID);
-      }
-    
-      document.body.style.background = '#27374D';
-    
-      return () => {
-        document.body.style.background = '';
+  useEffect(() => {
+    const storedUserID = localStorage.getItem('userID');
+    if (storedUserID) {
+      setUserID(storedUserID);
+    }
+
+    document.body.style.background = '#27374D';
+
+    return () => {
+      document.body.style.background = '';
+    };
+  }, [setUserID, petId, userID]);
+
+  const showHouseholdInfoSection = () => {
+    setShowHouseholdInfo(true);
+  };
+
+  const showPersonalInfoSection = () => {
+    setShowHouseholdInfo(false);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleOpenConfirmation = () => {
+    setConfirmationOpen(true);
+  };
+
+  const handleCloseConfirmation = () => {
+    setConfirmationOpen(false);
+  };
+
+  const handleConfirmSubmission = async () => {
+    try {
+      const dataToSend = {
+        ...formData,
+        fk_petID: petId,
+        fk_userID: userID,
       };
-    }, [setUserID, petId, userID]);
-  
-    const showHouseholdInfoSection = () => {
-      setShowHouseholdInfo(true);
-    };
-  
-    const showPersonalInfoSection = () => {
-      setShowHouseholdInfo(false);
-    };
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    };
 
-    const showConfirmation = () => {
-      return window.confirm("Are you sure you want to submit application form?");
-    };
-  
+      const response = await fetch(`http://localhost:8080/application/insertApplication?petId=${petId}&userId=${userID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend),
+      });
+
+      if (response.ok) {
+        setSubmit(true);
+        console.log('Entry added successfully');
+      } else {
+        const data = await response.json();
+        setError('Failed to add entry');
+        console.error('Failed to add entry', data);
+      }
+    } catch (error) {
+      console.error('Error during adding of entry:', error);
+      setError('An error occurred during adding of entry. Please try again later.');
+    }
+
+    // Close the confirmation dialog
+    handleCloseConfirmation();
+  };
 
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -88,7 +125,7 @@
 
       setError('');
     
-      if (showConfirmation()) {
+      if (handleOpenConfirmation()) {
         const dataToSend = {
           ...formData,
           fk_petID: petId,
@@ -238,6 +275,22 @@
           <div className="error-message">{error}</div>
         </form>
       </div>
+
+        {/* Confirmation Dialog */}
+        <Dialog open={confirmationOpen} onClose={handleCloseConfirmation}>
+          <DialogTitle>Confirmation</DialogTitle>
+          <DialogContent>
+            <DialogContentText>Are you sure you want to submit the application form?</DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseConfirmation} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={handleConfirmSubmission} color="primary">
+              Confirm
+            </Button>
+          </DialogActions>
+        </Dialog>
       </>
     );
   };
