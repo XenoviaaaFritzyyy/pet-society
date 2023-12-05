@@ -38,7 +38,7 @@ const ThankYou = () => {
             We will review your application and notify you of our decision as soon as possible.
           </p>
 
-          <Link to="/home" style={{ textDecoration: 'none' }}>
+          <Link to="/request" style={{ textDecoration: 'none' }}>
             <button style={{  padding: '15px 50px', marginTop: '50px', cursor:'pointer', fontSize:'25px', borderRadius: '10px'}}>Go Back to Homepage</button>
           </Link>
         </div>

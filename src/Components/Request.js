@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import Navbar from './Navbar';
 import { useAuth } from '../Components/AuthContext';
 
@@ -6,6 +7,8 @@ function Request() {
   const [applications, setApplications] = useState([]);
   const { userID, setUserID } = useAuth();
   const [filter, setFilter] = useState('Pending');
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedApplicationID, setSelectedApplicationID] = useState(null);
 
   const fetchApplications = async () => {
     try {
@@ -31,20 +34,18 @@ function Request() {
         },
         body: JSON.stringify({ status, message, isDeleted: true }),
       });
-
+  
       if (response.ok) {
         const responseData = await response.json();
         console.log(`Server response data:`, responseData);
-
+  
         setApplications(prevApplications => {
           const updatedApplications = [...prevApplications];
           const updatedApplication = updatedApplications.find(app => app.applicationID === applicationID);
           updatedApplication.message = message;
           return updatedApplications;
         });
-
-        alert(`Application ${status.toLowerCase()}ed successfully!`);
-      } else {
+        } else {
         console.error(`Failed to ${status.toLowerCase()} application`);
       }
     } catch (error) {
@@ -52,11 +53,18 @@ function Request() {
     }
   };
 
-  const handleCancel = async (applicationID) => {
-    const confirmAccept = window.confirm("Are you sure you want to cancel your application?");
-    if (confirmAccept) {
-      await updateApplicationStatus(applicationID, 'Cancelled', "Kindly be advised that your application has been canceled.");
-    }
+  const handleCancel = (applicationID) => {
+    setSelectedApplicationID(applicationID);
+    setOpenDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  };
+
+  const handleConfirmCancel = async () => {
+    await updateApplicationStatus(selectedApplicationID, 'Cancelled', "Kindly be advised that your application has been canceled.");
+    setOpenDialog(false);
   };
 
   useEffect(() => {
@@ -102,12 +110,14 @@ function Request() {
             </thead>
             <tbody>
               {filteredApplications.map(application => (
-                <tr key={application.applicationID}>
+                  <tr key={application.applicationID}>
                   <td>{application.pet.name}</td>
                   <td>{application.message}</td>
                   <td>{application.status}</td>
                   <td>
-                    <button onClick={() => handleCancel(application.applicationID)} style={{ padding: '8px 25px', cursor: 'pointer', borderRadius: '10px' }}>Cancel</button>
+                    {['Pending'].includes(application.status) && (
+                      <button onClick={() => handleCancel(application.applicationID)} style={{ padding: '8px 25px', cursor: 'pointer', borderRadius: '10px' }}>Cancel</button>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -116,6 +126,23 @@ function Request() {
         ) : (
           <p style={{ padding: '50px' }}>No application requests available for the current user.</p>
         )}
+
+        <Dialog open={openDialog} onClose={handleDialogClose}>
+          <DialogTitle>Cancel Application</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to cancel your application?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleDialogClose} color="primary">
+              No
+            </Button>
+            <Button onClick={handleConfirmCancel} color="primary">
+              Yes
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </>
   );

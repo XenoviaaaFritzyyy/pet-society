@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import { useAuth } from '../Components/AuthContext';
 import { Link } from 'react-router-dom';
 
@@ -10,6 +11,9 @@ function RequestForm() {
   const [filteredApplications, setFilteredApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedStatus, setSelectedStatus] = useState('Pending');
+  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogContent, setDialogContent] = useState({ title: '', text: '', action: null });
+
 
   const fetchApplications = async () => {
     try {
@@ -33,7 +37,6 @@ function RequestForm() {
   }, [userID]);
 
   useEffect(() => {
-    // Apply status filter
     if (selectedStatus) {
       const filtered = applications.filter(application => application.status === selectedStatus);
       setFilteredApplications(filtered);
@@ -63,8 +66,6 @@ function RequestForm() {
           updatedApplication.message = message;
           return updatedApplications;
         });
-
-        alert(`Application request ${status.toLowerCase()} successfully!`);
       } else {
         console.error(`Failed to ${status.toLowerCase()} application`);
       }
@@ -73,18 +74,31 @@ function RequestForm() {
     }
   };
 
-  const handleReject = async (applicationID) => {
-    const confirmReject = window.confirm("Are you sure you want to reject this application?");
-    if (confirmReject) {
-      await updateApplicationStatus(applicationID, 'Rejected', "We are sorry to inform you that your adoption request is rejected. Email us for more information.");
-    }
+  const handleReject = (applicationID) => {
+    setDialogContent({
+      title: 'Reject Application',
+      text: 'Are you sure you want to reject this application?',
+      action: () => updateApplicationStatus(applicationID, 'Rejected', "We are sorry to inform you that your adoption request is rejected. Email us for more information.")
+    });
+    setOpenDialog(true);
   };
 
-  const handleAccept = async (applicationID) => {
-    const confirmAccept = window.confirm("Are you sure you want to accept this application?");
-    if (confirmAccept) {
-      await updateApplicationStatus(applicationID, 'Accepted', "We are happy to inform you that your adoption request is accepted. Please check your email for follow-up.");
-    }
+  const handleAccept = (applicationID) => {
+    setDialogContent({
+      title: 'Accept Application',
+      text: 'Are you sure you want to accept this application?',
+      action: () => updateApplicationStatus(applicationID, 'Accepted', "We are happy to inform you that your adoption request is accepted. Please check your email for follow-up.")
+    });
+    setOpenDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  };
+
+  const handleDialogAction = () => {
+    dialogContent.action();
+    setOpenDialog(false);
   };
 
   const handleStatusFilter = (status) => {
@@ -140,8 +154,8 @@ function RequestForm() {
             </thead>
             <tbody>
             {applications.map(application => {
-                      if (!selectedStatus || application.status === selectedStatus) {
-                        return (
+              if (!selectedStatus || application.status === selectedStatus) {
+                return (
                 <tr key={application.applicationID}>
                   <td>{application.applicationID}</td>
                   <td>{application.fname}</td>
@@ -159,9 +173,15 @@ function RequestForm() {
                   <td>{application.pet.petID}</td>
                   <td>{application.status}</td>
                   <td>
-                    <button onClick={() => handleReject(application.applicationID)} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Reject</button>
+                    {application.status === 'Pending' && (
+                      <button onClick={() => handleReject(application.applicationID)} style={{ margin: '0 5px', padding: '5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Reject</button>
+                    )}
                   </td>
-                  <td><button onClick={() => handleAccept(application.applicationID)} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px'  }}>Accept</button></td>
+                  <td>  
+                    {application.status === 'Pending' && (
+                      <button onClick={() => handleAccept(application.applicationID)} style={{ margin: '0 5px', padding: '5px 25px', cursor: 'pointer', borderRadius: '10px' }}>Accept</button>
+                    )}
+                  </td>
                 </tr>
                     );
                       } else {
@@ -172,6 +192,23 @@ function RequestForm() {
           </table>
         )}
       </div>
+
+      <Dialog open={openDialog} onClose={handleDialogClose}>
+        <DialogTitle>{dialogContent.title}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {dialogContent.text}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleDialogAction} color="primary">
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
