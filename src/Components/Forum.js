@@ -65,67 +65,79 @@ function Forum() {
     }
     }, []);
 
-    return (
-        <>
-        <Navbar />
-        <div style={{ justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
-        <Container maxWidth="md" 
-            style={{ background: '#FFFFFF', 
-            padding: '20px', 
-            borderRadius: '10px', 
-            marginBottom: '20px', 
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center' }}>
-
+return (
+  <>
+    <Navbar />
+    <div style={{ justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
+      <Container
+        maxWidth="md"
+        style={{
+          background: '#FFFFFF',
+          padding: '20px',
+          borderRadius: '10px',
+          marginBottom: '20px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative', // Add this line for positioning the buttons
+        }}
+      >
+        <h1 className="postLabel" style={{ color: '#000000', textAlign: 'center', marginBottom: '10px' }}>
+            Welcome to Forums!
+        </h1>
+        <h3 className="postConcern" style={{ color: '#000000', textAlign: 'center', marginBottom: '10px' }}>
+            Please share your concerns or suggestions to help make this platform better.
+        </h3>
         <textarea
-            id="postni"
-            className="postTextArea"
-            rows={2}
-            style={{
-            background: '#27374D',
+          id="postni"
+          className="postTextArea"
+          rows={2}
+          style={{
+            background: 'white',  // Set background color to white,
             fontSize: '18px',
             padding: '10px',
             width: '100%',
             borderRadius: '8px',
             marginBottom: '10px',
             resize: 'none',
-            textAlign: 'center',
-            color: '#DDE6ED'
-            }}
-            placeholder="What's happening?"
+            textAlign: 'left',  // Align placeholder text to the left
+            borderColor: '#000000',  // Outline color
+          }}
+          placeholder="What's happening?"
         />
-            <div className="postButton" style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button
-                    variant="contained"
-                    style={{
-                        backgroundColor: '#27374D',
-                        color: 'white',
-                        '&:hover': {
-                        backgroundColor: '#142132',
-                        color: 'white' 
-                        },
-                    marginRight: '10px',
-                    }} >
-                    Post
-                </Button>
-                <Button
-                    variant="contained"
-                    style={{
-                        backgroundColor: '#27374D',
-                        color: 'white',
-                        '&:hover': {
-                        backgroundColor: '#142132',
-                        color: 'white' 
-                        },
-                    }} >
-                    Clear
-                </Button>
-            </div>
-        </Container>
+        <div className="postButton" style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: '#27374D',
+              color: 'white',
+              borderRadius: '8px',
+              '&:hover': {
+                backgroundColor: '#142132',
+                color: 'white'
+              },
+              marginRight: '10px',
+            }} >
+            Post
+          </Button>
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: '#27374D',
+              color: 'white',
+              borderRadius: '8px',
+              '&:hover': {
+                backgroundColor: '#142132',
+                color: 'white'
+              },
+            }} >
+            Clear
+          </Button>
+        </div>
+      </Container>
 
-        <Paper elevation={3} style={{ textAlign: 'left', padding: '10px', width: '80%', margin: '10px auto', position: 'relative' }}>
+        <Paper elevation={3} style={{ textAlign: 'left', padding: '10px', width: '60%', margin: '10px auto', position: 'relative' }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img
                     src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/default-pic.jpg"}
@@ -146,21 +158,25 @@ function Forum() {
                 </div>
             </div>
             <Button
-                variant="contained"
+                variant="text"
                 color="error"
                 style={{
-                    fontSize: '11px',
-                    backgroundColor: '#27374D',
-                    color: 'white',
+                    fontSize: '13px',
+                    backgroundColor: 'transparent',  // Set initial background color to transparent
+                    color: 'red',
+                    fontWeight: '900',  // Set font weight to 900
+                    height: '30px', // Set the height
+                    width: '30px', // Set the width
+                    // borderRadius: '300%',  // Set the border radius to form a circle
                     '&:hover': {
-                        backgroundColor: '#142132',
-                        color: 'white'
+                        backgroundColor: 'red',  // Set background color to red on hover
+                        color: 'red',
                     },
                     position: 'absolute',
                     top: 12,
                     right: 8
                 }} >
-                Delete
+                x
             </Button>
             <Accordion style={{ background: '#27374D', color: '#FFFFFF' }}>
                 <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
@@ -177,37 +193,50 @@ function Forum() {
                     rows={1}
                     InputLabelProps={{ style: { color: 'white' } }}
                     inputProps={{ style: { color: 'white' } }} />
-                    <Box mt={2} display="flex" justifyContent="right">
-                        <Button variant="contained"
-                            style={{ display: 'flex', backgroundColor: 'white',
-                                    color: '#27374D', '&:hover': { backgroundColor: '#142132', color: 'white' 
-                                    },
-                                    justifyContent: 'flex-start', alignItems: 'center' }}>
-                                    Reply
-                        </Button>
+                    <Box mt={2} display="flex" justifyContent="flex-end" marginBottom="10px">
+                    <Button
+                        variant="contained"
+                        style={{
+                        display: 'flex',
+                        backgroundColor: 'white',
+                        color: '#27374D',
+                        '&:hover': { backgroundColor: '#142132', color: 'white' },
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                        }}
+                    >
+                        Reply
+                    </Button>
                     </Box>
                 </>
                 <>
-                    <Paper style={{ margin: '5px', padding: '10px',
-                            textAlign: 'left',  background: 'white' }} elevation={1}>
+                <Paper style={{ position: 'relative', margin: '5px', padding: '10px', textAlign: 'left', background: 'white' }} elevation={1}>
 
                         <h2 style={{ color: '#001858', fontWeight: 'bold' }}>
-                            {profileInfo.fname} {profileInfo.lname}</h2>
+                            {profileInfo.fname} {profileInfo.lname}
+                        </h2>
                         <span className="time"> · {formatDateTime(profileInfo.date)}</span>
                         <h5 style={{ fontStyle: 'italic', color: '#001858' }}>Sample reply</h5>
 
                         <Button
-                            variant="contained"
+                            variant="text"
                             color="error"
                             style={{
-                                backgroundColor: '#27374D',
-                                color: 'white',
-                                '&:hover': {
+                              backgroundColor: 'transparent',
+                              color: 'red',
+                              fontWeight: '900',
+                              height: '30px',
+                              width: '30px',
+                              position: 'absolute',
+                              top: 10,  // Adjust the top position as needed
+                              right: 10, // Adjust the right position as needed
+                              '&:hover': {
                                 backgroundColor: '#142132',
-                                color: 'white' 
-                                }, 
-                                }} >
-                            Delete Reply
+                                color: 'white'
+                              },
+                            }} 
+                        >
+                            x
                         </Button>
                     </Paper>
                 </>
