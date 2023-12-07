@@ -160,7 +160,7 @@ const UserProfileEdit = () => {
                   marginRight: '20px',
                   objectFit: 'cover', 
                   borderRadius: '50%',
-                  border: '1px solid black',
+                  border: '2px solid #27374D',
                 }}/>
 
               <div>
@@ -190,7 +190,7 @@ const UserProfileEdit = () => {
             </Box>
           </div>
 
-          <div className="details-pet" style={{ paddingTop: '50px' }} >
+          <div className="details-pet" style={{ paddingTop: '20px' }} >
             <span className="title">Personal Information</span>
             <Box
               sx={{
@@ -332,8 +332,8 @@ const UserProfileEdit = () => {
                     border: '.1px solid #27374D',
                     display: 'flex',
                     whiteSpace: 'nowrap',
+                    marginTop: '20px',
                     fontSize: 10,
-                    marginTop: '50px',
                   }}>
                   Cancel Changes
                 </Button>
@@ -357,7 +357,7 @@ const UserProfileEdit = () => {
                   display: 'flex',
                   whiteSpace: 'nowrap',
                   fontSize: 10,
-                  marginTop: '50px',
+                  marginTop: '20px',
                   marginLeft: '240px', 
                 }}>
                 Save Changes
@@ -368,7 +368,7 @@ const UserProfileEdit = () => {
       </form>
 
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-        <DialogTitle>Confirm Update</DialogTitle>
+        <DialogTitle>Confirmation</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Are you sure you want to update your profile?
