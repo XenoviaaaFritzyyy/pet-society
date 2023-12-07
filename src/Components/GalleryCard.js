@@ -13,12 +13,7 @@ import { useAuth } from '../Components/AuthContext';
 const GalleryCard = ({ galID, name, image, description }) => {
     const [isFavoriteClicked, setIsFavoriteClicked] = useState(false);
 
-    const [formData, setFormData] = useState({
-        galID: '',
-        description: '',
-        photo_path: '',
-        isDeleted: false
-        });
+    
         
     const handleFavoriteClick = () => {
         setIsFavoriteClicked(!isFavoriteClicked);
@@ -97,6 +92,7 @@ const GalleryCard = ({ galID, name, image, description }) => {
     const [profileInfo, setProfileInfo] = useState({
         fname: '',
         lname: '',
+        photoPath: '',
     });
 
     const [loading, setLoading] = useState(true);
@@ -152,16 +148,19 @@ const GalleryCard = ({ galID, name, image, description }) => {
             />
             <CardContent>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : 
-                        "/images/default-pic.jpg"}
-                        alt="User Profile"
-                        className="user-profile-image"
-                        style={{
-                        width: '45px',
-                        height: '40px',
-                        objectFit: 'cover',
-                        borderRadius: '50%',
-                        }} />
+                <img
+      src={profileInfo.user && profileInfo.user.photoPath
+        ? `http://localhost:8080/user/${profileInfo.user.photoPath}`
+        : "/images/default-pic.jpg"}
+      alt="User Profile"
+      className="user-profile-image"
+      style={{
+        width: '45px',
+        height: '40px',
+        objectFit: 'cover',
+        borderRadius: '50%',
+      }}
+    />
                 <div style={{ marginLeft: '10px' }}>
                     <Typography variant="h5" color="text.primary" sx={{ fontWeight: 'bold' }}>
                         {profileInfo.fname} {profileInfo.lname}

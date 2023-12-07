@@ -7,7 +7,6 @@ import AddPhotoIcon from '@mui/icons-material/AddPhotoAlternate';
 import { useAuth } from '../Components/AuthContext';
 
 function Gallery() {
-  
   const [formData, setFormData] = useState({
     galID: '',
     description: '',
@@ -31,59 +30,55 @@ function Gallery() {
   const handleAddGallery = async () => {
     try {
       // Check if formData is valid
-      if ( !formData.description.trim()) {
+      if (!formData.description.trim()) {
         alert("Description cannot be empty");
         return;
       }
   
       // Display a confirmation dialog
       if (window.confirm("Are you sure you want to add this picture?")) {
-        const formDataToSend = new FormData();
-  
-        // Append each property to formDataToSend
-        Object.keys(formData).forEach((key) => {
-          formDataToSend.append(key, formData[key]);
-        });
-        
-        const response = await fetch('http://localhost:8080/gallery/insertGallery', {
+        // Step 1: Insert overall information
+        const responseInfo = await fetch(`http://localhost:8080/gallery/insertGallery?userId=${userID}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(Object.fromEntries(formDataToSend)),
+          body: JSON.stringify(formData),
         });
   
-        // Handle the response accordingly
-        if (response.ok) {
-          console.log('Gallery added successfully!');
-          const data = await response.json();
+        // Handle the response for overall information
+        if (responseInfo.ok) {
+          console.log('Gallery information added successfully!');
+          const dataInfo = await responseInfo.json();
   
+          // Step 2: Insert the image using the galleryID from the previous response
           const formDataForImage = new FormData();
           formDataForImage.append('image', formData.photo_path);
   
-          console.log(data.galID);
-          const image = await fetch(`http://localhost:8080/gallery/insertGallery/${data.galID}`, {
+          const responseImage = await fetch(`http://localhost:8080/gallery/insertGallery/${dataInfo.galID}/${userID}`, {
             method: 'POST',
             body: formDataForImage,
           });
+          
   
           // Handle the image upload response accordingly
-          if (image.ok) {
+          if (responseImage.ok) {
             console.log('Image uploaded successfully!');
             // You might want to redirect or update state here
           } else {
-            console.error('Error uploading image:', image.statusText);
+            console.error('Error uploading image:', responseImage.statusText);
           }
         } else {
-          console.error('Error adding Gallery:', response.statusText);
+          console.error('Error adding Gallery information:', responseInfo.statusText);
         }
       } else {
         console.log("Gallery addition canceled");
       }
     } catch (error) {
-      console.error('Error adding Gallery picture:', error.message);
+      console.error('Error adding Gallery:', error.message);
     }
   };
+  
 
   const [gallerys, setGallerys] = React.useState([]);
 
