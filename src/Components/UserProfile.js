@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from '@mui/material'
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import '../Css/UserProfile.css';
@@ -64,8 +65,22 @@ const Profile = () => {
                 alt="User Profile"
               />
             </div>
-            <Link to="/userprofileedit">
-              <button className="edit-profile-btn">EDIT PROFILE</button>
+              <Link to="/userprofileedit">
+                <Button
+                type="button"
+                variant="contained"
+                color="primary"
+                sx={{
+                  width: '180px',
+                  borderRadius: '50px',
+                  marginTop: '10px',
+                  height: '45px',
+                  backgroundColor: '#27374D',
+                  color: 'white',
+                  '&:hover': { backgroundColor: '#142132' },
+                }}>
+                Edit Profile
+              </Button>
             </Link>
           </div>
 

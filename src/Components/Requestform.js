@@ -114,7 +114,7 @@ function RequestForm() {
     <>
       <div>
         <Link to="/admin" style={{ textDecoration: 'none' }}>
-          <button style={{ position: 'absolute', top: '25px', right: '50px', textDecoration: 'none', fontSize: '15px', padding: '8px 15px', borderRadius: '10px', color: '#27374D' }}>
+          <button style={{ position: 'absolute', top: '25px', right: '50px', textDecoration: 'none', padding: '8px 20px', borderRadius: '10px'}}>
             Back
           </button>
         </Link>

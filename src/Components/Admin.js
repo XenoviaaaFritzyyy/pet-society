@@ -16,7 +16,7 @@ function Admin() {
   return (
     <>
       <Link to="/signin" style={{ textDecoration: 'none' }}>
-        <button style={{ position: 'absolute', top: '25px', right: '50px', textDecoration: 'none', fontSize: '15px', padding: '8px 15px', borderRadius: '10px'}}>
+        <button style={{ position: 'absolute', top: '25px', right: '50px', textDecoration: 'none', padding: '8px 25px', borderRadius: '10px'}}>
           Logout
         </button>
       </Link>
