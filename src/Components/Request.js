@@ -80,7 +80,7 @@ function Request() {
         await fetchApplications();
       }
     })();
-  }, [userID, setUserID]);
+  }, [userID, setUserID, filter]);
 
   const filteredApplications = applications.filter(application => {
     if (filter === 'All') {
@@ -141,10 +141,10 @@ function Request() {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleDialogClose} color="primary">
-              No
+              Cancel
             </Button>
             <Button onClick={handleConfirmCancel} color="primary">
-              Yes
+              Confirm
             </Button>
           </DialogActions>
         </Dialog>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import '../Css/Form.css';
@@ -6,6 +7,13 @@ import '../Css/Form.css';
 function TriviaForm() {
   const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState('');
+  const [openSuccessDialog, setOpenSuccessDialog] = useState(false);
+  const [openErrorDialog, setOpenErrorDialog] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const [openAddConfirmationDialog, setOpenAddConfirmationDialog] = useState(false);
+  const [openUpdateConfirmationDialog, setOpenUpdateConfirmationDialog] = useState(false);
+  const [openDeleteConfirmationDialog, setOpenDeleteConfirmationDialog] = useState(false);
 
   const [formData, setFormData] = useState({
     triviaID: '',
@@ -32,10 +40,6 @@ function TriviaForm() {
     navigate('/admin');
   };
 
-  const showAddConfirmation = () => {
-    return window.confirm("Are you sure you want to add a trivia?");
-  };
-
   const handleReset = () => {
     setFormData({
       triviaID: '',
@@ -45,12 +49,18 @@ function TriviaForm() {
       content: '',
     });
   };
+  
+  const handleDialogClose = () => {
+    setOpenSuccessDialog(false);
+    setOpenErrorDialog(false);
+  };
 
   // FIND TRIVIA
   const handleFindTrivia = async () => {
     try {
       if (!formData.triviaID.trim()) {
-        alert("Trivia ID cannot be empty for finding");
+        setErrorMessage("Trivia ID cannot be empty for finding");
+        setOpenErrorDialog(true);
         return;
       }
 
@@ -65,158 +75,186 @@ function TriviaForm() {
             category: data.category,
             author: data.author,
           });
-          setSuccessMessage(`TriviaID ${formData.triviaID} exist in the database.`);
+          setSuccessMessage(`TriviaID ${formData.triviaID} exists in the database.`);
         } else {
-          alert(`Trivia with ID ${formData.triviaID} does not exist`);
+          setErrorMessage(`Trivia with ID ${formData.triviaID} does not exist`);
+          setOpenErrorDialog(true);
           handleReset();
         }
       } else if (response.status === 404) {
-        alert(`Trivia with ID ${formData.triviaID} not found`);
+        setErrorMessage(`Trivia with ID ${formData.triviaID} not found`);
+        setOpenErrorDialog(true);
         handleReset();
       } else {
-        alert(`Failed to fetch trivia with ID ${formData.triviaID}`);
+        setErrorMessage(`Failed to fetch trivia with ID ${formData.triviaID}`);
+        setOpenErrorDialog(true);
         console.error("Server response:", response);
       }
     } catch (error) {
       console.error("Error during finding trivia:", error);
-      alert("An error occurred during finding trivia. Please try again later.");
+      setErrorMessage("An error occurred during finding trivia. Please try again later.");
+      setOpenErrorDialog(true);
     }
   };
 
   // ADD TRIVIA
   const handleAddEntry = async () => {
     if (!formData.title.trim() || !formData.content.trim()) {
-      alert("Title and Content cannot be empty");
+      setErrorMessage("Title and Content cannot be empty");
+      setOpenErrorDialog(true);
       return;
     }
+    setOpenAddConfirmationDialog(true);
+  };
 
-    if (showAddConfirmation()) {
-      try {
-        const response = await fetch("http://localhost:8080/trivia/insertTrivia", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: formData.title,
-            content: formData.content,
-            category: formData.category,
-            author: formData.author,
-            isDeleted: false,
-          }),
-        });
+  const handleConfirmAdd = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/trivia/insertTrivia", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: formData.title,
+          content: formData.content,
+          category: formData.category,
+          author: formData.author,
+          isDeleted: false,
+        }),
+      });
 
-        if (response.ok) {
-          setSuccessMessage("Trivia added successfully!");
-          handleReset();
-        } else {
-          const data = await response.json();
-          console.error("Failed to add entry", data);
-          alert("Failed to add entry");
-        }
-      } catch (error) {
-        console.error("Error during adding of entry:", error);
-        alert("An error occurred during adding of entry. Please try again later.");
+      if (response.ok) {
+        setSuccessMessage("Trivia added successfully!");
+        setOpenSuccessDialog(true);
+        handleReset();
+      } else {
+        const data = await response.json();
+        setErrorMessage("Failed to add entry");
+        setOpenErrorDialog(true);
+        console.error("Failed to add entry", data);
       }
-    } else {
-      console.log("Entry addition canceled");
+    } catch (error) {
+      console.error("Error during adding of entry:", error);
+      setErrorMessage("An error occurred during adding of entry. Please try again later.");
+      setOpenErrorDialog(true);
+    } finally {
+      setOpenAddConfirmationDialog(false);
     }
   };
+
 
     // UPDATE TRIVIA
     const handleUpdateTrivia = async () => {
       if (!formData.triviaID.trim()) {
-        alert("triviaID cannot be empty for updating");
+        setErrorMessage("triviaID cannot be empty for updating");
+        setOpenErrorDialog(true);
         return;
       }
-
-      if (window.confirm("Are you sure you want to update this trivia?")) {
-        try {
-          const response = await fetch(`http://localhost:8080/trivia/getTrivia/${formData.triviaID}`);
-          const data = await response.json();
-
-          if (response.ok && data) {
-            if (data.isDeleted) {
-              alert(`Trivia with ID ${formData.triviaID} is already deleted`);
-              return;
-            }
-
-            const updateTriviaData = {
-              title: formData.title,
-              content: formData.content,
-              category: formData.category,
-              author: formData.author,
-            };
-
-            const updateResponse = await fetch(`http://localhost:8080/trivia/updateTrivia?triviaID=${formData.triviaID}`, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(updateTriviaData),
-            });
-
-            if (updateResponse.ok) {
-              setSuccessMessage(`TriviaID ${formData.triviaID} updated successfully!`);
-            } else {
-              const updateData = await updateResponse.json();
-              console.error("Failed to update trivia", updateData);
-              alert("Failed to update trivia");
-            }
-          } else {
-            alert(`Trivia with ID ${formData.triviaID} does not exist`);
-          }
-        } catch (error) {
-          console.error("Error during updating trivia:", error);
-          alert("An error occurred during updating trivia. Please try again later.");
-        }
-      } else {
-        console.log("Trivia update canceled");
-      }
+      setOpenUpdateConfirmationDialog(true);
     };
+  
+    const handleConfirmUpdate = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/trivia/getTrivia/${formData.triviaID}`);
+        const data = await response.json();
+  
+        if (response.ok && data) {
+          if (data.isDeleted) {
+            setErrorMessage(`Trivia with ID ${formData.triviaID} is already deleted`);
+            setOpenErrorDialog(true);
+            return;
+          }
+  
+          const updateTriviaData = {
+            title: formData.title,
+            content: formData.content,
+            category: formData.category,
+            author: formData.author,
+          };
+  
+          const updateResponse = await fetch(`http://localhost:8080/trivia/updateTrivia?triviaID=${formData.triviaID}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updateTriviaData),
+          });
+  
+          if (updateResponse.ok) {
+            setSuccessMessage(`TriviaID ${formData.triviaID} updated successfully!`);
+            setOpenSuccessDialog(true);
+            handleReset();
+          } else {
+            const updateData = await updateResponse.json();
+            setErrorMessage("Failed to update trivia");
+            setOpenErrorDialog(true);
+            console.error("Failed to update trivia", updateData);
+          }
+        } else {
+          setErrorMessage(`Trivia with ID ${formData.triviaID} does not exist`);
+          setOpenErrorDialog(true);
+        }
+      } catch (error) {
+        console.error("Error during updating trivia:", error);
+        setErrorMessage("An error occurred during updating trivia. Please try again later.");
+        setOpenErrorDialog(true);
+      } finally {
+        setOpenUpdateConfirmationDialog(false);
+      }
+    };  
       
     // DELETE TRIVIA
     const handleDeleteTrivia = async () => {
       if (!formData.triviaID.trim()) {
-        alert("triviaID cannot be empty for deleting");
+        setErrorMessage("triviaID cannot be empty for deleting");
+        setOpenErrorDialog(true);
         return;
       }
-    
-      if (window.confirm("Are you sure you want to delete this trivia?")) {
-        try {
-          const response = await fetch(`http://localhost:8080/trivia/getTrivia/${formData.triviaID}`);
-          const data = await response.json();
-    
-          if (response.ok && data) {
-            if (data.isDeleted) {
-              alert(`Trivia with ID ${formData.triviaID} is already deleted`);
-              return;
-            }
-
-            const deleteResponse = await fetch(`http://localhost:8080/trivia/deleteTrivia/${formData.triviaID}`, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                petID: formData.triviaID,
-                deleted: true,
-              }),
-            });
-    
-            if (deleteResponse.ok) {
-              setSuccessMessage("Trivia marked as deleted successfully");
-            } else {
-              console.error("Failed to mark pet profile as deleted:", deleteResponse.statusText);
-            }
-          } else {
-            alert(`Pet profile with ID ${formData.triviaID} does not exist`);
+      setOpenDeleteConfirmationDialog(true);
+    };
+  
+    const handleConfirmDelete = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/trivia/getTrivia/${formData.triviaID}`);
+        const data = await response.json();
+  
+        if (response.ok && data) {
+          if (data.isDeleted) {
+            setErrorMessage(`Trivia with ID ${formData.triviaID} is already deleted`);
+            setOpenErrorDialog(true);
+            return;
           }
-        } catch (error) {
-          console.error("Error during marking pet profile as deleted:", error);
+  
+          const deleteResponse = await fetch(`http://localhost:8080/trivia/deleteTrivia/${formData.triviaID}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              petID: formData.triviaID,
+              deleted: true,
+            }),
+          });
+  
+          if (deleteResponse.ok) {
+            setSuccessMessage("Trivia marked as deleted successfully");
+            setOpenSuccessDialog(true);
+            handleReset();
+          } else {
+            setErrorMessage("Failed to mark trivia as deleted");
+            setOpenErrorDialog(true);
+            console.error("Failed to mark trivia as deleted:", deleteResponse.statusText);
+          }
+        } else {
+          setErrorMessage(`Trivia with ID ${formData.triviaID} does not exist`);
+          setOpenErrorDialog(true);
         }
-      } else {
-        console.log("Pet profile deletion canceled");
+      } catch (error) {
+        console.error("Error during marking trivia as deleted:", error);
+        setErrorMessage("An error occurred during marking trivia as deleted. Please try again later.");
+        setOpenErrorDialog(true);
+      } finally {
+        setOpenDeleteConfirmationDialog(false);
       }
     };
 
@@ -288,11 +326,82 @@ function TriviaForm() {
               </button>
             </div>
           </div>
-          {successMessage && (
-              <div className="success-message">{successMessage}</div>
-            )}
         </div>
       </form>
+
+      {/* Success Dialog */}
+      <Dialog open={openSuccessDialog} onClose={handleDialogClose}>
+        <DialogTitle>Success</DialogTitle>
+        <DialogContent>
+          <DialogContentText>{successMessage}</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Error Dialog */}
+      <Dialog open={openErrorDialog} onClose={handleDialogClose}>
+        <DialogTitle>Error</DialogTitle>
+        <DialogContent>
+          <DialogContentText>{errorMessage}</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Add Confirmation Dialog */}
+      <Dialog open={openAddConfirmationDialog} onClose={() => setOpenAddConfirmationDialog(false)}>
+        <DialogTitle>Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Are you sure you want to add a trivia?</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenAddConfirmationDialog(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleConfirmAdd} color="primary">
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Update Confirmation Dialog */}
+      <Dialog open={openUpdateConfirmationDialog} onClose={() => setOpenUpdateConfirmationDialog(false)}>
+        <DialogTitle>Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Are you sure you want to update this trivia?</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenUpdateConfirmationDialog(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleConfirmUpdate} color="primary">
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+            {/* Delete Confirmation Dialog */}
+            <Dialog open={openDeleteConfirmationDialog} onClose={() => setOpenDeleteConfirmationDialog(false)}>
+        <DialogTitle>Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Are you sure you want to delete this trivia?</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenDeleteConfirmationDialog(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleConfirmDelete} color="primary">
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }

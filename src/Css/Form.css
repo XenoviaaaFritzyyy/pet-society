@@ -13,7 +13,7 @@
     max-width: 700px;
     width: 100%;
     border-radius: 6px;
-    padding: 30px;
+    padding: 20px 30px;
     background-color: #fff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
@@ -84,7 +84,7 @@ input[type='file'] {
     border-radius: 5px;
     border: 1px solid #aaa;
     padding: 10px 15px;
-    height: 60px;
+    height: 80px;
     margin: 8px 0;
     width: 100%;
 }

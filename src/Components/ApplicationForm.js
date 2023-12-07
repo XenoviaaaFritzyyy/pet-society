@@ -272,7 +272,7 @@ const ApplicationForm = () => {
               </div>
             </div>
           </div>
-          <div className="error-message">{error}</div>
+          <div className="error-message" style={{color: 'red'}}>{error}</div>
         </form>
       </div>
 

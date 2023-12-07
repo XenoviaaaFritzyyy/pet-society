@@ -13,13 +13,12 @@ function SignUp() {
   const [contact, setContact] = useState('');
   const [address, setAddress] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
-  const [isAccountCreated, setIsAccountCreated] = useState(false); // New state to track account creation status
+  const [isAccountCreated, setIsAccountCreated] = useState(false); 
 
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
   const [contactError, setContactError] = useState(null);
-  const [showPassword, setShowPassword] = useState(false); // New state for password visibility
-
+  const [showPassword, setShowPassword] = useState(false); 
   const handleGenderChange = (event) => {
     setGender(event.target.value);
   };
@@ -36,9 +35,30 @@ function SignUp() {
     const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
     const contactRegex = /^\d{11}$/;
   
+    // Check email uniqueness
+    try {
+      const getAllUsersResponse = await fetch("http://localhost:8080/user/getAllUsers");
+      const allUsers = await getAllUsersResponse.json();
+
+      const isEmailUnique = !allUsers.some((user) => user.email === email);
+
+      if (!isEmailUnique) {
+        setEmailError("Email address has already been used");
+        return;
+      }
+    } catch (error) {
+      console.error("Error getting all users:", error);
+      return;
+    }
+
     setEmailError(null);
     setPasswordError(null);
     setContactError(null);
+
+    if (!contactRegex.test(contact)) {
+      setContactError("Contact should be in this format 09555432143");
+      return;
+    }
 
     if (!emailRegex.test(email)) {
       setEmailError("Invalid email format");
@@ -47,11 +67,6 @@ function SignUp() {
   
     if (!passwordRegex.test(password)) {
       setPasswordError("Password should be 8 characters or more with at least one uppercase letter");
-      return;
-    }
-  
-    if (!contactRegex.test(contact)) {
-      setContactError("Contact should be in this format 09555432143");
       return;
     }
   
@@ -229,7 +244,6 @@ function SignUp() {
               control={
                 <Checkbox
                   checked={rememberMe}
-                  required
                   onChange={(e) => setRememberMe(e.target.checked)}
                   color="primary"/>
               }
