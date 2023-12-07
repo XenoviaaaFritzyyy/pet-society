@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextField, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import AddPhotoIcon from '@mui/icons-material/AddPhotoAlternate';
 import { styled } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router-dom';
@@ -12,6 +12,7 @@ import { useAuth } from '../Components/AuthContext';
 const UserProfileEdit = () => {
   const navigate = useNavigate();
   const { userID, setUserID } = useAuth();
+  const [openDialog, setOpenDialog] = useState(false);
 
   const [profileInfo, setProfileInfo] = useState({
     fname: '',
@@ -61,8 +62,17 @@ const UserProfileEdit = () => {
   };
 
   const handleUpdateProfile = async () => {
+    setOpenDialog(true);
+  };
 
-    if (window.confirm('Are you sure you want to update your profile?')) {
+  const handleCancelUpdate = () => {
+    setOpenDialog(false);
+    console.log('User profile update canceled');
+  };
+
+  const handleConfirmUpdate  = async () => { 
+    setOpenDialog(false);
+
       try {
         // Create FormData for user data
         const updatedUserData = {
@@ -84,7 +94,7 @@ const UserProfileEdit = () => {
         });
 
         if (updateResponse.ok) {
-          console.log(`User profile with ID ${userID} updated successfully!`);
+          navigate("/userprofile");
 
           if (selectedImage) {
             const formDataForImage = new FormData();
@@ -108,11 +118,7 @@ const UserProfileEdit = () => {
       } catch (error) {
         console.error('Error during updating user profile:', error);
         alert('An error occurred during updating user profile. Please try again later.');
-      }
-        navigate("/userprofile");
-    } else {
-      console.log('User profile update canceled');
-    }
+      }     
   };
 
   
@@ -358,9 +364,25 @@ const UserProfileEdit = () => {
               </Button>
             </Box>
           </div>
-
         </div>
       </form>
+
+      <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+        <DialogTitle>Confirm Update</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to update your profile?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCancelUpdate} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleConfirmUpdate} color="primary" autoFocus>
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
