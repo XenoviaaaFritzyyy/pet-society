@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import SignIn from './Components/SignIn';
@@ -28,6 +28,36 @@ import './Css/App.css';
 
 
 function Welcome() {
+  const [text, setText] = useState('');
+  const [index, setIndex] = useState(0);
+  const [isErasing, setIsErasing] = useState(false);
+
+  const message = "Furever Hugs Wanted!";
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (!isErasing) {
+        setText((prevText) => {
+          const nextChar = message.charAt(prevText.length);
+          if (!nextChar) {
+            setIsErasing(true);
+          }
+          return prevText + nextChar;
+        });
+      } else {
+        setText((prevText) => {
+          const nextText = prevText.slice(0, -1);
+          if (!nextText) {
+            setIsErasing(false);
+          }
+          return nextText;
+        });
+      }
+    }, 150);
+
+    return () => clearInterval(intervalId);
+  }, [isErasing]);
+
   const containerStyle = {
     backgroundImage: 'url(/images/background1.png)',
     backgroundSize: 'auto 100%',
@@ -39,28 +69,29 @@ function Welcome() {
 
   return (
     <div className="app-container" style={containerStyle}>
-    <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: 0, right: 0, left: 0, padding: '20px' }}>
-      <img src="/images/logo.png" alt="Logo" style={{ height: '120px', margin: '0 0 0 100px' }} />
-      <div>
-        <Link to="/signin" style={{ textDecoration: 'none' }}>
-          <button style={{ padding: '10px 20px', color: 'white', backgroundColor: 'transparent', border: 'none' }}>Sign In</button>
-        </Link>
-        <Link to="/signup" style={{ textDecoration: 'none' }}>
-          <button style={{ padding: '12px 25px', margin: ' 0  100px 0 20px', borderRadius: '10px' }}>Sign Up</button>
-        </Link>
-      </div>
-    </header>
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: 0, right: 0, left: 0, padding: '20px' }}>
+        <img src="/images/logo.png" alt="Logo" style={{ height: '120px', margin: '0 0 0 100px' }} />
+        <div>
+          <Link to="/signin" style={{ textDecoration: 'none' }}>
+            <button style={{ padding: '10px 20px', color: 'white', backgroundColor: 'transparent', border: 'none' }}>Sign In</button>
+          </Link>
+          <Link to="/signup" style={{ textDecoration: 'none' }}>
+            <button style={{ padding: '12px 25px', margin: ' 0  100px 0 20px', borderRadius: '10px' }}>Sign Up</button>
+          </Link>
+        </div>
+      </header>
 
       <div style={{ textAlign: 'left', width: '50%', margin: '0 0 0 150px', paddingTop: '220px' }}>
         <strong>
-          Furever Hugs Wanted! <br />
+          {text}
+          <br />
           Adopt Today and Bring Joy Home.
         </strong>
         <p className='slogan'>"Experience the love of a lifetime - Rescue, Adopt, Embrace Happiness"</p>
         <Link to="/signin" style={{ textDecoration: 'none' }}>
-            <button style={{ padding: '18px 60px', borderRadius: '50px', marginTop: '20px' }}>
-              Adopt Now
-            </button>
+          <button style={{ padding: '20px 80px', borderRadius: '50px', marginTop: '20px' }}>
+            Adopt Now
+          </button>
         </Link>
       </div>
     </div>
