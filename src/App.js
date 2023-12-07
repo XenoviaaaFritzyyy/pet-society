@@ -22,7 +22,7 @@ import TriviaForm from './Components/TriviaForm';
 import Forum from './Components/Forum';
 import UserNotifications from './Components/Notification';
 import AdminNotification from './Components/AdminNotification';
-import Contact from './Components/Contact';
+import Contact from './Components/Contact';   
 
 import './Css/App.css';
 
@@ -68,20 +68,21 @@ function Welcome() {
   };
 
   return (
-    <div className="app-container" style={containerStyle}>
+    <div className="app-container welcome" style={containerStyle}>
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: 0, right: 0, left: 0, padding: '20px' }}>
         <img src="/images/logo.png" alt="Logo" style={{ height: '120px', margin: '0 0 0 100px' }} />
         <div>
           <Link to="/signin" style={{ textDecoration: 'none' }}>
             <button style={{ padding: '10px 20px', color: 'white', backgroundColor: 'transparent', border: 'none' }}>Sign In</button>
           </Link>
+
           <Link to="/signup" style={{ textDecoration: 'none' }}>
             <button style={{ padding: '12px 25px', margin: ' 0  100px 0 20px', borderRadius: '10px' }}>Sign Up</button>
           </Link>
         </div>
       </header>
 
-      <div style={{ textAlign: 'left', width: '50%', margin: '0 0 0 150px', paddingTop: '220px' }}>
+      <div className='welcome' style={{ textAlign: 'left', width: '50%', margin: '0 0 0 150px', paddingTop: '220px' }}>
         <strong>
           {text}
           <br />

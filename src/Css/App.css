@@ -2,7 +2,7 @@ body{
     background-color: #DDE6ED;
 }
 
-button {
+.welcome button {
     font-size: 15px;
     font-weight: bold;
     color: #27374D;
@@ -12,7 +12,7 @@ button {
     font-size: 18px;
 }
 
-button:hover {
+.welcome button:hover {
     background-color: #DDE6ED;
     transition: 0.3s;
 }
