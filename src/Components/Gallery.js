@@ -160,7 +160,8 @@ function Gallery() {
           <Card sx={{ maxWidth: 800, margin: 'auto', borderRadius: '10px', }}>
             <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
             <img 
-              src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/default-pic.jpg"}
+              src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : 
+              "/images/default-pic.jpg"}
               alt="User Profile" 
               className="user-profile-image" 
               style={{

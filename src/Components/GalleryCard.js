@@ -189,4 +189,5 @@ const GalleryCard = ({ galID, name, image, description }) => {
         </Card>
     );
 };
+
 export default GalleryCard;
