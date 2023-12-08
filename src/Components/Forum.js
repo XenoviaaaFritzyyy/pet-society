@@ -12,9 +12,6 @@ function Forum() {
     const [postContent, setPostContent] = useState('');
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
     const [selectedForumIDToDelete, setSelectedForumIDToDelete] = useState(null);
-    const [commentContents, setCommentContents] = useState({});
-
-    
 
     useEffect(() => {
         const storedUserID = localStorage.getItem('userID');
@@ -33,9 +30,10 @@ function Forum() {
                 const data = await response.json();
     
                 if (Array.isArray(data)) {
-                    // Filter out entries with isDeleted = true
                     const filteredEntries = data.filter(entry => !entry.isDeleted);
-                    setForumEntries(filteredEntries);
+                    const sortedEntries = filteredEntries.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    
+                    setForumEntries(sortedEntries);
                 } else {
                     console.error('Invalid forum entries data:', data);
                     setForumEntries([]);
@@ -49,6 +47,7 @@ function Forum() {
             setLoading(false);
         }
     };
+    
 
     useEffect(() => {
         fetchEntries();
