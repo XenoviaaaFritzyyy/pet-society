@@ -233,22 +233,6 @@ function Forum() {
                     <div>
                         <p>{entry.post}</p>
                     </div>
-
-                    {/* Comment Textarea */}
-                    <textarea
-                        placeholder="Add your comment..."
-                        value={commentContents[entry.forumID] || ''}
-                        onChange={(e) => setCommentContents({ ...commentContents, [entry.forumID]: e.target.value })}
-                        style={{ width: '98%', marginTop: '10px', padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
-
-                    {/* Comment Button */}
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        style={{ marginTop: '10px', marginRight: '10px', marginLeft: '1080px'}}
-                        onClick={() => handleOpenConfirmation(entry.forumID)}>
-                        Reply
-                    </Button>
                 </div>
             ))}
 
