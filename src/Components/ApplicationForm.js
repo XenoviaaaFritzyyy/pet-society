@@ -283,10 +283,10 @@ const ApplicationForm = () => {
             <DialogContentText>Are you sure you want to submit the application form?</DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleCloseConfirmation} color="primary">
+            <Button onClick={handleCloseConfirmation} color="primary" style={{ backgroundColor: 'red', color: 'white' }}>
               Cancel
             </Button>
-            <Button onClick={handleConfirmSubmission} color="primary">
+            <Button onClick={handleConfirmSubmission} color="primary" style={{ backgroundColor: '#4caf50', color: 'white' }}>
               Confirm
             </Button>
           </DialogActions>
