@@ -139,8 +139,9 @@ return (
 
         <Paper elevation={3} style={{ textAlign: 'left', padding: '10px', width: '60%', margin: '10px auto', position: 'relative' }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img
-                    src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : "/images/default-pic.jpg"}
+            <img 
+                src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : 
+                    "/images/default-pic.jpg"}
                     alt="User Profile"
                     className="user-profile-image"
                     style={{
@@ -210,36 +211,54 @@ return (
                     </Box>
                 </>
                 <>
-                <Paper style={{ position: 'relative', margin: '5px', padding: '10px', textAlign: 'left', background: 'white' }} elevation={1}>
-
-                        <h2 style={{ color: '#001858', fontWeight: 'bold' }}>
-                            {profileInfo.fname} {profileInfo.lname}
-                        </h2>
-                        <span className="time"> · {formatDateTime(profileInfo.date)}</span>
-                        <h5 style={{ fontStyle: 'italic', color: '#001858' }}>Sample reply</h5>
-
-                        <Button
-                            variant="text"
-                            color="error"
-                            style={{
-                              backgroundColor: 'transparent',
-                              color: 'red',
-                              fontWeight: '900',
-                              height: '30px',
-                              width: '30px',
-                              position: 'absolute',
-                              top: 10,  // Adjust the top position as needed
-                              right: 10, // Adjust the right position as needed
-                              '&:hover': {
-                                backgroundColor: '#142132',
-                                color: 'white'
-                              },
-                            }} 
-                        >
-                            x
-                        </Button>
-                    </Paper>
-                </>
+                <Paper style={{ position: 'relative', margin: '5px', padding: '10px', 
+                                textAlign: 'left', background: 'white' }} elevation={1}>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img 
+                        src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : 
+                        "/images/default-pic.jpg"}
+                        alt="User Profile"
+                        className="user-profile-image"
+                        style={{
+                        width: '55px',
+                        height: '50px',
+                        objectFit: 'cover',
+                        borderRadius: '50%',
+                        marginRight: '10px', 
+                        }}
+                    />
+                <div>
+                    <h2 style={{ color: '#001858', fontWeight: 'bold' }}>
+                        {profileInfo.fname} {profileInfo.lname}
+                    </h2>
+                    <span className="time"> · {formatDateTime(profileInfo.date)}</span>
+                </div>
+                <Button
+                    variant="text"
+                    color="error"
+                    style={{
+                        backgroundColor: 'transparent',
+                        color: 'red',
+                        fontWeight: '900',
+                        height: '30px',
+                        width: '30px',
+                        marginLeft: 'auto', // Move the button to the right
+                        '&:hover': {
+                        backgroundColor: '#142132',
+                        color: 'white'
+                        },
+                    }} 
+                >
+                    x
+                </Button>
+                </div>
+            <div>
+                <h5 style={{ fontStyle: 'italic', color: '#001858' }}>Sample reply</h5>
+            </div>
+                </div>
+            </Paper>
+            </>
                 <>No Replies Yet</>
             </AccordionDetails>
             </Accordion>
@@ -262,3 +281,5 @@ return (
 }
 
 export default Forum;
+
+//Wala rani. para makapull lamang
