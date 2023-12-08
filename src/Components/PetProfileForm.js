@@ -14,6 +14,7 @@ function PetProfileForm() {
 
   const [openAddConfirmationDialog, setOpenAddConfirmationDialog] = useState(false);
   const [openUpdateConfirmationDialog, setOpenUpdateConfirmationDialog] = useState(false);
+  const [openDeleteConfirmationDialog, setOpenDeleteConfirmationDialog] = useState(false);
 
   const handleDialogClose = () => {
     setOpenSuccessDialog(false);
@@ -164,45 +165,54 @@ function PetProfileForm() {
   };
   
 
-  const handleDeletePetProfile = async () => {
+  // DELETE PET PROFILE
+const handleDeletePetProfile = async () => {
   if (!formData.petID.trim()) {
-    alert("PetID cannot be empty for deleting");
+    setErrorMessage("PetID cannot be empty for deleting");
+    setOpenErrorDialog(true);
     return;
   }
 
-  if (window.confirm("Are you sure you want to delete this pet profile?")) {
-    try {
-      const response = await fetch(`http://localhost:8080/pet/info/${formData.petID}`);
-      const data = await response.json();
+  setOpenDeleteConfirmationDialog(true);
+};
 
-      if (response.ok && data) {
-        const deleteResponse = await fetch(`http://localhost:8080/pet/deletePet/${formData.petID}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            petID: formData.petID,
-            deleted: true, 
-          }),
-        });
+const handleConfirmDelete = async () => {
+  try {
+    const response = await fetch(`http://localhost:8080/pet/info/${formData.petID}`);
+    const data = await response.json();
 
-        if (deleteResponse.ok) {
+    if (response.ok && data) {
+      const deleteResponse = await fetch(`http://localhost:8080/pet/deletePet/${formData.petID}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          petID: formData.petID,
+          deleted: true, 
+        }),
+      });
 
-          console.log("Pet profile marked as deleted successfully");
-        } else {
-          console.error("Failed to mark pet profile as deleted:", deleteResponse.statusText);
-        }
+      if (deleteResponse.ok) {
+        setSuccessMessage("Pet profile marked as deleted successfully");
+        setOpenSuccessDialog(true);
       } else {
-        alert(`Pet profile with ID ${formData.petID} does not exist`);
+        setErrorMessage(`Failed to mark pet profile as deleted: ${deleteResponse.statusText}`);
+        setOpenErrorDialog(true);
       }
-    } catch (error) {
-      console.error("Error during marking pet profile as deleted:", error);
+    } else {
+      setErrorMessage(`Pet profile with ID ${formData.petID} does not exist`);
+      setOpenErrorDialog(true);
     }
-  } else {
-    console.log("Pet profile deletion canceled");
+  } catch (error) {
+    console.error("Error during marking pet profile as deleted:", error);
+    setErrorMessage("An error occurred during marking pet profile as deleted. Please try again later.");
+    setOpenErrorDialog(true);
+  } finally {
+    setOpenDeleteConfirmationDialog(false);
   }
 };
+
 
 
 // UPDATE PET PROFILE
@@ -560,7 +570,7 @@ const handleConfirmUpdate = async () => {
       </Dialog>
 
             {/* Delete Confirmation Dialog */}
-            {/* <Dialog open={openDeleteConfirmationDialog} onClose={() => setOpenDeleteConfirmationDialog(false)}>
+            <Dialog open={openDeleteConfirmationDialog} onClose={() => setOpenDeleteConfirmationDialog(false)}>
         <DialogTitle>Confirmation</DialogTitle>
         <DialogContent>
           <DialogContentText>Are you sure you want to delete this trivia?</DialogContentText>
@@ -573,7 +583,7 @@ const handleConfirmUpdate = async () => {
             Confirm
           </Button>
         </DialogActions>
-      </Dialog> */}
+      </Dialog>
     </>
   );
 }
