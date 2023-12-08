@@ -12,20 +12,11 @@ import { useAuth } from '../Components/AuthContext';
 
 const GalleryCard = ({ galID, name, image, description }) => {
     const [isFavoriteClicked, setIsFavoriteClicked] = useState(false);
-
-    const [formData, setFormData] = useState({
-        galID: '',
-        description: '',
-        photo_path: '',
-        isDeleted: false
-        });
-        
     const handleFavoriteClick = () => {
         setIsFavoriteClicked(!isFavoriteClicked);
     };
 
     const [gallerys, setGallerys] = React.useState([]);
-
     useEffect(() => {
         const fetchGallery = async () => {
         try {
@@ -43,11 +34,9 @@ const GalleryCard = ({ galID, name, image, description }) => {
         } catch (error) {
             console.error("Error during fetching gallery:", error);
         } finally {
-
-        }
+            }
         };
-    
-        fetchGallery();
+    fetchGallery();
     }, []);
 
     const handleDeleteGallery = async () => {
@@ -97,6 +86,7 @@ const GalleryCard = ({ galID, name, image, description }) => {
     const [profileInfo, setProfileInfo] = useState({
         fname: '',
         lname: '',
+        photoPath: '',
     });
 
     const [loading, setLoading] = useState(true);
@@ -164,7 +154,7 @@ const GalleryCard = ({ galID, name, image, description }) => {
                         }} />
                 <div style={{ marginLeft: '10px' }}>
                     <Typography variant="h5" color="text.primary" sx={{ fontWeight: 'bold' }}>
-                        {profileInfo.fname} {profileInfo.lname}
+                        {name}
                     </Typography>
                 </div>
                 <div style={{ marginLeft: 'auto' }}>
