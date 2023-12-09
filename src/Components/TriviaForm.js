@@ -349,7 +349,7 @@ function TriviaForm() {
           <DialogContentText>{errorMessage}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDialogClose} color="primary">
+          <Button onClick={handleDialogClose} color="primary" >
             Close
           </Button>
         </DialogActions>
@@ -362,10 +362,10 @@ function TriviaForm() {
           <DialogContentText>Are you sure you want to add a trivia?</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenAddConfirmationDialog(false)} color="primary">
+          <Button onClick={() => setOpenAddConfirmationDialog(false)} color="primary" style={{ backgroundColor: 'red', color: 'white' }}>
             Cancel
           </Button>
-          <Button onClick={handleConfirmAdd} color="primary">
+          <Button onClick={handleConfirmAdd} color="primary" style={{ backgroundColor: '#4caf50', color: 'white' }}>
             Confirm
           </Button>
         </DialogActions>
@@ -378,10 +378,10 @@ function TriviaForm() {
           <DialogContentText>Are you sure you want to update this trivia?</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenUpdateConfirmationDialog(false)} color="primary">
+          <Button onClick={() => setOpenUpdateConfirmationDialog(false)} color="primary" style={{ backgroundColor: 'red', color: 'white' }}>
             Cancel
           </Button>
-          <Button onClick={handleConfirmUpdate} color="primary">
+          <Button onClick={handleConfirmUpdate} color="primary" style={{ backgroundColor: '#4caf50', color: 'white' }}>
             Confirm
           </Button>
         </DialogActions>
@@ -394,10 +394,10 @@ function TriviaForm() {
           <DialogContentText>Are you sure you want to delete this trivia?</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenDeleteConfirmationDialog(false)} color="primary">
+          <Button onClick={() => setOpenDeleteConfirmationDialog(false)} color="primary" style={{ backgroundColor: 'red', color: 'white' }}>
             Cancel
           </Button>
-          <Button onClick={handleConfirmDelete} color="primary">
+          <Button onClick={handleConfirmDelete} color="primary" style={{ backgroundColor: '#4caf50', color: 'white' }}>
             Confirm
           </Button>
         </DialogActions>
