@@ -10,7 +10,7 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useAuth } from '../Components/AuthContext';
 
-const GalleryCard = ({ galID, name, image, description }) => {
+const GalleryCard = ({ galID, name, image, description, /*user,*/ profile }) => {
     const [isFavoriteClicked, setIsFavoriteClicked] = useState(false);
     const handleFavoriteClick = () => {
         setIsFavoriteClicked(!isFavoriteClicked);
@@ -126,6 +126,13 @@ const GalleryCard = ({ galID, name, image, description }) => {
     }
     }, []);
 
+    // const isCurrentUserGallery = user && userID && userID === user.userID;
+    // const isButtonDisabled = !isCurrentUserGallery;
+
+    // console.log('userID:', userID);
+    // console.log('user.userID:', user.userID);
+    // console.log('isCurrentUserGallery:', isCurrentUserGallery);
+
     return (
         <Card 
         sx={{
@@ -142,16 +149,17 @@ const GalleryCard = ({ galID, name, image, description }) => {
             />
             <CardContent>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src={profileInfo.photoPath ? `http://localhost:8080/user/${profileInfo.photoPath}` : 
-                        "/images/default-pic.jpg"}
-                        alt="User Profile"
-                        className="user-profile-image"
-                        style={{
-                        width: '45px',
-                        height: '40px',
-                        objectFit: 'cover',
-                        borderRadius: '50%',
-                        }} />
+                <img
+                    src={profile ? `http://localhost:8080/user/${profile}` : "/images/default-pic.jpg"}
+                    alt="User Profile"
+                    className="user-profile-image"
+                    style={{
+                    width: '45px',
+                    height: '40px',
+                    objectFit: 'cover',
+                    borderRadius: '50%',
+                    }}
+                />
                 <div style={{ marginLeft: '10px' }}>
                     <Typography variant="h5" color="text.primary" sx={{ fontWeight: 'bold' }}>
                         {name}
@@ -180,7 +188,8 @@ const GalleryCard = ({ galID, name, image, description }) => {
                     width: 100, whiteSpace: 'nowrap',
                     fontSize: 10,
                     }}
-                    onClick={handleDeleteGallery} >
+                    onClick={handleDeleteGallery}
+                    /*disabled={isButtonDisabled}*/ >
                         Delete
                 </Button>
             </CardContent>
