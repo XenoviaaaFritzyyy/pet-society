@@ -10,7 +10,7 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useAuth } from '../Components/AuthContext';
 
-const GalleryCard = ({ galID, name, image, description, /*user,*/ profile }) => {
+const GalleryCard = ({ galID, name, image, description, profile, createdBy }) => {
     const [isFavoriteClicked, setIsFavoriteClicked] = useState(false);
     const handleFavoriteClick = () => {
         setIsFavoriteClicked(!isFavoriteClicked);
@@ -126,12 +126,8 @@ const GalleryCard = ({ galID, name, image, description, /*user,*/ profile }) => 
     }
     }, []);
 
-    // const isCurrentUserGallery = user && userID && userID === user.userID;
-    // const isButtonDisabled = !isCurrentUserGallery;
-
-    // console.log('userID:', userID);
-    // console.log('user.userID:', user.userID);
-    // console.log('isCurrentUserGallery:', isCurrentUserGallery);
+    console.log('Inside JSX - createdBy:', createdBy);
+    console.log('Inside JSX - userID:', userID);
 
     return (
         <Card 
@@ -177,6 +173,7 @@ const GalleryCard = ({ galID, name, image, description, /*user,*/ profile }) => 
                 <Typography variant="body2" color="text.secondary" style={{ marginLeft: '55px' }}>
                     {description}
                 </Typography>
+                {String(createdBy) === String(userID) && (
                 <Button
                     color="primary"
                     variant="contained"
@@ -189,9 +186,10 @@ const GalleryCard = ({ galID, name, image, description, /*user,*/ profile }) => 
                     fontSize: 10,
                     }}
                     onClick={handleDeleteGallery}
-                    /*disabled={isButtonDisabled}*/ >
-                        Delete
+                    >
+                    Delete
                 </Button>
+                )}
             </CardContent>
                 <CardActions disableSpacing>
                 </CardActions>

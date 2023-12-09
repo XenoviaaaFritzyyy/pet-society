@@ -218,8 +218,8 @@ function Gallery() {
       <div className="gallery-container" style={{ display: 'block', flexWrap: "wrap" }}>
       {gallerys.map(gallery => (
         <GalleryCard key={gallery.galID} galID={gallery.galID} name={`${gallery.user.fname} ${gallery.user.lname}`}
-        description={gallery.description} image={gallery.photoPath} /*user={gallery.user.userID}*/
-        profile={gallery.user.photoPath} />
+        description={gallery.description} image={gallery.photoPath}
+        profile={gallery.user.photoPath} createdBy={gallery.user.userID} />
       ))}
       </div>
     </>
