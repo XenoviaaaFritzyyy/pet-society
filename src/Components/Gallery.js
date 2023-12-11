@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from './Navbar';
 import GalleryCard from "./GalleryCard";
 import '../Css/Gallery.css';
-import { Card, CardContent } from '@mui/material';
+import { Card, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
 import AddPhotoIcon from '@mui/icons-material/AddPhotoAlternate';
 import { useAuth } from '../Components/AuthContext';
 
@@ -27,6 +27,10 @@ function Gallery() {
     console.log("Form submitted!", formData);
   };
 
+  const [confirmationOpen, setConfirmationOpen] = useState(false);
+  const [deletionConfirmationOpen, setDeletionConfirmationOpen] = useState(false);
+  const [deletingGalleryID, setDeletingGalleryID] = useState(null);
+
   const handleAddGallery = async () => {
     try {
       // Check if formData is valid
@@ -36,49 +40,79 @@ function Gallery() {
       }
   
       // Display a confirmation dialog
-      if (window.confirm("Are you sure you want to add this picture?")) {
-        // Step 1: Insert overall information
-        const responseInfo = await fetch(`http://localhost:8080/gallery/insertGallery?userId=${userID}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
-  
-        // Handle the response for overall information
-        if (responseInfo.ok) {
-          console.log('Gallery information added successfully!');
-          const dataInfo = await responseInfo.json();
-  
-          // Step 2: Insert the image using the galleryID from the previous response
-          const formDataForImage = new FormData();
-          formDataForImage.append('image', formData.photo_path);
-  
-          const responseImage = await fetch(`http://localhost:8080/gallery/insertGallery/${dataInfo.galID}/${userID}`, {
-            method: 'POST',
-            body: formDataForImage,
-          });
-          
-  
-          // Handle the image upload response accordingly
-          if (responseImage.ok) {
-            console.log('Image uploaded successfully!');
-            // You might want to redirect or update state here
-          } else {
-            console.error('Error uploading image:', responseImage.statusText);
-          }
-        } else {
-          console.error('Error adding Gallery information:', responseInfo.statusText);
-        }
-      } else {
-        console.log("Gallery addition canceled");
-      }
+      setConfirmationOpen(true);
     } catch (error) {
       console.error('Error adding Gallery:', error.message);
     }
   };
   
+  const handleConfirmSubmission = async () => {
+    try {
+      // Step 1: Insert overall information
+      const responseInfo = await fetch(`http://localhost:8080/gallery/insertGallery?userId=${userID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      // Handle the response for overall information
+      if (responseInfo.ok) {
+        console.log('Gallery information added successfully!');
+        const dataInfo = await responseInfo.json();
+
+        // Step 2: Insert the image using the galleryID from the previous response
+        const formDataForImage = new FormData();
+        formDataForImage.append('image', formData.photo_path);
+
+        const responseImage = await fetch(`http://localhost:8080/gallery/insertGallery/${dataInfo.galID}/${userID}`, {
+          method: 'POST',
+          body: formDataForImage,
+        });
+
+        // Handle the image upload response accordingly
+        if (responseImage.ok) {
+          console.log('Image uploaded successfully!');
+          // You might want to redirect or update state here
+        } else {
+          console.error('Error uploading image:', responseImage.statusText);
+        }
+      } else {
+        console.error('Error adding Gallery information:', responseInfo.statusText);
+      }
+
+      setConfirmationOpen(false);
+    } catch (error) {
+      console.error('Error during gallery submission:', error);
+    }
+  };
+
+  const handleDeleteGallery = (galID) => {
+    setDeletingGalleryID(galID);
+    setDeletionConfirmationOpen(true);
+  };
+
+  const handleConfirmDeletion = async () => {
+    try {
+      // Perform deletion logic here using deletingGalleryID
+      await fetch(`http://localhost:8080/gallery/deleteGallery/${deletingGalleryID}`, {
+        method: 'PUT',
+      });
+
+      // You may need to update the state or perform additional actions after deletion
+      // For example, refetching the gallery entries
+      // fetchGallery();
+
+      // Close the confirmation dialog
+      setDeletionConfirmationOpen(false);
+    } catch (error) {
+      console.error('Error during gallery deletion:', error);
+    } finally {
+      // Reset state
+      setDeletingGalleryID(null);
+    }
+  };
 
   const [gallerys, setGallerys] = React.useState([]);
 
@@ -139,7 +173,6 @@ function Gallery() {
   }, [userID]);
 
   useEffect(() => {
-
     if (userID) {
       localStorage.setItem('userID', userID);
     }
@@ -151,7 +184,7 @@ function Gallery() {
       setUserID(storedUserID);
     }
   }, []);
-  
+
   return (
     <>
       <Navbar />
@@ -206,7 +239,7 @@ function Gallery() {
               <button
                 type="button"
                 className="Petprofile-Add"
-                onClick={handleAddGallery}
+                onClick={() => setConfirmationOpen(true)}
               >
                 <span className="btnAdd">POST</span>
               </button>
@@ -216,15 +249,54 @@ function Gallery() {
       </div>
   
       <div className="gallery-container" style={{ display: 'block', flexWrap: "wrap" }}>
-      {gallerys.map(gallery => (
-        <GalleryCard key={gallery.galID} galID={gallery.galID} name={`${gallery.user.fname} ${gallery.user.lname}`}
-        description={gallery.description} image={gallery.photoPath}
-        profile={gallery.user.photoPath} createdBy={gallery.user.userID} />
+        {gallerys.map(gallery => (
+          <GalleryCard
+            key={gallery.galID}
+            galID={gallery.galID}
+            name={`${gallery.user.fname} ${gallery.user.lname}`}
+            description={gallery.description}
+            image={gallery.photoPath}
+            profile={gallery.user.photoPath}
+            createdBy={gallery.user.userID}
+            onDelete={() => handleDeleteGallery(gallery.galID)} // Add onDelete prop
+          />
       ))}
       </div>
+
+      {/* Confirmation Dialog */}
+      <Dialog open={confirmationOpen} onClose={() => setConfirmationOpen(false)}>
+        <DialogTitle>Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Are you sure you want to post this ?</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setConfirmationOpen(false)} color="primary" style={{ backgroundColor: 'red', color: 'white' }}>
+            Cancel
+          </Button>
+          <Button onClick={handleConfirmSubmission} color="primary" style={{ backgroundColor: '#4caf50', color: 'white' }}>
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      
+      {/* Confirmation Dialog for Deleting a Post */}
+      <Dialog open={deletionConfirmationOpen} onClose={() => setDeletionConfirmationOpen(false)}>
+        <DialogTitle>Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Are you sure you want to delete this post?</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDeletionConfirmationOpen(false)} color="primary" style={{ backgroundColor: 'red', color: 'white' }}>
+            Cancel
+          </Button>
+          <Button onClick={handleConfirmDeletion} color="primary" style={{ backgroundColor: '#4caf50', color: 'white' }}>
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
-  
 }
 
 export default Gallery;
