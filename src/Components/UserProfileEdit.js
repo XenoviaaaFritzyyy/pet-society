@@ -375,10 +375,10 @@ const UserProfileEdit = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCancelUpdate} color="primary">
+          <Button onClick={handleCancelUpdate} color="primary" style={{ backgroundColor: 'red', color: 'white' }}>
             Cancel
           </Button>
-          <Button onClick={handleConfirmUpdate} color="primary" autoFocus>
+          <Button onClick={handleConfirmUpdate} color="primary" autoFocus style={{  backgroundColor: 'green', color: 'white' }}>
             Confirm
           </Button>
         </DialogActions>
