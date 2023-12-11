@@ -336,7 +336,7 @@ function TriviaForm() {
           <DialogContentText>{successMessage}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDialogClose} color="primary">
+          <Button onClick={handleDialogClose} color="primary"  style={{ backgroundColor: '#27374D', color: 'white' }}>
             Close
           </Button>
         </DialogActions>
@@ -349,7 +349,7 @@ function TriviaForm() {
           <DialogContentText>{errorMessage}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDialogClose} color="primary" >
+          <Button onClick={handleDialogClose} color="primary" style={{ backgroundColor: '#27374D', color: 'white' }} >
             Close
           </Button>
         </DialogActions>

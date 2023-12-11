@@ -1,10 +1,20 @@
 // Aboutus.js
-import React from 'react';
+import React, {useEffect} from 'react';
 import Navbar from './Navbar';
 import '../Css/Aboutus.css';
 import Footer from './Footer';
+import { useAuth } from '../Components/AuthContext'; 
 
 function Aboutus() {
+  const { userID, setUserID } = useAuth();
+
+  useEffect(() => {
+    const storedUserID = localStorage.getItem('userID');
+    if (storedUserID) {
+      setUserID(storedUserID);
+    }
+  }, [userID, setUserID]);
+
   return (
     <>
       <div>

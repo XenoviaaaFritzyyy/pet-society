@@ -39,7 +39,7 @@ const ThankYou = () => {
           </p>
 
           <Link to="/request" style={{ textDecoration: 'none' }}>
-            <button style={{  padding: '15px 50px', marginTop: '50px', cursor:'pointer', fontSize:'25px', borderRadius: '10px'}}>Go Back to Homepage</button>
+            <button style={{  padding: '15px 50px', marginTop: '50px', cursor:'pointer', fontSize:'25px', borderRadius: '10px'}}>Application Status</button>
           </Link>
         </div>
       </div>

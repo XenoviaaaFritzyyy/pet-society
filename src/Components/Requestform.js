@@ -201,10 +201,10 @@ function RequestForm() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDialogClose} color="primary">
+          <Button onClick={handleDialogClose} color="primary" style={{ backgroundColor: 'red', color: 'white' }}>
             Cancel
           </Button>
-          <Button onClick={handleDialogAction} color="primary">
+          <Button onClick={handleDialogAction} color="primary" style={{ backgroundColor: '#4caf50', color: 'white' }}>
             Confirm
           </Button>
         </DialogActions>

@@ -249,7 +249,7 @@ function Home() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog} color="primary">
+          <Button onClick={handleCloseDialog} color="primary" style={{ backgroundColor: '#27374D', color: 'white' }}>
             Close
           </Button>
         </DialogActions>

@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
+import { useAuth } from '../Components/AuthContext'; 
+
 
 function Dictionary() {
+  const { userID, setUserID } = useAuth();
+
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedLetter, setSelectedLetter] = useState(null);
+  
 
   useEffect(() => {
-    // Fetch data from your API endpoint
     const fetchData = async () => {
       try {
+        const storedUserID = localStorage.getItem('userID');
+        if (storedUserID) {
+          setUserID(storedUserID);
+        }
+  
         const response = await fetch("http://localhost:8080/dictionary/getAllEntry");
         const data = await response.json();
   
         if (response.ok) {
-          // Filter out entries where isDeleted is true
           const filteredEntries = data.filter(entry => !entry.isDeleted);
-  
-          // Sort remaining entries alphabetically based on the entry name
           const sortedEntries = filteredEntries.sort((a, b) => a.entry.localeCompare(b.entry));
           setEntries(sortedEntries);
         } else {
@@ -31,7 +37,7 @@ function Dictionary() {
     };
   
     fetchData();
-  }, []);
+  }, [setUserID, setEntries, setLoading]);
 
   const filterEntriesByLetter = (letter) => {
     setSelectedLetter(letter === selectedLetter ? null : letter);
