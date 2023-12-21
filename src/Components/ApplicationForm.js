@@ -27,6 +27,8 @@ const ApplicationForm = () => {
     landlordContact: '',
     isDeleted: false,
   });
+console.log(">>>>>>"+localStorage.getItem("userID"))
+  if(localStorage.getItem("userID")==null){window.location="/signin"}
 
   useEffect(() => {
     const storedUserID = localStorage.getItem('userID');

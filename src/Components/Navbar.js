@@ -70,6 +70,7 @@ function Navbar() {
         navigate('/request'); 
         break;
       case 'Log out':
+        localStorage.removeItem("userID")
         navigate('/'); 
         break;
       default:
