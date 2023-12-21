@@ -21,13 +21,13 @@ const ApplicationForm = () => {
     state: '',
     noAdults: '',
     noChildren: '',
-    desHousehold: 'active',
-    typeResidence: 'apartment',
+    desHousehold: 'Active',
+    typeResidence: 'Apartment',
     rentHome: 'Rent',
     landlordContact: '',
     isDeleted: false,
   });
-console.log(">>>>>>"+localStorage.getItem("userID"))
+
   if(localStorage.getItem("userID")==null){window.location="/signin"}
 
   useEffect(() => {
