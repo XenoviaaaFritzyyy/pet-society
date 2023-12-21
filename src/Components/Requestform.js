@@ -135,21 +135,18 @@ function RequestForm() {
           <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: "5px", fontSize: '12px' }}>
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
+                <th>Applicant Name</th>
                 <th>Address</th>
-                <th>City</th>
-                <th>State</th>
-                <th>no. children</th>
-                <th>no. adults</th>
+                <th>No. children</th>
+                <th>No. adults</th>
                 <th>Type of Household</th>
                 <th>Type of Residence</th>
                 <th>Rent or Own Home?</th>
                 <th>Landlord Contact</th>
-                <th>User ID</th>
-                <th>Pet ID</th>
+                <th>Pet to Adopt</th>
                 <th>Status</th>
+                <th>Reject Action</th>
+                <th>Accept Action</th>
               </tr>
             </thead>
             <tbody>
@@ -157,20 +154,15 @@ function RequestForm() {
               if (!selectedStatus || application.status === selectedStatus) {
                 return (
                 <tr key={application.applicationID}>
-                  <td>{application.applicationID}</td>
-                  <td>{application.fname}</td>
-                  <td>{application.lname}</td>
-                  <td>{application.address}</td>
-                  <td>{application.city}</td>
-                  <td>{application.state}</td>
+                  <td>{application.fname} {application.lname}</td>
+                  <td>{application.address}, {application.city}, {application.state}</td>
                   <td>{application.noChildren}</td>
                   <td>{application.noAdults}</td>
                   <td>{application.desHousehold}</td>
                   <td>{application.typeResidence}</td>
                   <td>{application.rentHome}</td>
                   <td>{application.landlordContact}</td>
-                  <td>{application.user.userID}</td>
-                  <td>{application.pet.petID}</td>
+                  <td>{application.pet.name}</td>
                   <td>{application.status}</td>
                   <td>
                     {application.status === 'Pending' && (
