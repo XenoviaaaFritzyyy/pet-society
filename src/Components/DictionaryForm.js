@@ -220,12 +220,21 @@ function DictionaryForm() {
             <span className="title">Dictionary Entry</span>
 
             <div className="fields">
-              <div className="input-field">
-                {/* DictionaryID input (if needed) */}
-                <label>DictionaryID*</label>
-                <input type="number" id="dicID" name="dicID" placeholder="Enter dictionaryID" value={dicID} onChange={(e) => setDicID(e.target.value)} />
+            <div className="input-field">
+              {/* DictionaryID input (if needed) */}
+              <label htmlFor="dicID">DictionaryID*</label>
+                <input 
+                  type="text" 
+                  id="dicID" 
+                  name="dicID" 
+                  placeholder="Enter dictionaryID" 
+                  value={dicID} 
+                  onChange={(e) => setDicID(e.target.value)}
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                />
               </div>
-
+              
               <button type="button" className="dictionary-Find" onClick={handleFindEntry}>
                 <span className="btnFind">Find</span>
               </button>

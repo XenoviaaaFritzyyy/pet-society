@@ -456,7 +456,7 @@ function Dashboard() {
         <div className="User-buttons" style={{ marginTop: "20px" }}>
           <label style={{ marginLeft: "650px" }}>User ID: </label>
           <input
-            type="number"
+            type="text"
             id="lname"
             name="lname"
             style={{
@@ -464,9 +464,10 @@ function Dashboard() {
               marginBottom: "10px",
               padding: "5px",
               borderRadius: "5px",
-              width: "60px",
-            }}
+              width: "60px", }}
             onChange={(e) => setSearchID(e.target.value)}
+            inputMode="numeric"
+            pattern="[0-9]*"
           />
           <button style={{ borderRadius: "5px", padding: "3px" }}onClick={handleFindID}>
             Find ID

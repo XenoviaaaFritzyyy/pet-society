@@ -7,6 +7,7 @@ const AdminNotification = () => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState('');
   const [message, setMessage] = useState('');
+  const [notificationID, setNotificationID] = useState('');
 
   const handleReset = () => {
     setUserId('');
@@ -49,11 +50,18 @@ const AdminNotification = () => {
           <span className="title">Notification</span>
 
           <div className="fields">
-            <div className="input-field">
-              <label>
-                User ID:
-                <input type="number" value={userId} onChange={(e) => setUserId(e.target.value)} />
-              </label>
+          <div className="input-field">
+            <label htmlFor="notificationID">Notification ID:</label>
+              <input
+                type="text"
+                id="notificationID"
+                name="notificationID"
+                placeholder="Enter notification ID"
+                value={notificationID}
+                onChange={(e) => setNotificationID(e.target.value)}
+                inputMode="numeric"
+                pattern="[0-9]*"
+              />
             </div>
 
             <button type="button" className="dictionary-Reset" onClick={handleReset}>

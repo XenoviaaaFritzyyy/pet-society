@@ -53,31 +53,31 @@ function Home() {
     setOpenDialog(true);
   }, [userID, setUserID]);
   
-  useEffect(() => {
-    const fetchRandomTrivia = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/trivia/getRandomTriviaDetails');
-        const data = await response.json();
+  // useEffect(() => {
+  //   const fetchRandomTrivia = async () => {
+  //     try {
+  //       const response = await fetch('http://localhost:8080/trivia/getRandomTriviaDetails');
+  //       const data = await response.json();
 
-        if (response.ok && data) {
-          setTriviaTitle(data.title);
-          setTriviaCategory(data.category);
-          setTriviaAuthor(data.author);
-          setTriviaContent(data.content);
-        } else {
-          console.error('Failed to fetch random trivia');
-        }
-      } catch (error) {
-        console.error('Error fetching random trivia:', error);
-      } finally {
-        setLoadingTrivia(false);
-      }
-    };
+  //       if (response.ok && data) {
+  //         setTriviaTitle(data.title);
+  //         setTriviaCategory(data.category);
+  //         setTriviaAuthor(data.author);
+  //         setTriviaContent(data.content);
+  //       } else {
+  //         console.error('Failed to fetch random trivia');
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching random trivia:', error);
+  //     } finally {
+  //       setLoadingTrivia(false);
+  //     }
+  //   };
 
-    if (openDialog) {
-      fetchRandomTrivia();
-    }
-  }, [openDialog]);
+  //   if (openDialog) {
+  //     fetchRandomTrivia();
+  //   }
+  // }, [openDialog]);
 
   const handleColourChange = (event) => {
     setColour(event.target.value);
@@ -233,7 +233,7 @@ function Home() {
         ))}
       </div> 
 
-      <Dialog open={openDialog} onClose={handleCloseDialog}>
+      {/* <Dialog open={openDialog} onClose={handleCloseDialog}>
         <DialogTitle>Did you know? {triviaTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -253,7 +253,7 @@ function Home() {
             Close
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
     </>
   );
 }

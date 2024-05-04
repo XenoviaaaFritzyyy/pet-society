@@ -317,17 +317,19 @@ const handleConfirmUpdate = async () => {
             <span className="title">Pet Profile</span>
 
             <div className="fields">
-              <div className="input-field">
-                <label>PetID*</label>
-                <input
-                  type="number"
-                  id="petID"
-                  name="petID"
-                  placeholder="Enter petID"
-                  value={formData.petID}
-                  onChange={handleInputChange}
-                />
-              </div>
+            <div className="input-field">
+              <label htmlFor="petID">PetID*</label>
+              <input
+                type="text"
+                id="petID"
+                name="petID"
+                placeholder="Enter petID"
+                value={formData.petID}
+                onChange={handleInputChange}
+                inputMode="numeric"
+                pattern="[0-9]*"
+              />
+          </div>
 
               <button type="button" className="dictionary-Find" onClick={handleFindPetProfile}>
                 <span className="btnFind">Find</span>
@@ -391,9 +393,9 @@ const handleConfirmUpdate = async () => {
               </div>
 
               <div className="input-field">
-                <label>Age*</label>
+              <label>Age*</label>
                 <input
-                  type="number"
+                  type="text"
                   id="age"
                   name="age"
                   placeholder="Enter age"
@@ -557,7 +559,7 @@ const handleConfirmUpdate = async () => {
       <Dialog open={openUpdateConfirmationDialog} onClose={() => setOpenUpdateConfirmationDialog(false)}>
         <DialogTitle>Confirmation</DialogTitle>
         <DialogContent>
-          <DialogContentText>Are you sure you want to update this trivia?</DialogContentText>
+          <DialogContentText>Are you sure you want to update this Pet Profile?</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenUpdateConfirmationDialog(false)} color="primary" style={{ backgroundColor: 'red', color: 'white' }}>
@@ -573,7 +575,7 @@ const handleConfirmUpdate = async () => {
             <Dialog open={openDeleteConfirmationDialog} onClose={() => setOpenDeleteConfirmationDialog(false)}>
         <DialogTitle>Confirmation</DialogTitle>
         <DialogContent>
-          <DialogContentText>Are you sure you want to delete this trivia?</DialogContentText>
+          <DialogContentText>Are you sure you want to delete this Pet entry?</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenDeleteConfirmationDialog(false)} color="primary" style={{ backgroundColor: 'red', color: 'white' }}>

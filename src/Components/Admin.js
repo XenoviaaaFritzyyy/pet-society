@@ -29,9 +29,9 @@ function Admin() {
           <Link to="/dictionaryform" className="dictionary">
             Dictionary Form
           </Link>
-          <Link to="/triviaform" className="triviaform">
+          {/* <Link to="/triviaform" className="triviaform">
             Trivia Form
-          </Link>
+          </Link> */}
           <Link to="/requestform" className="requestform">
             Application Request
           </Link>

@@ -9,6 +9,7 @@ function Request() {
   const [filter, setFilter] = useState('Pending');
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedApplicationID, setSelectedApplicationID] = useState(null);
+  const [userFullName, setUserFullName] = useState('');
 
   const fetchApplications = async () => {
     try {
@@ -73,6 +74,13 @@ function Request() {
   };
 
   useEffect(() => {
+    console.log("Applications:", applications);
+    const userFullName = applications.length > 0 ? `${applications[0].user.fname} ${applications[0].user.lname}` : '';
+    console.log("User Full Name:", userFullName);
+    setUserFullName(userFullName);
+}, [applications]);
+
+  useEffect(() => {
     (async () => {
       const storedUserID = localStorage.getItem('userID');
       if (storedUserID) {
@@ -94,7 +102,8 @@ function Request() {
     <>
       <Navbar />
       <div style={{ textAlign: 'center', marginTop: '25px' }}>
-        <h2 style={{ color: '#27374D' }}>Application Requests for userID: {userID}</h2>
+      <h2 style={{ color: '#27374D' }}>Application Requests </h2>
+      {/*for User: {userFullName}*/}
 
         <div style={{ margin: '20px' }}>
           <button onClick={() => setFilter('All')} style={{ margin: '0 5px', padding:'5px 25px', cursor: 'pointer', borderRadius: '10px'}}>All</button>
