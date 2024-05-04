@@ -21,12 +21,14 @@ const ApplicationForm = () => {
     state: '',
     noAdults: '',
     noChildren: '',
-    desHousehold: 'active',
-    typeResidence: 'apartment',
+    desHousehold: 'Active',
+    typeResidence: 'Apartment',
     rentHome: 'Rent',
     landlordContact: '',
     isDeleted: false,
   });
+
+  if(localStorage.getItem("userID")==null){window.location="/signin"}
 
   useEffect(() => {
     const storedUserID = localStorage.getItem('userID');
