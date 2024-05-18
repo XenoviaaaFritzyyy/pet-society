@@ -398,7 +398,7 @@ const handleConfirmUpdate = async () => {
                   type="text"
                   id="age"
                   name="age"
-                  placeholder="Enter age"
+                  placeholder="*Enter age in months"
                   value={formData.age}
                   onChange={handleInputChange}
                 />

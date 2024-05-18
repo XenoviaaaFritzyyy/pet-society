@@ -38,9 +38,9 @@ function Admin() {
           <Link to="/dashboardUser" className="dashboardUser">
             Dashboard 
           </Link>
-          <Link to="/adminNotification" className="adminNotif">
+          {/* <Link to="/adminNotification" className="adminNotif">
             Notification
-          </Link>
+          </Link> */}
           
         </div>
       </div>
